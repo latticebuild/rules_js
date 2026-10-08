@@ -2,7 +2,7 @@
 
 load("@bazel_skylib//lib:partial.bzl", "partial")
 load("@bazel_skylib//lib:unittest.bzl", "analysistest", "asserts", "unittest")
-load("//private/pnpm:graph.bzl", "resolve_graph")
+load("//js/private/pnpm:graph.bzl", "resolve_graph")
 load(":packages.bzl", "package_records")
 
 def graph_test_suite(name):

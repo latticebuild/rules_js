@@ -33,7 +33,7 @@ use_repo(go_deps, "org_golang_x_sys")
 
 bazel_dep(name = "latticebuild_graceproc", version = "0.0.0")
 
-node_modules = use_repo_rule("//:repositories.bzl", "node_modules")
+node_modules = use_repo_rule("//js:repositories.bzl", "node_modules")
 
 node_modules(
     name = "pnpm",
@@ -42,6 +42,6 @@ node_modules(
 
 git_override(
     module_name = "latticebuild_graceproc",
-    commit = "f8808bf114b5f6027d49a175d19110c130e55f65",
+    commit = "b3d8d28db78c5fb7224b8ba881b29ca0558353bb",
     remote = "https://github.com/latticebuild/graceproc.git",
 )

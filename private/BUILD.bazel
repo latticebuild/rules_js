@@ -1,8 +1,0 @@
-load(":execution_environment.bzl", "execution_environment")
-
-package(default_visibility = ["//visibility:private"])
-
-execution_environment(
-    name = "execution_environment",
-    visibility = ["//support:__pkg__"],
-)

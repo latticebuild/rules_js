@@ -1,0 +1,20 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary")
+
+go_binary(
+    name = "run-node-tests",
+    testonly = True,
+    srcs = [
+        "main.go",
+        "nodetest.go",
+    ],
+    pure = "on",
+    target_compatible_with = [],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//go/arguments:lib",
+        "//go/junit:lib",
+        "//go/lcov:lib",
+        "//go/process:lib",
+        "//go/testenv:lib",
+    ],
+)

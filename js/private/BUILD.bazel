@@ -1,0 +1,128 @@
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+load(":execution_environment.bzl", "execution_environment")
+
+package(default_visibility = ["//visibility:private"])
+
+execution_environment(
+    name = "execution_environment",
+    visibility = ["//js/support:__pkg__"],
+)
+# Starlark library dependency graph.
+
+bzl_library(
+    name = "action_bzl",
+    srcs = ["action.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//js:providers",
+        "//js/private:execution_environment_bzl",
+        "//js/private:layout_bzl",
+    ],
+)
+
+bzl_library(
+    name = "binary_bzl",
+    srcs = ["binary.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//js:providers",
+        "//js/private:layout_bzl",
+        "//js/private:package_execution_bzl",
+        "//js/private:runtime_bzl",
+    ],
+)
+
+bzl_library(
+    name = "coverage_bzl",
+    srcs = ["coverage.bzl"],
+    visibility = ["//:__subpackages__"],
+)
+
+bzl_library(
+    name = "execution_environment_bzl",
+    srcs = ["execution_environment.bzl"],
+    visibility = ["//:__subpackages__"],
+)
+
+bzl_library(
+    name = "fix_bzl",
+    srcs = ["fix.bzl"],
+    visibility = ["//:__subpackages__"],
+)
+
+bzl_library(
+    name = "layout_bzl",
+    srcs = ["layout.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//js:providers",
+        "@bazel_skylib//lib:paths",
+    ],
+)
+
+bzl_library(
+    name = "node_modules_bzl",
+    srcs = ["node_modules.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//js/private/pnpm:discovery_bzl",
+        "//js/private/pnpm:graph_bzl",
+        "//js/private/pnpm:packages_bzl",
+        "//js/private/pnpm:render_bzl",
+    ],
+)
+
+bzl_library(
+    name = "package_bzl",
+    srcs = ["package.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//js:providers",
+        "//js/private:layout_bzl",
+    ],
+)
+
+bzl_library(
+    name = "package_execution_bzl",
+    srcs = ["package_execution.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//js:providers",
+        "//js/private:layout_bzl",
+        "//js/private:runtime_bzl",
+    ],
+)
+
+bzl_library(
+    name = "runtime_bzl",
+    srcs = ["runtime.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//js/private:coverage_bzl",
+        "//js/private:fix_bzl",
+        "//js/private:layout_bzl",
+        "@rules_bound//bound:defs",
+    ],
+)
+
+bzl_library(
+    name = "test_bzl",
+    srcs = ["test.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//js/private:coverage_bzl",
+        "//js/private:package_execution_bzl",
+        "//js/private:runtime_bzl",
+    ],
+)
+
+bzl_library(
+    name = "tree_bzl",
+    srcs = ["tree.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//js:providers",
+        "//js/private:action_bzl",
+        "//js/private:layout_bzl",
+    ],
+)

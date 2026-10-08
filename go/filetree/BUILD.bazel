@@ -84,5 +84,5 @@ test_suite(
         ":unit_race_test",
         ":unit_test",
     ],
-    visibility = ["//private/tools:__pkg__"],
+    visibility = ["//js/private/tools:__pkg__"],
 )

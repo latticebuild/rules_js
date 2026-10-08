@@ -1,0 +1,57 @@
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+
+package(default_visibility = ["//visibility:public"])
+
+alias(
+    name = "run_action",
+    actual = "//js/private/tools/run-action",
+)
+
+alias(
+    name = "execution_environment",
+    actual = "//js/private:execution_environment",
+)
+
+alias(
+    name = "run_fix",
+    actual = "//js/private/tools/run-fix",
+)
+# Starlark library dependency graph.
+
+bzl_library(
+    name = "action",
+    srcs = ["action.bzl"],
+    visibility = ["//visibility:public"],
+    deps = ["//js/private:action_bzl"],
+)
+
+bzl_library(
+    name = "coverage",
+    srcs = ["coverage.bzl"],
+    visibility = ["//visibility:public"],
+    deps = ["//js/private:coverage_bzl"],
+)
+
+bzl_library(
+    name = "execution",
+    srcs = ["execution.bzl"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//js/private:package_execution_bzl",
+        "//js/private:runtime_bzl",
+    ],
+)
+
+bzl_library(
+    name = "fix",
+    srcs = ["fix.bzl"],
+    visibility = ["//visibility:public"],
+    deps = ["//js/private:fix_bzl"],
+)
+
+bzl_library(
+    name = "layout",
+    srcs = ["layout.bzl"],
+    visibility = ["//visibility:public"],
+    deps = ["//js/private:layout_bzl"],
+)

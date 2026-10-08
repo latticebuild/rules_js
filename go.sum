@@ -1,6 +1,6 @@
 github.com/bazelbuild/rules_go v0.63.0 h1:G/hGy2pBLxlrxbpQBJKdHSLhu3KFIkFsuNg8m59mn3c=
 github.com/bazelbuild/rules_go v0.63.0/go.mod h1:6YghDRf6l3FSiAwncK+Ww9jE1naoQzNq28gaKJeB67I=
-github.com/latticebuild/graceproc v0.0.0-20261008014053-f8808bf114b5 h1:kxVcWKrPu2lbsctG6imMFsmEG4MM7KSjRdWKVCwQAXA=
-github.com/latticebuild/graceproc v0.0.0-20261008014053-f8808bf114b5/go.mod h1:oNPHwaH0XEBTBqecJmq8tEVP00dHWkVQFN0GT1mvRfg=
+github.com/latticebuild/graceproc v0.0.0-20261008024653-b3d8d28db78c h1:Awo50AzsX7LNmkJQ38NUZO6UmK3ROyv5oyFU26txP8Y=
+github.com/latticebuild/graceproc v0.0.0-20261008024653-b3d8d28db78c/go.mod h1:oNPHwaH0XEBTBqecJmq8tEVP00dHWkVQFN0GT1mvRfg=
 golang.org/x/sys v0.48.0 h1:bbX/i/6MgT9BVLM9RT1thmxL04yeTAhbEz4SyadbXoo=
 golang.org/x/sys v0.48.0/go.mod h1:hNLxWAXmnKAxqDtdwIYC4bM9oQPEecfsnNMuSxOs3og=

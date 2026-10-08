@@ -2,7 +2,7 @@
 
 load("@bazel_skylib//lib:partial.bzl", "partial")
 load("@bazel_skylib//lib:unittest.bzl", "analysistest", "asserts", "unittest")
-load("//private/pnpm:selection.bzl", "compile_patterns", "ignored_directories")
+load("//js/private/pnpm:selection.bzl", "compile_patterns", "ignored_directories")
 
 def selection_test_suite(name):
     """Create the repository-selection syntax and exclusion-pattern refusals.

@@ -1,4 +1,4 @@
-load("//:defs.bzl", "js_test")
+load("//js:defs.bzl", "js_test")
 load(":tree_tests.bzl", "tree_test_suite")
 
 package(default_testonly = True)

@@ -1,4 +1,4 @@
-load("//:defs.bzl", "js_package")
+load("//js:defs.bzl", "js_package")
 
 package(
     default_testonly = True,

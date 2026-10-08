@@ -1,0 +1,50 @@
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+
+package(default_visibility = ["//:__subpackages__"])
+
+exports_files(["generated/spdx_ids.txt"])
+# Starlark library dependency graph.
+
+bzl_library(
+    name = "discovery_bzl",
+    srcs = ["discovery.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//js/private/pnpm:selection_bzl",
+        "@bazel_skylib//lib:paths",
+    ],
+)
+
+bzl_library(
+    name = "graph_bzl",
+    srcs = ["graph.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//js/private/pnpm:packages_bzl",
+        "@bazel_skylib//lib:paths",
+    ],
+)
+
+bzl_library(
+    name = "packages_bzl",
+    srcs = ["packages.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//js/private/pnpm:discovery_bzl",
+        "@bazel_skylib//lib:paths",
+    ],
+)
+
+bzl_library(
+    name = "render_bzl",
+    srcs = ["render.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = ["//js/private/pnpm:graph_bzl"],
+)
+
+bzl_library(
+    name = "selection_bzl",
+    srcs = ["selection.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = ["@bazel_skylib//lib:paths"],
+)

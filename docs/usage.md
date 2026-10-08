@@ -14,7 +14,7 @@ pnpm install --frozen-lockfile
 Declare the repository from your own package manifest in MODULE.bazel:
 
 ```starlark
-node_modules = use_repo_rule("@latticebuild_js//:repositories.bzl", "node_modules")
+node_modules = use_repo_rule("@latticebuild_js//js:repositories.bzl", "node_modules")
 node_modules(name = "npm", package_json = "//:package.json")
 ```
 
@@ -27,7 +27,7 @@ a root module choosing different versions owns that choice.
 Load rules through the public facade:
 
 ```starlark
-load("@latticebuild_js//:defs.bzl", "js_binary", "js_package", "js_test", "js_tree")
+load("@latticebuild_js//js:defs.bzl", "js_binary", "js_package", "js_test", "js_tree")
 
 js_package(
     name = "library",
@@ -55,8 +55,8 @@ Bazel executable label. Read that map when composing an adapter. A package
 with one command often has `:bin`, but a file or target collision can allocate
 another name. The index records the label that works.
 
-[providers.bzl](../providers.bzl) owns `JsPackageInfo`, `JsBinaryInfo`,
+[providers.bzl](../js/providers.bzl) owns `JsPackageInfo`, `JsBinaryInfo`,
 `JsTsconfigInfo`, and `JsViteConfigInfo`. Adapter authors may load the public
-`support/*.bzl` facades and the `//support` executable aliases. Import Go helpers
+`js/support/*.bzl` facades and the `//js/support` executable aliases. Import Go helpers
 through `github.com/latticebuild/rules_js/go/...`. Keep private implementation
 imports inside this repository.

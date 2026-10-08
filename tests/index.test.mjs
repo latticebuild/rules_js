@@ -11,7 +11,7 @@ test("the index preserves an aliased command whose files occupy both target name
   assert.equal(binding.name, "@fixture/compiler");
   assert.equal(binding.label, "@pnpm//node_modules/@fixture/compiler");
   assert.deepEqual(binding.binaries, {tsc: "@pnpm//node_modules/@fixture/compiler:bin_"});
-  assert.ok(binding.platforms.every((label) => label.includes("//platforms:") && !label.startsWith("@pnpm")));
+  assert.ok(binding.platforms.every((label) => label.includes("//js/platforms:") && !label.startsWith("@pnpm")));
   const suffix = process.platform === "win32" ? ".exe" : "";
   const command = fileURLToPath(new URL(`../node_modules/@fixture/compiler/bin_${suffix}`, import.meta.url));
   const result = spawnSync(command, [], {encoding:"utf8"});

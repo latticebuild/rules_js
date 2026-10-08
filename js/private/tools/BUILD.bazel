@@ -1,0 +1,13 @@
+test_suite(
+    name = "runtime_test",
+    tests = [
+        "//go/filetree:runtime_test",
+        "//go/junit:runtime_test",
+        "//go/lcov:runtime_test",
+        "//go/process:runtime_test",
+        "//go/testenv:runtime_test",
+        "//js/private/tools/filter-runtime:runtime_test",
+        "//js/private/tools/run-action:runtime_test",
+    ],
+    visibility = ["//:__subpackages__"],
+)
