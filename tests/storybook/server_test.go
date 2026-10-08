@@ -61,7 +61,7 @@ func TestStorybookServer(t *testing.T) {
 			t.Error(err)
 		}
 	})
-	ctx, cancel := context.WithTimeout(context.Background(), 25*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 60*time.Second)
 	defer cancel()
 	client := &http.Client{Timeout: time.Second}
 	var last error
@@ -113,10 +113,26 @@ func TestStorybookServer(t *testing.T) {
 				if err := os.MkdirAll(scratch, 0700); err != nil {
 					t.Fatal(err)
 				}
-				browser := exec.CommandContext(ctx, probe, "http://"+address)
+				// Give rendering its own budget after the cold server has become ready.
+				renderCtx, renderCancel := context.WithTimeout(context.Background(), 60*time.Second)
+				defer renderCancel()
+				browser := exec.Command(probe, "http://"+address)
 				browser.Env = append(os.Environ(), "BOUND_CACHE=0", "DEBUG=pw:browser,pw:api", "HOME="+scratch, "USERPROFILE="+scratch, "TMPDIR="+scratch, "TMP="+scratch, "TEMP="+scratch, "PLAYWRIGHT_BROWSERS_PATH="+filepath.Dir(filepath.Dir(marker)))
-				if output, err := browser.CombinedOutput(); err != nil {
-					t.Fatalf("rendered story: %v\n%s\n%s", err, output, logs.text())
+				var rendered output
+				browser.Stdout, browser.Stderr = &rendered, &rendered
+				probeSignals := make(chan os.Signal, 1)
+				probeDone := make(chan struct{})
+				go func() {
+					select {
+					case <-renderCtx.Done():
+						probeSignals <- os.Interrupt
+					case <-probeDone:
+					}
+				}()
+				status, err := graceproc.Run(browser, probeSignals)
+				close(probeDone)
+				if err != nil || status != 0 || renderCtx.Err() != nil {
+					t.Fatalf("rendered story: status %d, error %v, deadline %v\n%s\n%s", status, err, renderCtx.Err(), rendered.text(), logs.text())
 				}
 				return
 			}
