@@ -1,0 +1,88 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "lib",
+    srcs = [
+        "clone_darwin.go",
+        "clone_linux.go",
+        "clone_other.go",
+        "clone_windows.go",
+        "copy.go",
+        "dirlink.go",
+        "dirlink_unix.go",
+        "dirlink_windows.go",
+        "paths.go",
+        "realpath_other.go",
+        "realpath_windows.go",
+        "symlink_unix.go",
+        "symlink_windows.go",
+        "tree.go",
+    ],
+    importpath = "github.com/latticebuild/rules_js/go/filetree",
+    target_compatible_with = [],
+    visibility = ["//visibility:public"],
+    deps = [] + select({
+        "@io_bazel_rules_go//go/platform:darwin": ["@org_golang_x_sys//unix"],
+        "@io_bazel_rules_go//go/platform:linux": ["@org_golang_x_sys//unix"],
+        "@io_bazel_rules_go//go/platform:windows": ["@org_golang_x_sys//windows"],
+        "//conditions:default": [],
+    }),
+)
+
+go_test(
+    name = "unit_test",
+    srcs = [
+        "clone_darwin_test.go",
+        "clone_unix_test.go",
+        "clone_windows_test.go",
+        "copy_test.go",
+        "dirlink_test.go",
+        "dirlink_windows_test.go",
+        "tree_windows_test.go",
+    ],
+    embed = [":lib"],
+    pure = "on",
+    race = "off",
+    target_compatible_with = [],
+    deps = [] + select({
+        "@io_bazel_rules_go//go/platform:darwin": ["@org_golang_x_sys//unix"],
+        "@io_bazel_rules_go//go/platform:linux": ["@org_golang_x_sys//unix"],
+        "@io_bazel_rules_go//go/platform:windows": ["@org_golang_x_sys//windows"],
+        "//conditions:default": [],
+    }),
+)
+
+go_test(
+    name = "unit_race_test",
+    srcs = [
+        "clone_darwin_test.go",
+        "clone_unix_test.go",
+        "clone_windows_test.go",
+        "copy_test.go",
+        "dirlink_test.go",
+        "dirlink_windows_test.go",
+        "tree_windows_test.go",
+    ],
+    embed = [":lib"],
+    pure = "off",
+    race = "on",
+    target_compatible_with = select({
+        "@platforms//os:windows": ["@platforms//:incompatible"],
+        "//conditions:default": [],
+    }),
+    deps = [] + select({
+        "@io_bazel_rules_go//go/platform:darwin": ["@org_golang_x_sys//unix"],
+        "@io_bazel_rules_go//go/platform:linux": ["@org_golang_x_sys//unix"],
+        "@io_bazel_rules_go//go/platform:windows": ["@org_golang_x_sys//windows"],
+        "//conditions:default": [],
+    }),
+)
+
+test_suite(
+    name = "runtime_test",
+    tests = [
+        ":unit_race_test",
+        ":unit_test",
+    ],
+    visibility = ["//private/tools:__pkg__"],
+)

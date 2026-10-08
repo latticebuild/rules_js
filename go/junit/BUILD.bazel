@@ -1,0 +1,46 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "lib",
+    testonly = True,
+    srcs = [
+        "junit.go",
+    ],
+    importpath = "github.com/latticebuild/rules_js/go/junit",
+    target_compatible_with = [],
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "unit_test",
+    srcs = [
+        "junit_test.go",
+    ],
+    embed = [":lib"],
+    pure = "on",
+    race = "off",
+    target_compatible_with = [],
+)
+
+go_test(
+    name = "unit_race_test",
+    srcs = [
+        "junit_test.go",
+    ],
+    embed = [":lib"],
+    pure = "off",
+    race = "on",
+    target_compatible_with = select({
+        "@platforms//os:windows": ["@platforms//:incompatible"],
+        "//conditions:default": [],
+    }),
+)
+
+test_suite(
+    name = "runtime_test",
+    tests = [
+        ":unit_race_test",
+        ":unit_test",
+    ],
+    visibility = ["//private/tools:__pkg__"],
+)

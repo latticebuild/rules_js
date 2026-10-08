@@ -1,0 +1,54 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "lib",
+    srcs = [
+        "process.go",
+        "process_unix.go",
+        "process_windows.go",
+    ],
+    importpath = "github.com/latticebuild/rules_js/go/process",
+    target_compatible_with = [],
+    visibility = ["//visibility:public"],
+    deps = [
+        "@latticebuild_graceproc//:graceproc",
+    ],
+)
+
+go_test(
+    name = "unit_test",
+    srcs = [
+        "process_test.go",
+    ],
+    embed = [":lib"],
+    pure = "on",
+    race = "off",
+    target_compatible_with = [],
+    deps = [
+    ],
+)
+
+go_test(
+    name = "unit_race_test",
+    srcs = [
+        "process_test.go",
+    ],
+    embed = [":lib"],
+    pure = "off",
+    race = "on",
+    target_compatible_with = select({
+        "@platforms//os:windows": ["@platforms//:incompatible"],
+        "//conditions:default": [],
+    }),
+    deps = [
+    ],
+)
+
+test_suite(
+    name = "runtime_test",
+    tests = [
+        ":unit_race_test",
+        ":unit_test",
+    ],
+    visibility = ["//private/tools:__pkg__"],
+)

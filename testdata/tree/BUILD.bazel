@@ -1,0 +1,46 @@
+load("//:defs.bzl", "js_package")
+
+package(
+    default_testonly = True,
+    default_visibility = ["//visibility:private"],
+)
+
+js_package(
+    name = "escaping_install",
+    package_name = "invalid",
+    installs = ["../node_modules/alias"],
+    package = "fixture-package.json",
+    tags = ["manual"],
+    target_compatible_with = [],
+    visibility = ["//tests:__pkg__"],
+)
+
+js_package(
+    name = "noninstall",
+    package_name = "invalid",
+    installs = ["packages/alias"],
+    package = "fixture-package.json",
+    tags = ["manual"],
+    target_compatible_with = [],
+    visibility = ["//tests:__pkg__"],
+)
+
+js_package(
+    name = "nonpackage_install",
+    package_name = "invalid",
+    installs = ["node_modules/alias/child"],
+    package = "fixture-package.json",
+    tags = ["manual"],
+    target_compatible_with = [],
+    visibility = ["//tests:__pkg__"],
+)
+
+js_package(
+    name = "unnormalized_install",
+    package_name = "invalid",
+    installs = ["node_modules/../node_modules/alias"],
+    package = "fixture-package.json",
+    tags = ["manual"],
+    target_compatible_with = [],
+    visibility = ["//tests:__pkg__"],
+)

@@ -1,0 +1,14 @@
+min_version = "2026.9.16"
+[tools]
+bazel = "9.2.0"
+buildifier = "10.0.1"
+go = "1.27.1"
+"aqua:jdx/hk" = "2.0.0"
+pkl = "0.32.1"
+nu = "0.115.1"
+actionlint = "1.7.12"
+shellcheck = "0.11.0"
+node = "26.8.2"
+pnpm = "12.4.2"
+[tasks.bootstrap]
+run = "pnpm install --frozen-lockfile"

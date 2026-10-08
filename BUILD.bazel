@@ -1,0 +1,43 @@
+package(default_visibility = ["//visibility:private"])
+
+test_suite(
+    name = "test",
+    tests = [
+        "//go/filetree:unit_test",
+        "//go/junit:unit_test",
+        "//go/lcov:unit_test",
+        "//go/process:unit_test",
+        "//go/testenv:unit_test",
+        "//private/tools/filter-runtime:unit_test",
+        "//private/tools/internal/action:unit_test",
+        "//tests:index_test",
+        "//tests:lifecycle_test",
+        "//tests:reports_test",
+        "//tests:tree_test",
+        "//tests/pnpm:analysis_test",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+test_suite(
+    name = "race_test",
+    tests = [
+        "//go/filetree:unit_race_test",
+        "//go/junit:unit_race_test",
+        "//go/lcov:unit_race_test",
+        "//go/process:unit_race_test",
+        "//go/testenv:unit_race_test",
+        "//private/tools/filter-runtime:unit_race_test",
+        "//private/tools/internal/action:unit_race_test",
+    ],
+)
+
+filegroup(
+    name = "artifacts",
+    testonly = True,
+    srcs = [
+        "//private/tools/run-node-tests",
+        "//support:run_action",
+        "//support:run_fix",
+    ],
+)

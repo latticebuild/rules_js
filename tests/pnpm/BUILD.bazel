@@ -1,0 +1,20 @@
+load(":graph_tests.bzl", "graph_test_suite")
+load(":selection_tests.bzl", "selection_test_suite")
+
+package(
+    default_testonly = True,
+    default_visibility = ["//visibility:private"],
+)
+
+graph_test_suite(name = "graph_test")
+
+selection_test_suite(name = "selection_test")
+
+test_suite(
+    name = "analysis_test",
+    tests = [
+        ":graph_test",
+        ":selection_test",
+    ],
+    visibility = ["//:__pkg__"],
+)

@@ -1,0 +1,43 @@
+load("//:defs.bzl", "js_test")
+
+package(
+    default_testonly = True,
+    default_visibility = ["//tests:__pkg__"],
+)
+
+exports_files(["probe.mjs"])
+
+# Report fixtures: //tests:reports_test runs them with Bazel's
+# report variables and reads the JUnit and LCOV they leave.
+
+js_test(
+    name = "node_reports_test",
+    srcs = ["reported_node.test.mjs"],
+    data = ["reported.mjs"],
+    tags = ["manual"],
+    target_compatible_with = [],
+)
+
+js_test(
+    name = "node_failure_test",
+    srcs = ["failing.test.mjs"],
+    tags = ["manual"],
+    target_compatible_with = [],
+)
+
+# Node shards by test file, so a sharding fixture needs two.
+js_test(
+    name = "node_shards_test",
+    srcs = [
+        "shard_first.test.mjs",
+        "shard_second.test.mjs",
+    ],
+    tags = ["manual"],
+    target_compatible_with = [],
+)
+
+# What bound gives a package executable, checked from inside on every
+# platform: //tests:runtime_test runs it.
+
+# Declared and inherited names replace bound's defaults; the analysis tests
+# of //tests:runner_test read its bind action.

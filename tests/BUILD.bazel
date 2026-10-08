@@ -1,0 +1,41 @@
+load("//:defs.bzl", "js_test")
+load(":tree_tests.bzl", "tree_test_suite")
+
+package(default_testonly = True)
+
+tree_test_suite(name = "tree_test")
+
+filegroup(
+    name = "lifecycle",
+    srcs = ["lifecycle.mjs"],
+)
+
+js_test(
+    name = "lifecycle_test",
+    srcs = ["lifecycle.test.mjs"],
+    data = [
+        ":lifecycle",
+        "@pnpm//node_modules/effection",
+    ],
+)
+
+js_test(
+    name = "reports_test",
+    srcs = ["reports.test.mjs"],
+    data = [
+        ":lifecycle",
+        "//testdata/runners:node_failure_test",
+        "//testdata/runners:node_reports_test",
+        "//testdata/runners:node_shards_test",
+        "@pnpm//node_modules/effection",
+    ],
+)
+
+js_test(
+    name = "index_test",
+    srcs = ["index.test.mjs"],
+    data = [
+        "@pnpm//:workspace.json",
+        "@pnpm//node_modules/@fixture/compiler:bin_",
+    ],
+)

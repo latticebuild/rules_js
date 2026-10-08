@@ -1,0 +1,11 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "lib",
+    srcs = [
+        "arguments.go",
+    ],
+    importpath = "github.com/latticebuild/rules_js/go/arguments",
+    target_compatible_with = [],
+    visibility = ["//visibility:public"],
+)
