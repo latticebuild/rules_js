@@ -43,8 +43,13 @@ for (const dependency of input.dependencies) visit(dependency, origin);
 const packages = [...manifests].sort(([a], [b]) => a.localeCompare(b));
 const result = {nonce:input.nonce, node:process.version, packages};
 if (inventory) {
+  result.execArgv = process.execArgv;
+  result.nodeOptions = process.env.NODE_OPTIONS || '';
   result.instances = [...instances].map(([file, manifest]) => {
     const root = path.dirname(file);
+    if ([manifest.bundledDependencies, manifest.bundleDependencies].some(value => value === true || (Array.isArray(value) && value.length))) {
+      throw new Error('Pinned fixture cannot contain bundled dependencies');
+    }
     const bindings = [];
     for (const kind of ['dependencies', 'optionalDependencies', 'peerDependencies']) {
       for (const name of Object.keys(manifest[kind] || {}).sort()) {
@@ -55,20 +60,28 @@ if (inventory) {
       }
     }
     const files = [];
+    const layoutDirectories = [];
+    const ancestors = new Set();
     function walk(dir, prefix) {
+      const canonical = fs.realpathSync(dir);
+      if (ancestors.has(canonical)) throw new Error('Package payload directory cycle');
+      ancestors.add(canonical);
       for (const entry of fs.readdirSync(dir, {withFileTypes:true}).sort((a,b) => a.name.localeCompare(b.name))) {
-        if (entry.name === 'node_modules') continue;
-        if (entry.name === 'BUILD.bazel' || entry.name.startsWith('.aspect_rules_js') || entry.name === '.bazelignore') continue;
         const absolute = path.join(dir, entry.name);
         const relative = prefix + entry.name;
         const info = fs.statSync(absolute);
+        if (prefix === '' && entry.name === 'node_modules' && info.isDirectory()) {
+          layoutDirectories.push('node_modules/');
+          continue;
+        }
         if (info.isDirectory()) walk(absolute, relative + '/');
         else if (info.isFile()) files.push([relative, crypto.createHash('sha256').update(fs.readFileSync(absolute)).digest('hex'), info.size]);
         else throw new Error('Non-regular npm payload: ' + relative);
       }
+      ancestors.delete(canonical);
     }
     walk(root, '');
-    return {name:manifest.name, version:manifest.version, bindings, files};
+    return {name:manifest.name, version:manifest.version, bindings, files, layoutDirectories};
   }).sort((a,b) => JSON.stringify([a.name,a.version,a.bindings]).localeCompare(JSON.stringify([b.name,b.version,b.bindings])));
 }
 fs.mkdirSync(path.dirname(output), {recursive:true});

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/hex"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -30,19 +31,25 @@ func (f *payloadFile) UnmarshalJSON(data []byte) error {
 	if f.Path == "." || path.Clean(f.Path) != f.Path || !filepath.IsLocal(filepath.FromSlash(f.Path)) || strings.ContainsAny(f.Path, "\\:") || len(f.SHA256) != 64 || f.Size < 0 {
 		return errors.New("invalid payload entry")
 	}
+	if _, err := hex.DecodeString(f.SHA256); err != nil {
+		return errors.New("invalid payload SHA-256")
+	}
 	return nil
 }
 
 type packageInstance struct {
-	Name     string        `json:"name"`
-	Version  string        `json:"version"`
-	Bindings [][]string    `json:"bindings"`
-	Files    []payloadFile `json:"files"`
+	Name              string        `json:"name"`
+	Version           string        `json:"version"`
+	Bindings          [][]string    `json:"bindings"`
+	Files             []payloadFile `json:"files"`
+	LayoutDirectories []string      `json:"layoutDirectories"`
 }
 
 type inventory struct {
-	Node      string            `json:"node"`
-	Instances []packageInstance `json:"instances"`
+	Node        string            `json:"node"`
+	Instances   []packageInstance `json:"instances"`
+	ExecArgv    []string          `json:"execArgv"`
+	NodeOptions string            `json:"nodeOptions"`
 }
 
 type excludedFile struct {
@@ -53,12 +60,19 @@ type excludedFile struct {
 }
 
 type inventoryParity struct {
-	Instances    int            `json:"packageInstances"`
-	CommonFiles  int            `json:"commonPayloadFiles"`
-	CommonBytes  int64          `json:"commonPayloadBytes"`
-	LatticeFiles int            `json:"latticePayloadFiles"`
-	AspectFiles  int            `json:"aspectPayloadFiles"`
-	Excluded     []excludedFile `json:"aspectDefaultExclusions"`
+	Instances         int                     `json:"packageInstances"`
+	CommonFiles       int                     `json:"commonPayloadFiles"`
+	CommonBytes       int64                   `json:"commonPayloadBytes"`
+	LatticeFiles      int                     `json:"latticePayloadFiles"`
+	AspectFiles       int                     `json:"aspectPayloadFiles"`
+	Excluded          []excludedFile          `json:"aspectDefaultExclusions"`
+	LayoutDirectories map[string]int          `json:"dependencyLayoutDirectories"`
+	NodeDefaults      map[string]nodeDefaults `json:"backendNodeDefaults"`
+}
+
+type nodeDefaults struct {
+	ExecArgv    []string `json:"execArgv"`
+	NodeOptions string   `json:"nodeOptions"`
 }
 
 func compareInventories(lattice, aspect *backend) (inventoryParity, error) {
@@ -89,9 +103,32 @@ func instanceKey(instance packageInstance) string {
 }
 
 func inventoryComparison(lattice, aspect inventory) (inventoryParity, error) {
-	r := inventoryParity{Instances: len(lattice.Instances)}
+	r := inventoryParity{Instances: len(lattice.Instances), LayoutDirectories: map[string]int{}, NodeDefaults: map[string]nodeDefaults{"lattice": {lattice.ExecArgv, lattice.NodeOptions}, "aspect": {aspect.ExecArgv, aspect.NodeOptions}}}
 	if lattice.Node != "v26.8.2" || aspect.Node != lattice.Node || len(lattice.Instances) < 40 || len(lattice.Instances) != len(aspect.Instances) {
 		return r, errors.New("Node version or physical package instance count differs")
+	}
+	for backend, value := range map[string]inventory{"lattice": lattice, "aspect": aspect} {
+		identities := map[string]bool{}
+		for _, instance := range value.Instances {
+			identity := instance.Name + "@" + instance.Version
+			if identities[identity] {
+				return r, fmt.Errorf("pinned fixture has ambiguous physical peer instances for %s", identity)
+			}
+			identities[identity] = true
+			for _, directory := range instance.LayoutDirectories {
+				if directory != "node_modules/" {
+					return r, errors.New("unexpected ignored package payload directory")
+				}
+				r.LayoutDirectories[backend]++
+			}
+		}
+		for _, instance := range value.Instances {
+			for _, edge := range instance.Bindings {
+				if len(edge) != 3 || !slices.Contains([]string{"dependencies", "optionalDependencies", "peerDependencies"}, edge[0]) || !identities[edge[2]] {
+					return r, errors.New("package binding does not resolve to a unique inventoried instance")
+				}
+			}
+		}
 	}
 	// Keep every physical peer instance. Sorting does not collapse duplicates.
 	left, right := slices.Clone(lattice.Instances), slices.Clone(aspect.Instances)

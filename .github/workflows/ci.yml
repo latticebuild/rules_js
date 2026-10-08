@@ -75,8 +75,11 @@ jobs:
             work_root="$RUNNER_TEMP/benchmark"
           fi
           mkdir -p "$work_root"
+          git clone --no-local --no-hardlinks "$GITHUB_WORKSPACE" "$work_root/subject"
+          git -C "$work_root/subject" checkout --detach "$GITHUB_SHA"
+          export MSYS2_ARG_CONV_EXCL='*'
           bazel --output_user_root="$BAZEL_OUTPUT_USER_ROOT" run //benchmarks:benchmark -- \
-            --source="$GITHUB_WORKSPACE" \
+            --source="$work_root/subject" \
             --work-root="$work_root" \
             --results="$RUNNER_TEMP/benchmark-results"
       - name: Retain benchmark evidence

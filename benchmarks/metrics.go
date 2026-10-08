@@ -113,9 +113,11 @@ func actionMeasurement(rows []spawn, target, runner string) (measurement, error)
 	for _, row := range rows {
 		if row.Mnemonic != "BenchmarkNode" || row.Target != "//:"+target {
 			if !row.Cached {
-				if elapsed, err := time.ParseDuration(row.Metrics.Total); err == nil {
-					result.Prerequisites += elapsed.Nanoseconds()
+				elapsed, err := time.ParseDuration(row.Metrics.Total)
+				if err != nil || elapsed < 0 || row.ExitCode != 0 || row.Status != "" {
+					return result, errors.New("executed prerequisite lacks valid successful timing evidence")
 				}
+				result.Prerequisites += elapsed.Nanoseconds()
 			}
 			continue
 		}

@@ -139,6 +139,8 @@ peer binding, and common payload file's SHA-256. Aspect's normal package
 exclusions remain enabled and their file-count difference is reported.
 Both fixtures disable lifecycle scripts. Dependency preparation, first builds
 and cached no-op builds are recorded separately from warm action samples.
+Neither fixture supplies extra Node flags. Backend defaults, including Aspect's
+symlink-main flag and filesystem patch, are retained and recorded separately.
 
 After three warmup pairs, it retains 30 pairs per case, alternates backend order
 and supplies a new matching input nonce for each pair. Every sample must contain
@@ -148,11 +150,14 @@ wall time are also recorded. Release qualification requires the ratio of
 medians and its paired bootstrap 95% upper bound to be below 1 for both cases
 on all three platforms. The full JSON execution logs and report are CI artifacts.
 
-Run from a clean checkout, with separate existing work and new result directories:
+Measure a clean checkout of the source revision, with separate existing work
+and new result directories. A detached worktree keeps platform-specific Bazel
+lockfile updates in the checkout that builds the benchmark executable:
 
 ```sh
+git worktree add --detach ../rules-js-benchmark-subject HEAD
 bazel run //benchmarks:benchmark -- \
-  --source="$PWD" --work-root="/path/to/development-storage" \
+  --source="../rules-js-benchmark-subject" --work-root="/path/to/development-storage" \
   --results="/path/to/new-benchmark-results"
 ```
 

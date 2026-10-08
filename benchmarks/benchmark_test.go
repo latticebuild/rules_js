@@ -3,13 +3,17 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"os"
+	"os/signal"
 	"path/filepath"
 	"reflect"
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/latticebuild/graceproc"
 )
 
 func validSpawn() spawn {
@@ -55,6 +59,12 @@ func TestActionEvidence(t *testing.T) {
 	m, err := actionMeasurement([]spawn{prerequisite, s}, "none", nativeRunner())
 	if err != nil || m.Total != 24_000_000 || m.Execution != 19_000_000 || m.Prerequisites != 24_000_000 {
 		t.Fatalf("incorrect action/prerequisite aggregation: %+v, %v", m, err)
+	}
+	for _, value := range []string{"", "broken", "-1s"} {
+		prerequisite.Metrics.Total = value
+		if _, err := actionMeasurement([]spawn{prerequisite, s}, "none", nativeRunner()); err == nil {
+			t.Fatal("malformed prerequisite timing accepted:", value)
+		}
 	}
 }
 
@@ -131,6 +141,10 @@ func TestFullPayloadParity(t *testing.T) {
 	if _, err := inventoryComparison(l, a); err == nil {
 		t.Fatal("physical peer instance count was collapsed")
 	}
+	a.Instances = append(a.Instances, a.Instances[0])
+	if _, err := inventoryComparison(l, a); err == nil {
+		t.Fatal("same-version peer contexts were ambiguous but accepted")
+	}
 	for _, data := range []string{`["../outside","digest",1]`, `["index.js","digest",-1]`, `["index.js"]`} {
 		var file payloadFile
 		if err := json.Unmarshal([]byte(data), &file); err == nil {
@@ -193,8 +207,69 @@ func TestCommandCancellation(t *testing.T) {
 	}
 }
 
+func TestGracefulCancellationCannotQualifyCommand(t *testing.T) {
+	t.Setenv("LATTICEBUILD_BENCHMARK_CHILD", "graceful")
+	ctx, cancel := context.WithTimeout(context.Background(), 200*time.Millisecond)
+	defer cancel()
+	err := command(ctx, t.TempDir(), filepath.Join(t.TempDir(), "child.log"), os.Args[0], "-test.run=^TestBenchmarkChild$")
+	if !errors.Is(err, context.DeadlineExceeded) {
+		t.Fatal("cancelled successful shutdown was accepted:", err)
+	}
+}
+
+func TestAlreadyCancelledContextDoesNotStartCommand(t *testing.T) {
+	ctx, cancel := context.WithCancel(context.Background())
+	cancel()
+	log := filepath.Join(t.TempDir(), "should-not-exist")
+	if err := command(ctx, t.TempDir(), log, os.Args[0], "-test.run=^TestBenchmarkChild$"); !errors.Is(err, context.Canceled) {
+		t.Fatal("cancelled command was accepted:", err)
+	}
+	if _, err := os.Stat(log); !os.IsNotExist(err) {
+		t.Fatal("cancelled command started writing:", err)
+	}
+}
+
+func TestResultsRefusePhysicalSourceAlias(t *testing.T) {
+	root := t.TempDir()
+	source := filepath.Join(root, "source")
+	if err := os.Mkdir(source, 0o755); err != nil {
+		t.Fatal(err)
+	}
+	alias := filepath.Join(root, "alias")
+	if err := os.Symlink(source, alias); err != nil {
+		t.Skip("symlink probe unavailable:", err)
+	}
+	if _, err := resultDirectory(source, filepath.Join(alias, "results")); err == nil {
+		t.Fatal("source alias accepted as result storage")
+	}
+	if _, err := os.Stat(filepath.Join(source, "results")); !os.IsNotExist(err) {
+		t.Fatal("results written inside source:", err)
+	}
+}
+
+func TestResultsRefuseCaseAlias(t *testing.T) {
+	root := t.TempDir()
+	source := filepath.Join(root, "source")
+	if err := os.Mkdir(source, 0o755); err != nil {
+		t.Fatal(err)
+	}
+	alias := filepath.Join(root, "SOURCE")
+	if _, err := os.Stat(alias); os.IsNotExist(err) {
+		t.Skip("case-sensitive test filesystem")
+	}
+	if _, err := resultDirectory(source, filepath.Join(alias, "results")); err == nil {
+		t.Fatal("case alias accepted as external result storage")
+	}
+}
+
 func TestBenchmarkChild(t *testing.T) {
 	if os.Getenv("LATTICEBUILD_BENCHMARK_CHILD") == "1" {
 		time.Sleep(time.Minute)
+	}
+	if os.Getenv("LATTICEBUILD_BENCHMARK_CHILD") == "graceful" {
+		signals := make(chan os.Signal, 1)
+		signal.Notify(signals, graceproc.Signals()...)
+		defer signal.Stop(signals)
+		<-signals
 	}
 }

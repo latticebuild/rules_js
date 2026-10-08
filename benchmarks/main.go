@@ -74,11 +74,15 @@ func run() (err error) {
 	if err != nil {
 		return err
 	}
-	*results, err = filepath.Abs(*results)
+	*results, err = resultDirectory(*source, *results)
 	if err != nil {
 		return err
 	}
-	if within(*source, *work) || within(*source, *results) {
+	inside, err := physicalWithin(*source, *work)
+	if err != nil {
+		return err
+	}
+	if inside {
 		return errors.New("benchmark work and results must be outside the measured checkout")
 	}
 	if err := os.Mkdir(*results, 0o755); err != nil {
@@ -115,10 +119,19 @@ func run() (err error) {
 			err = errors.Join(err, saveJSON(filepath.Join(*results, "report.json"), finalReport))
 		}
 	}()
-	bazelVersion, err := capture(ctx, *work, *bazel, "--batch", "--ignore_all_rc_files", "--output_user_root="+filepath.Join(owned, "bazel-version"), "version", "--gnu_format")
+	versionContext, cancelVersion := context.WithTimeout(ctx, time.Minute)
+	versionLog := filepath.Join(*results, "bazel-version.log")
+	err = command(versionContext, *work, versionLog, *bazel, "--batch", "--ignore_all_rc_files", "--output_user_root="+filepath.Join(owned, "bazel-version"), "version", "--gnu_format")
+	cancelVersion()
+	if err != nil {
+		cleanupSafe = false
+		return fmt.Errorf("Bazel version probe failed; retained %s: %w", owned, err)
+	}
+	versionOutput, err := os.ReadFile(versionLog)
 	if err != nil {
 		return err
 	}
+	bazelVersion := string(versionOutput)
 	if !strings.Contains(bazelVersion, "bazel 9.2.0") {
 		return fmt.Errorf("expected Bazel 9.2.0, got %q", bazelVersion)
 	}
@@ -143,6 +156,12 @@ func run() (err error) {
 			err = errors.Join(err, checkErr)
 		} else if after != dirty {
 			err = errors.Join(err, errors.New("measured checkout changed during benchmark"))
+		}
+		head, checkErr := capture(context.Background(), *source, "git", "rev-parse", "HEAD")
+		if checkErr != nil {
+			err = errors.Join(err, checkErr)
+		} else if head != commit {
+			err = errors.Join(err, errors.New("measured HEAD changed during benchmark"))
 		}
 	}()
 	r.Environment, err = machineEnvironment(ctx, *work)
@@ -310,9 +329,44 @@ func physicalDirectory(path string) (string, error) {
 	return path, nil
 }
 
-func within(root, path string) bool {
-	rel, err := filepath.Rel(root, path)
-	return err == nil && (rel == "." || filepath.IsLocal(rel))
+func resultDirectory(source, requested string) (string, error) {
+	requested, err := filepath.Abs(requested)
+	if err != nil {
+		return "", err
+	}
+	parent, err := physicalDirectory(filepath.Dir(requested))
+	if err != nil {
+		return "", err
+	}
+	result := filepath.Join(parent, filepath.Base(requested))
+	inside, err := physicalWithin(source, result)
+	if err != nil {
+		return "", err
+	}
+	if inside {
+		return "", errors.New("results must be physically outside the measured checkout")
+	}
+	return result, nil
+}
+
+// File identity also handles case aliases on macOS and Windows volumes.
+func physicalWithin(root, candidate string) (bool, error) {
+	rootInfo, err := os.Stat(root)
+	if err != nil {
+		return false, err
+	}
+	for current := candidate; ; current = filepath.Dir(current) {
+		info, err := os.Stat(current)
+		if err == nil && os.SameFile(rootInfo, info) {
+			return true, nil
+		}
+		if err != nil && !os.IsNotExist(err) {
+			return false, err
+		}
+		if current == filepath.Dir(current) {
+			return false, nil
+		}
+	}
 }
 
 func capture(ctx context.Context, directory, program string, args ...string) (string, error) {
@@ -362,6 +416,9 @@ func machineEnvironment(ctx context.Context, directory string) (map[string]strin
 }
 
 func command(ctx context.Context, directory, log, program string, args ...string) (err error) {
+	if ctx.Err() != nil {
+		return ctx.Err()
+	}
 	file, err := os.OpenFile(log, os.O_CREATE|os.O_EXCL|os.O_WRONLY, 0o644)
 	if err != nil {
 		return err
@@ -382,6 +439,9 @@ func command(ctx context.Context, directory, log, program string, args ...string
 	cmd := exec.Command(program, args...)
 	cmd.Dir, cmd.Stdout, cmd.Stderr = directory, file, file
 	code, err := graceproc.Run(cmd, signals)
+	if ctx.Err() != nil {
+		return errors.Join(ctx.Err(), err)
+	}
 	if err != nil {
 		return fmt.Errorf("%s exited %d (see %s): %w", program, code, log, err)
 	}
