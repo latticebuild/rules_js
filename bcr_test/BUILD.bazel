@@ -1,7 +1,15 @@
+load(":helper_test.bzl", "helper_test")
+
 exports_files([
     "package.json",
     "pnpm-workspace.yaml",
 ])
+
+helper_test(
+    name = "helper_test",
+    src = "helper.test.mjs",
+    data = ["//examples/library:js"],
+)
 
 filegroup(
     name = "artifacts",
@@ -24,6 +32,7 @@ filegroup(
 test_suite(
     name = "test",
     tests = [
+        ":helper_test",
         "//examples/action:scratch_test",
         "//examples/basics:alias_test",
         "//examples/knip:test",

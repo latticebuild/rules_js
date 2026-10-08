@@ -54,7 +54,8 @@ def package_executable(ctx, tool, files = [], args = [], env = {}, env_inherit =
     """Creates one executable that runs a package tool in its package directory.
 
     Args:
-      ctx: Consuming rule context with PACKAGE_EXECUTABLE_ATTRS.
+      ctx: Consuming rule context with PACKAGE_EXECUTABLE_ATTRS, and
+        TEST_RUNTIME_ATTRS when test is True.
       tool: The runtime tool target, providing JsBinaryInfo.
       files: Additional files at their repository paths, such as
         configuration files.

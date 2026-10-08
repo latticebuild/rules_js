@@ -1,7 +1,7 @@
 """js_oxlint_test: Oxlint's check, with a twin that applies its fixes in place."""
 
 load("//js:providers.bzl", "JsBinaryInfo")
-load("//js/support:execution.bzl", "EXECUTABLE_TOOLCHAINS", "PACKAGE_EXECUTABLE_ATTRS", "package_executable")
+load("//js/support:execution.bzl", "EXECUTABLE_TOOLCHAINS", "PACKAGE_EXECUTABLE_ATTRS", "TEST_RUNTIME_ATTRS", "package_executable")
 load("//js/support:fix.bzl", "fix_name")
 load("//js/support:layout.bzl", "checked_path")
 load(":oxlint_fix.bzl", "js_oxlint_fix")
@@ -51,5 +51,5 @@ _js_oxlint_test = rule(
     doc = "Runs Oxlint on the paths in the staged package, failing on warnings.",
     test = True,
     toolchains = EXECUTABLE_TOOLCHAINS,
-    attrs = PACKAGE_EXECUTABLE_ATTRS | _ATTRS,
+    attrs = PACKAGE_EXECUTABLE_ATTRS | _ATTRS | TEST_RUNTIME_ATTRS,
 )

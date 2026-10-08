@@ -1,7 +1,7 @@
 """js_prettier_test: Prettier's formatting check, with a twin that formats in place."""
 
 load("//js:providers.bzl", "JsBinaryInfo")
-load("//js/support:execution.bzl", "EXECUTABLE_TOOLCHAINS", "PACKAGE_EXECUTABLE_ATTRS", "package_executable")
+load("//js/support:execution.bzl", "EXECUTABLE_TOOLCHAINS", "PACKAGE_EXECUTABLE_ATTRS", "TEST_RUNTIME_ATTRS", "package_executable")
 load("//js/support:fix.bzl", "fix_name")
 load("//js/support:layout.bzl", "checked_path")
 load(":prettier_fix.bzl", "js_prettier_fix")
@@ -49,5 +49,5 @@ _js_prettier_test = rule(
     doc = "Runs `prettier --check` on the paths in the staged package.",
     test = True,
     toolchains = EXECUTABLE_TOOLCHAINS,
-    attrs = PACKAGE_EXECUTABLE_ATTRS | _ATTRS,
+    attrs = PACKAGE_EXECUTABLE_ATTRS | _ATTRS | TEST_RUNTIME_ATTRS,
 )

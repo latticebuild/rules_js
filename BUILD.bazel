@@ -34,6 +34,7 @@ test_suite(
         "//tests:index_test",
         "//tests:lifecycle_test",
         "//tests:reports_test",
+        "//tests:runtime_test",
         "//tests:tree_test",
         "//tests/knip:checks_test",
         "//tests/knip:fix_guard_test",

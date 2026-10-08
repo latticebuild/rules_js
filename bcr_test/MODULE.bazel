@@ -1,6 +1,6 @@
 module(name = "latticebuild_js_consumer")
 
-bazel_dep(name = "latticebuild_js", version = "0.1.1", repo_name = "subject")
+bazel_dep(name = "latticebuild_js", version = "0.1.2", repo_name = "subject")
 local_path_override(
     module_name = "latticebuild_js",
     path = "..",

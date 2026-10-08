@@ -16,6 +16,13 @@ On Linux and macOS, also run `bazel test //:race_test`. Windows runs the portabl
 Go suites, pnpm analysis cases, and Node lifecycle/reporting tests. Native CI
 uses Ubuntu 24.04, macOS 27, and Windows 2025 with the same pinned tools and gates.
 
+The separate BCR consumer runs on all three platforms, including its public
+runtime-helper test under a renamed module. Linux qualification records actual
+namespace-sandboxed compilation and scratch actions, then executes all bundled
+tests with their declared `no-sandbox` requirement. Private runtime copies and
+ownership checks stay enabled. The gate retains uncached first-attempt test and
+action logs, source hashes, and owned Bazel shutdown results.
+
 The executable collision fixture in `testdata/compiler` exercises the version 3
 npm index with an installed alias and occupied command target names. Test runners
 use declared runfiles; install dependencies before running Bazel.

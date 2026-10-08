@@ -12,7 +12,7 @@ Use Bazel 9.2 with Bzlmod. Until the module is registered in the Bazel Central
 Registry, pin a source revision in your root MODULE.bazel:
 
 ```starlark
-bazel_dep(name = "latticebuild_js", version = "0.1.1")
+bazel_dep(name = "latticebuild_js", version = "0.1.2")
 git_override(
     module_name = "latticebuild_js",
     remote = "https://github.com/latticebuild/rules_js.git",
@@ -78,6 +78,13 @@ All `js_*` rules load from `@latticebuild_js//js:defs.bzl`. Each tool is an expl
 | Knip | `js_knip_test` | [Unused code guide](docs/knip.md), [workspace checks](examples/knip/) |
 
 The [generated reference](docs/api-rules.md) documents every public rule. Private implementations live under [js/private/](js/private/).
+
+On Linux, bundled tests declare Bazel's `no-sandbox` execution requirement because
+Bound validates temporary-directory ownership, which Linux UID namespaces hide.
+Tests still receive fresh private trees; build actions stay sandboxed. This test
+requirement preserves cache and remote execution eligibility. Custom test rules
+using `node_executable(test = True)` also declare `TEST_RUNTIME_ATTRS` from
+`js/support:execution.bzl`; see the [external helper example](bcr_test/helper_test.bzl).
 
 Use pnpm’s hoisted linker in pnpm-workspace.yaml:
 

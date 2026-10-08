@@ -13,6 +13,15 @@ NODE_RUNTIME_TOOLCHAIN_TYPE = Label("@rules_nodejs//nodejs:runtime_toolchain_typ
 # binds node with the tree.
 EXECUTABLE_TOOLCHAINS = [NODE_RUNTIME_TOOLCHAIN_TYPE, BOUND_TOOLCHAIN_TYPE]
 
+# A private bundle validates every temporary-path ancestor. Linux UID namespaces
+# hide the host-root owner, so these tests need an unsandboxed test environment.
+TEST_RUNTIME_ATTRS = {
+    "_linux": attr.label(
+        default = Label("@platforms//os:linux"),
+        providers = [platform_common.ConstraintValueInfo],
+    ),
+}
+
 # The tree's private temporary directory and home, for tools run in a
 # package directory, and the names under which tools look for them.
 _PRIVATE_DIRECTORIES = {
@@ -49,7 +58,8 @@ def node_executable(ctx, scripts, inputs, args = [], cwd = None, env = {}, env_p
     Args:
       ctx: Executable rule context with EXECUTABLE_TOOLCHAINS, runtime adapter attributes
         for an executable that uses the adapter, and
-        COVERAGE_ATTRS for a tool that writes LCOV.
+        COVERAGE_ATTRS for a tool that writes LCOV. Tests also declare
+        TEST_RUNTIME_ATTRS for their platform execution requirements.
       scripts: Files passed to node, resolved at their paths in the tree: the
         tool's script, or a test's files.
       inputs: The executable_inputs result.
@@ -74,7 +84,8 @@ def node_executable(ctx, scripts, inputs, args = [], cwd = None, env = {}, env_p
       native_runfiles: Immutable native tools kept outside the private tree.
 
     Returns:
-      A list of providers: DefaultInfo, and a test's RunEnvironmentInfo.
+      A list of providers: DefaultInfo, a test's RunEnvironmentInfo, and
+      a Linux test's ExecutionInfo excluding namespace sandboxing.
     """
     mapped = {file: True for file in mapped_files.values()}
     layout = tree_layout(ctx.label, inputs.packages, files = [file for file in inputs.runfiles.files.to_list() if file not in mapped], links = inputs.links, mapped_files = mapped_files)
@@ -163,4 +174,6 @@ def node_executable(ctx, scripts, inputs, args = [], cwd = None, env = {}, env_p
     if test:
         # bound's per-user cache never evicts; a test's run leaves nothing.
         providers.append(RunEnvironmentInfo(environment = {"BOUND_CACHE": "0"}, inherited_environment = env_inherit))
+        if ctx.target_platform_has_constraint(ctx.attr._linux[platform_common.ConstraintValueInfo]):
+            providers.append(testing.ExecutionInfo(requirements = {"no-sandbox": "1"}))
     return providers

@@ -2,7 +2,7 @@
 
 load(":coverage.bzl", "COVERAGE_ATTRS", "instrumented_files")
 load(":package_execution.bzl", "executable_inputs")
-load(":runtime.bzl", "EXECUTABLE_TOOLCHAINS", "node_executable")
+load(":runtime.bzl", "EXECUTABLE_TOOLCHAINS", "TEST_RUNTIME_ATTRS", "node_executable")
 
 visibility("//...")
 
@@ -35,5 +35,5 @@ js_test = rule(
             mandatory = True,
         ),
         "_node_test": attr.label(default = Label("//js/private/tools/run-node-tests"), executable = True, cfg = "target"),
-    } | COVERAGE_ATTRS,
+    } | COVERAGE_ATTRS | TEST_RUNTIME_ATTRS,
 )

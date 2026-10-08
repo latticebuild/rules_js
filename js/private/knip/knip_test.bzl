@@ -1,7 +1,7 @@
 """js_knip_test: Knip's unused-code check, with a twin that applies its fixes in place."""
 
 load("//js:providers.bzl", "JsBinaryInfo")
-load("//js/support:execution.bzl", "EXECUTABLE_TOOLCHAINS", "PACKAGE_EXECUTABLE_ATTRS", "package_executable")
+load("//js/support:execution.bzl", "EXECUTABLE_TOOLCHAINS", "PACKAGE_EXECUTABLE_ATTRS", "TEST_RUNTIME_ATTRS", "package_executable")
 load("//js/support:fix.bzl", "fix_name")
 load(":knip_fix.bzl", "js_knip_fix")
 
@@ -56,7 +56,7 @@ _js_knip_test = rule(
     doc = "Runs Knip on the staged package, failing on issues and configuration hints.",
     test = True,
     toolchains = EXECUTABLE_TOOLCHAINS,
-    attrs = PACKAGE_EXECUTABLE_ATTRS | _ATTRS | {
+    attrs = PACKAGE_EXECUTABLE_ATTRS | _ATTRS | TEST_RUNTIME_ATTRS | {
         "production": attr.bool(doc = "Analyze production code only."),
     },
 )

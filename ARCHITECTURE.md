@@ -25,6 +25,12 @@ tool there, and publish outputs only after success. Configuration checks remain
 validation outputs when a dependency changes between target and execution
 configurations. Runtime bundles own their private directories; fix commands
 enter the caller's workspace only through the explicit Bazel run environment.
+Linux bundled tests return `testing.ExecutionInfo` with `no-sandbox` because
+Bound's ancestor-ownership checks cannot identify host root inside a UID
+namespace. The execution requirement belongs to test metadata, so it does not
+propagate to compilation. Fresh private copies and Bound's checks still apply;
+cache and remote eligibility remain available. The public runtime helper exports
+`TEST_RUNTIME_ATTRS` so caller-owned tests select the same target-platform contract.
 The process helper depends on [graceproc](https://github.com/latticebuild/graceproc)
 for bounded descendant cleanup on each native operating system.
 

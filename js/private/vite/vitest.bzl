@@ -2,7 +2,7 @@
 
 load("//js:providers.bzl", "JsBinaryInfo", "JsPackageInfo", "JsViteConfigInfo")
 load("//js/support:coverage.bzl", "COVERAGE_ATTRS", "instrumented_files")
-load("//js/support:execution.bzl", "EXECUTABLE_TOOLCHAINS", "PACKAGE_EXECUTABLE_ATTRS", "package_executable")
+load("//js/support:execution.bzl", "EXECUTABLE_TOOLCHAINS", "PACKAGE_EXECUTABLE_ATTRS", "TEST_RUNTIME_ATTRS", "package_executable")
 load("//js/support:layout.bzl", "package_relative_path")
 load(":browser.bzl", "browser_inputs")
 
@@ -35,7 +35,7 @@ js_vitest_test = rule(
     doc = "Creates a Vitest test with Bazel arguments, filtering, sharding and reporting.",
     test = True,
     toolchains = EXECUTABLE_TOOLCHAINS,
-    attrs = PACKAGE_EXECUTABLE_ATTRS | COVERAGE_ATTRS | {
+    attrs = PACKAGE_EXECUTABLE_ATTRS | COVERAGE_ATTRS | TEST_RUNTIME_ATTRS | {
         "browser": attr.label(doc = "One checksum-pinned Playwright browser installation, whose native payload stays at its canonical runfiles location.", allow_files = True),
         "config": attr.label(doc = "The js_vite_config target Vitest evaluates.", providers = [JsViteConfigInfo], mandatory = True),
         "coverage_provider": attr.label(

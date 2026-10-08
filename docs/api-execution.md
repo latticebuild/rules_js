@@ -58,7 +58,7 @@ binds, and applies Bazel's test environment to the test runner.
 
 | Name  | Description | Default Value |
 | :------------- | :------------- | :------------- |
-| <a id="node_executable-ctx"></a>ctx |  Executable rule context with EXECUTABLE_TOOLCHAINS, runtime adapter attributes for an executable that uses the adapter, and COVERAGE_ATTRS for a tool that writes LCOV.   |  none |
+| <a id="node_executable-ctx"></a>ctx |  Executable rule context with EXECUTABLE_TOOLCHAINS, runtime adapter attributes for an executable that uses the adapter, and COVERAGE_ATTRS for a tool that writes LCOV. Tests also declare TEST_RUNTIME_ATTRS for their platform execution requirements.   |  none |
 | <a id="node_executable-scripts"></a>scripts |  Files passed to node, resolved at their paths in the tree: the tool's script, or a test's files.   |  none |
 | <a id="node_executable-inputs"></a>inputs |  The executable_inputs result.   |  none |
 | <a id="node_executable-args"></a>args |  Arguments after the scripts, before the caller's.   |  `[]` |
@@ -76,7 +76,8 @@ binds, and applies Bazel's test environment to the test runner.
 
 **RETURNS**
 
-A list of providers: DefaultInfo, and a test's RunEnvironmentInfo.
+A list of providers: DefaultInfo, a test's RunEnvironmentInfo, and
+a Linux test's ExecutionInfo excluding namespace sandboxing.
 
 
 <a id="package_executable"></a>
@@ -97,7 +98,7 @@ Creates one executable that runs a package tool in its package directory.
 
 | Name  | Description | Default Value |
 | :------------- | :------------- | :------------- |
-| <a id="package_executable-ctx"></a>ctx |  Consuming rule context with PACKAGE_EXECUTABLE_ATTRS.   |  none |
+| <a id="package_executable-ctx"></a>ctx |  Consuming rule context with PACKAGE_EXECUTABLE_ATTRS, and TEST_RUNTIME_ATTRS when test is True.   |  none |
 | <a id="package_executable-tool"></a>tool |  The runtime tool target, providing JsBinaryInfo.   |  none |
 | <a id="package_executable-files"></a>files |  Additional files at their repository paths, such as configuration files.   |  `[]` |
 | <a id="package_executable-args"></a>args |  Tool arguments preceding forwarded caller arguments.   |  `[]` |

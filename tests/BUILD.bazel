@@ -1,9 +1,12 @@
 load("//js:defs.bzl", "js_test")
+load(":runtime_tests.bzl", "runtime_test_suite")
 load(":tree_tests.bzl", "tree_test_suite")
 
 package(default_testonly = True)
 
 tree_test_suite(name = "tree_test")
+
+runtime_test_suite(name = "runtime_test")
 
 filegroup(
     name = "lifecycle",
