@@ -109,10 +109,15 @@ func TestStorybookServer(t *testing.T) {
 				if err != nil {
 					t.Fatal(err)
 				}
-				scratch := filepath.Join(os.Getenv("TEST_TMPDIR"), "browser-runtime")
-				if err := os.MkdirAll(scratch, 0700); err != nil {
+				scratch, err := os.MkdirTemp("", "storybook-browser-")
+				if err != nil {
 					t.Fatal(err)
 				}
+				t.Cleanup(func() {
+					if err := os.RemoveAll(scratch); err != nil {
+						t.Errorf("browser scratch cleanup: %v", err)
+					}
+				})
 				// Give rendering its own budget after the cold server has become ready.
 				renderCtx, renderCancel := context.WithTimeout(context.Background(), 60*time.Second)
 				defer renderCancel()
