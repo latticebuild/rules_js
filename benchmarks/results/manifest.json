@@ -1,0 +1,20 @@
+[
+  {
+    "file": "2026-10-08-ubuntu-24.04.json",
+    "sha256": "4023e34ea9a458ef076d19602e262fbd7f02ee0bc9d4be6be3cc7f3f2400ab6f",
+    "sourceCommit": "3cfdea10f885b5182d864cf90925107a1032f598",
+    "ciRun": "https://github.com/latticebuild/rules_js/actions/runs/37777521987"
+  },
+  {
+    "file": "2026-10-08-xcode-27.json",
+    "sha256": "f493084fdf99cceaf8cfb0a03c63c07b62b50006f5c3e518a4246fa895ca5c3b",
+    "sourceCommit": "3cfdea10f885b5182d864cf90925107a1032f598",
+    "ciRun": "https://github.com/latticebuild/rules_js/actions/runs/37777521987"
+  },
+  {
+    "file": "2026-10-08-windows-2025.json",
+    "sha256": "65aeafb5ab41e316a495dd01a9ea889110fe07d81c5e6a390b44f056b7ed2bae",
+    "sourceCommit": "3cfdea10f885b5182d864cf90925107a1032f598",
+    "ciRun": "https://github.com/latticebuild/rules_js/actions/runs/37777521987"
+  }
+]

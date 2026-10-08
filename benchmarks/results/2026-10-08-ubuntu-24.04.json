@@ -1,0 +1,2447 @@
+{
+  "schema": 2,
+  "sourceCommit": "3cfdea10f885b5182d864cf90925107a1032f598",
+  "dirty": false,
+  "platform": "linux",
+  "architecture": "amd64",
+  "date": "2026-10-08T12:39:33.922485904Z",
+  "versions": {
+    "aspect_rules_js": "3.5.0",
+    "bazel": "9.2.0",
+    "go": "go1.27.1",
+    "latticebuild_js": "0.1.1",
+    "node": "26.8.2",
+    "pnpm": "12.4.2",
+    "rules_nodejs": "6.7.5"
+  },
+  "environment": {
+    "bazelInstallBase": "/home/runner/work/_temp/bazel/install/3e6f3b7d6fdac67aed908160850e082b",
+    "cpu": "x86_64",
+    "linuxSandboxSHA256": "f4edebe192e8470dac345e2068d6982a89fbf720c3faf6b922ea1500170cd065",
+    "logicalCPUs": "4",
+    "osVersion": "Linux 6.17.0-1022-azure",
+    "runnerArch": "X64",
+    "runnerOS": "Linux",
+    "storage": "Filesystem     1024-blocks     Used Available Capacity Mounted on\n/dev/root        151263856 72883652  78363820      49% /"
+  },
+  "fixtureSha256": {
+    "action.bzl": "bd40678548bd15fe2c75cfefb4c15102235e806d00dda2ebd85e04407d571658",
+    "action.mjs": "6b298a97482b8b53fb5b1ae4b6c9d0e81ea34ac07a8b747b78330e036a0fda7b",
+    "aspect.BUILD.bazel.template": "c885f3da83267a4574d897df693af08b7cab48c1fee48811afc495e4c1d8e65c",
+    "aspect.MODULE.bazel.template": "a0ebf4111852432c30cdfac6940895a12c578931a0e9fc8dcd45407a50061f49",
+    "lattice.BUILD.bazel.template": "a0570e50c0d0d924487fae26c1f79094be2af4d864f3cb90fb9e6c23d8f8e9db",
+    "lattice.MODULE.bazel.template": "1049330f130b740ccd31e9cd51b896f72173a5f842f66a2cfa824ac18daf53a8",
+    "package.json": "6faf531ba27081ffe9d3b672f9d7208aac0a248cb4b2e59da7820d0e58669c79",
+    "pnpm-lock.yaml": "4e23752b763b9e6fddf57ea94e57028f91bed2cf334f2f107ec82621aa042ee9",
+    "pnpm-workspace.yaml": "9e69eaf24bf07e45a06c6f62b9dafa19712e3d6c15db2f6c3f6e90e1b98f8b37"
+  },
+  "preparationNanoseconds": {
+    "aspect-first-inventory": 1636958601,
+    "aspect-first-many": 4911143287,
+    "aspect-first-none": 13115240769,
+    "aspect-install": 351,
+    "aspect-noop-many": 111427322,
+    "aspect-noop-none": 168872297,
+    "lattice-first-inventory": 1177343313,
+    "lattice-first-many": 2852917646,
+    "lattice-first-none": 70317462676,
+    "lattice-install": 804821649,
+    "lattice-noop-many": 339132389,
+    "lattice-noop-none": 192205951
+  },
+  "inventory": {
+    "packageInstances": 54,
+    "commonPayloadFiles": 2894,
+    "commonPayloadBytes": 64275604,
+    "latticePayloadFiles": 2953,
+    "aspectPayloadFiles": 2894,
+    "aspectDefaultExclusions": [
+      {
+        "package": "@jridgewell/resolve-uri@3.1.2",
+        "path": "README.md",
+        "sha256": "17439eff29e4d28023e6b50554c81e3f565d304eeb7bb19f56041ded2a0f0d21",
+        "size": 2826
+      },
+      {
+        "package": "@jridgewell/sourcemap-codec@1.6.0",
+        "path": "README.md",
+        "sha256": "50e5282b46bafe5e2c87a0f224a86876067694f0434c5b27c0ea2d5bbceba5d7",
+        "size": 10051
+      },
+      {
+        "package": "@jridgewell/trace-mapping@0.3.31",
+        "path": "README.md",
+        "sha256": "bc4a19f3e6ac9a3faeefa0687570a6d32ea925365a0705523c064b721c47c799",
+        "size": 14417
+      },
+      {
+        "package": "@oxc-parser/binding-linux-x64-gnu@0.150.0",
+        "path": "README.md",
+        "sha256": "351f996c9e69ec678ebda5baad8dc5bb394c77aa02c020851df2db91afcad5a9",
+        "size": 113
+      },
+      {
+        "package": "@oxc-project/types@0.150.0",
+        "path": "README.md",
+        "sha256": "a6d02a8c1016c2305e8cd9eeab91ad1b1d9c614b2b361edef0d0da3816a0775a",
+        "size": 55
+      },
+      {
+        "package": "@oxc-project/types@0.152.0",
+        "path": "README.md",
+        "sha256": "a6d02a8c1016c2305e8cd9eeab91ad1b1d9c614b2b361edef0d0da3816a0775a",
+        "size": 55
+      },
+      {
+        "package": "@oxc-resolver/binding-linux-x64-gnu@11.24.2",
+        "path": "README.md",
+        "sha256": "b05144d2505868bc8324a70c33adcd0c64deac544223b513abd39efc24dd29ba",
+        "size": 117
+      },
+      {
+        "package": "@rolldown/binding-linux-x64-gnu@1.2.12",
+        "path": "README.md",
+        "sha256": "8424466220cb244a154dc80cf19b4252ee20aef8f13a04a50eeac672cd0aaed7",
+        "size": 109
+      },
+      {
+        "package": "@rolldown/pluginutils@1.0.1",
+        "path": "README.md",
+        "sha256": "4886d9da5238f5d7e44fa2558a3c8d4939e5eb212cc1a3e587472ee2b65fd3fd",
+        "size": 6177
+      },
+      {
+        "package": "@types/chai@5.2.3",
+        "path": "README.md",
+        "sha256": "885843315389cf2c05776cca29f4855304dd0eef55a5b3f6714245b44f8db920",
+        "size": 1009
+      },
+      {
+        "package": "@types/deep-eql@4.0.2",
+        "path": "README.md",
+        "sha256": "f291a03ec5c52df1f4e9b4263388840b5d699e9f5431945f07fc91bbce5536cb",
+        "size": 1712
+      },
+      {
+        "package": "@types/estree@1.0.9",
+        "path": "README.md",
+        "sha256": "284daa8ee1deb294176001d299e950b7af96026497c7147e000f15c00ee6f541",
+        "size": 458
+      },
+      {
+        "package": "@vitest/mocker@5.0.3",
+        "path": "README.md",
+        "sha256": "3446aaa76f25dffc11be580c86a58c39f80eb3a962a1716da5cd54f82a6e38f4",
+        "size": 349
+      },
+      {
+        "package": "@vitest/spy@5.0.3",
+        "path": "README.md",
+        "sha256": "88537bb8205304cd0bdad48ad06dd8a2d5fb22d5eaa51529ef533fbf5d3b151c",
+        "size": 303
+      },
+      {
+        "package": "assertion-error@2.0.1",
+        "path": "README.md",
+        "sha256": "5560ac0761bf18948b9e93468cc1edbe7bb92766ba46fb13c4249be927c1abd2",
+        "size": 1721
+      },
+      {
+        "package": "chai@6.3.0",
+        "path": "README.md",
+        "sha256": "c8711e0c188faa3511c4326cd30d1e03b8f03dce81d1890217248eb515fc27a7",
+        "size": 6222
+      },
+      {
+        "package": "detect-libc@2.1.2",
+        "path": "README.md",
+        "sha256": "51a97449c443889155bc872522e6de5a91a5fa73edeffa03d749e186bf0eebca",
+        "size": 3215
+      },
+      {
+        "package": "es-module-lexer@2.3.2",
+        "path": "README.md",
+        "sha256": "3de04445b4628a8aedc44c8e04bb87827a61e5bc0b9204e2805e549c2bbed014",
+        "size": 12156
+      },
+      {
+        "package": "estree-walker@3.0.3",
+        "path": "README.md",
+        "sha256": "182114d9ab2e497c9d147a0984f445ff1dc195691dc8d0cf562a631ad97ea0aa",
+        "size": 1591
+      },
+      {
+        "package": "expect-type@1.4.0",
+        "path": "README.md",
+        "sha256": "6add033c8506d4247d89570cd9f6157d1f9461723127219a5b235b234d6e738c",
+        "size": 38766
+      },
+      {
+        "package": "expect-type@1.4.0",
+        "path": "SECURITY.md",
+        "sha256": "ec859663a4d0572a13a3f00c576246f876548029e40ca044da2af30a941a0a17",
+        "size": 421
+      },
+      {
+        "package": "fd-package-json@2.0.0",
+        "path": "README.md",
+        "sha256": "fafd3d2805303cdd17672247c7be7d8f2b1b1592733517cdeb80d7f0bcb7602c",
+        "size": 929
+      },
+      {
+        "package": "fdir@6.5.0",
+        "path": "README.md",
+        "sha256": "99ba9a269bf78c24621c0eaaee2978fd2deea1680c147ede89eb2f900ea1d562",
+        "size": 3851
+      },
+      {
+        "package": "formatly@0.7.1",
+        "path": "LICENSE.md",
+        "sha256": "76c9d5f5ea942054715c026f33f8717c9e24603196a3737b8899afa216bcbdab",
+        "size": 1038
+      },
+      {
+        "package": "formatly@0.7.1",
+        "path": "README.md",
+        "sha256": "e8b7cceddea0a848aa7aeab351fb6a0f659fdb4c1a80ec00065ae289d5424e3c",
+        "size": 13432
+      },
+      {
+        "package": "get-tsconfig@4.14.3",
+        "path": "README.md",
+        "sha256": "0735cbc7ad6193a7c3c2737819be4f4b96107fa28c63aecb5e8372040858a000",
+        "size": 8304
+      },
+      {
+        "package": "jiti@2.7.0",
+        "path": "README.md",
+        "sha256": "5c548c17b8eaa50ba090dab41baeea23cce50eac41e70bec34037727b7e0e881",
+        "size": 8558
+      },
+      {
+        "package": "knip@6.39.0",
+        "path": "README.md",
+        "sha256": "d0e6ca051dd8f51a9564bcee254805fbb8bd0da6b37aab2cef51eae36ba1ce57",
+        "size": 2749
+      },
+      {
+        "package": "lightningcss-linux-x64-gnu@1.33.0",
+        "path": "README.md",
+        "sha256": "0c48b4ca6e5fdcdd7f54aa38b6ad29c6d6d18e342a0d1b0265877c1a289a4f5b",
+        "size": 123
+      },
+      {
+        "package": "lightningcss@1.33.0",
+        "path": "README.md",
+        "sha256": "5c0c95d29d204230e9bdb1b998b6dc960f88524f4202e2375062b75bba2b957b",
+        "size": 6058
+      },
+      {
+        "package": "magic-string@1.4.3",
+        "path": "README.md",
+        "sha256": "2a93379f18a2ad928c839ac54572df72c25333b1835da1f8f2e676b83f616a51",
+        "size": 17848
+      },
+      {
+        "package": "nanoid@3.3.20",
+        "path": "README.md",
+        "sha256": "54449254570e72b9eac5e3fafa9232eccffcc2f1de403a4dae02b2ffabee720f",
+        "size": 1552
+      },
+      {
+        "package": "obug@2.2.1",
+        "path": "README.md",
+        "sha256": "7602d05818e45c0830a5b608ecd22cef5a378d6c1d7fb21b5c7931ae96485c01",
+        "size": 9006
+      },
+      {
+        "package": "oxc-parser@0.150.0",
+        "path": "README.md",
+        "sha256": "b1093d4996ed4c362920d07ea4cd2d348702981bdfdeacae13e24af1568c1be1",
+        "size": 5578
+      },
+      {
+        "package": "oxc-resolver@11.24.2",
+        "path": "README.md",
+        "sha256": "adec5716b6dfc0478a2ff4d49abf06fba6aca529777adf0e99fb3f89d1f3e19a",
+        "size": 20467
+      },
+      {
+        "package": "package-manager-detector@1.9.0",
+        "path": "README.md",
+        "sha256": "8186d1f2bafb9320ac869b97aa1f780c5f51d2916c94cfb0dfb5fd61c5eaec98",
+        "size": 4551
+      },
+      {
+        "package": "picocolors@1.1.1",
+        "path": "README.md",
+        "sha256": "5027b2836551ea0f91fa27b97335de905e24e1459d590eacfa45c0156962b70c",
+        "size": 622
+      },
+      {
+        "package": "picomatch@4.0.7",
+        "path": "README.md",
+        "sha256": "a69b87120fe2b9cb8f9057eaef6b9f9887f803e02185ca2f431e8162f6312220",
+        "size": 28319
+      },
+      {
+        "package": "postcss@8.5.29",
+        "path": "README.md",
+        "sha256": "92b501afb100c2e7f186dc3e45d5064ee47efeed91705c2cbf2f9ffd1fa7c6eb",
+        "size": 1159
+      },
+      {
+        "package": "prettier@3.9.9",
+        "path": "README.md",
+        "sha256": "f1f5a86cd0fd0f6a288882527830a9bbbd5851e3238c4d7426b7bbb496165cd1",
+        "size": 3396
+      },
+      {
+        "package": "prettier@3.9.9",
+        "path": "THIRD-PARTY-NOTICES.md",
+        "sha256": "aaf6032babb49d6e5601ab06f315d6d6bab605cb4672f03e9972ff3c80232cdc",
+        "size": 362597
+      },
+      {
+        "package": "resolve-pkg-maps@1.0.0",
+        "path": "README.md",
+        "sha256": "cb82232c87083b5f5afc2a4b4ed80b6dc3680ee443d1d52b16be8523283c2dc4",
+        "size": 7773
+      },
+      {
+        "package": "rolldown@1.2.12",
+        "path": "README.md",
+        "sha256": "3d65150aadb440393668579bd47674f9c6d51f32d1f352510e0c1d6ddf549005",
+        "size": 665
+      },
+      {
+        "package": "smol-toml@1.9.0",
+        "path": "README.md",
+        "sha256": "bcaaa3befbd5bc5373cc6d80f4502afbe83179f96dcf9a336c43deb7ffa24c65",
+        "size": 37677
+      },
+      {
+        "package": "source-map-js@1.2.2",
+        "path": "README.md",
+        "sha256": "8e1a57daf01cd2fc8969ecd0afeae51d1c05c7c79e9413ea82016a0f65e97646",
+        "size": 26040
+      },
+      {
+        "package": "std-env@4.3.0",
+        "path": "README.md",
+        "sha256": "810c8e1b8ce38fc2551e6400a829718f0d7b0bb330ebc27d4fdd365adddede57",
+        "size": 4329
+      },
+      {
+        "package": "strip-json-comments@5.0.3",
+        "path": "readme.md",
+        "sha256": "2b62630fdec65078a32592fab01c9c4844c8e092e777aa158f5c2326f0cfd679",
+        "size": 1529
+      },
+      {
+        "package": "tinybench@6.2.1",
+        "path": "README.md",
+        "sha256": "f4c5d5691515c7fa61bd92b2d527bedd91158b4c6ba9b50d3f8bf76c2aa602d2",
+        "size": 23012
+      },
+      {
+        "package": "tinyexec@1.3.1",
+        "path": "README.md",
+        "sha256": "9a731c250584760e51f33bf6b149f34a51f2bd4d33ad21527c25b10250ed11da",
+        "size": 7605
+      },
+      {
+        "package": "tinyglobby@0.2.17",
+        "path": "README.md",
+        "sha256": "657d808498dddf2ea2049dd44f008cd18c260893ef73920285d7b3e9afcb7072",
+        "size": 931
+      },
+      {
+        "package": "unbash@4.0.12",
+        "path": "README.md",
+        "sha256": "13feb53aba087d403c556d22c884a148a4e0be911b7a5849b50431de4aadcb81",
+        "size": 10189
+      },
+      {
+        "package": "vite@8.3.2",
+        "path": "LICENSE.md",
+        "sha256": "a47172e44a86a7e2cd1c16282341f7726ec60caafe3a6166fe3e0602005b6fa6",
+        "size": 108786
+      },
+      {
+        "package": "vite@8.3.2",
+        "path": "README.md",
+        "sha256": "01cebf4365cd21396688c4dcb0dc8d360ccbafb3a36735d3849c5d8efd3cd060",
+        "size": 1179
+      },
+      {
+        "package": "vitest@5.0.3",
+        "path": "LICENSE.md",
+        "sha256": "c8f14eea9df88b94c4710b4c476d8642e080832d7de0d861eba1337746494b4d",
+        "size": 45233
+      },
+      {
+        "package": "vitest@5.0.3",
+        "path": "README.md",
+        "sha256": "1e870589f0aa14b261587531486354c4a87f78e8d3170c29b0fa3b74ccbe190e",
+        "size": 256
+      },
+      {
+        "package": "walk-up-path@4.0.0",
+        "path": "README.md",
+        "sha256": "9c2df9100b985e0b80a64a75c731d40799a42a17c7334a2f183abedbba9a2326",
+        "size": 707
+      },
+      {
+        "package": "why-is-node-running@3.2.1",
+        "path": "README.md",
+        "sha256": "9e36a93f2b40322588a52228cf1e2f83d522457790741659d9398f1d31856be5",
+        "size": 2510
+      },
+      {
+        "package": "yaml@2.9.1",
+        "path": "README.md",
+        "sha256": "c8aa393826fb1c55ae195399864e7f454a2c66c4d9491459545b26cac4b958e6",
+        "size": 6266
+      },
+      {
+        "package": "zod@4.6.5",
+        "path": "README.md",
+        "sha256": "b5651740a66d68e8c55c4fdea2df8b00448f99a0433008fef99a54f859024039",
+        "size": 7304
+      }
+    ],
+    "dependencyLayoutDirectories": {
+      "lattice": 1
+    },
+    "backendNodeDefaults": {
+      "aspect": {
+        "execArgv": [
+          "--require",
+          "/home/runner/work/_temp/benchmark/rules-js-benchmark-3378745545/bazel/aspect/02775060cca60c1c9e6f11c2fde8e05f/sandbox/linux-sandbox/123/execroot/_main/bazel-out/k8-opt-exec/bin/tool_many_/tool_many.runfiles/aspect_rules_js+/js/private/node-bootstrap/bootstrap.cjs",
+          "--preserve-symlinks-main"
+        ],
+        "nodeOptions": ""
+      },
+      "lattice": {
+        "execArgv": [],
+        "nodeOptions": ""
+      }
+    },
+    "physicalPackageInstances": {
+      "aspect": 58,
+      "lattice": 54
+    },
+    "aspectIncompatibleLibcInputs": [
+      {
+        "name": "@oxc-parser/binding-linux-x64-musl",
+        "version": "0.150.0",
+        "bindings": [],
+        "files": [
+          [
+            "package.json",
+            "f27cd3f81dfe7e241397067286bcb7ac59c3a43f9e95088e2fe2a504442f7863",
+            849
+          ],
+          [
+            "parser.linux-x64-musl.node",
+            "c625d08f57e4af345c53e7e6a9517784f3c143bd019467788564134812c0408e",
+            2112112
+          ]
+        ],
+        "layoutDirectories": [],
+        "os": [
+          "linux"
+        ],
+        "cpu": [
+          "x64"
+        ],
+        "libc": [
+          "musl"
+        ],
+        "declarationCounts": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "@oxc-resolver/binding-linux-x64-musl",
+        "version": "11.24.2",
+        "bindings": [],
+        "files": [
+          [
+            "package.json",
+            "ab7f03131df36fdb440367be2e936d509a230dfa7defa73a4671a90e64aea814",
+            549
+          ],
+          [
+            "resolver.linux-x64-musl.node",
+            "dce931b38120cf51d7db7a2bfe22add7c56a987a630355dc9b2239eb392bcdc2",
+            2141024
+          ]
+        ],
+        "layoutDirectories": [],
+        "os": [
+          "linux"
+        ],
+        "cpu": [
+          "x64"
+        ],
+        "libc": [
+          "musl"
+        ],
+        "declarationCounts": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "lightningcss-linux-x64-musl",
+        "version": "1.33.0",
+        "bindings": [],
+        "files": [
+          [
+            "LICENSE",
+            "5eba353fe5076ac3432177f8ab1cf75e3afcd0584251e37c3bfead5f447d040e",
+            15648
+          ],
+          [
+            "lightningcss.linux-x64-musl.node",
+            "a5cf77ba1e47a5539987d569d973bc9389f8c2bb1522d36a3adf22c82afaa86d",
+            10032056
+          ],
+          [
+            "package.json",
+            "e37324a042d39eba6b152457dfbb4c7398286463767930309afe8734a1e54e7c",
+            747
+          ]
+        ],
+        "layoutDirectories": [],
+        "os": [
+          "linux"
+        ],
+        "cpu": [
+          "x64"
+        ],
+        "libc": [
+          "musl"
+        ],
+        "declarationCounts": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "@rolldown/binding-linux-x64-musl",
+        "version": "1.2.12",
+        "bindings": [],
+        "files": [
+          [
+            "package.json",
+            "d57e22fb232e5720ef4f1e27d3e72275b9aefea5a010e80b800f74281ce22d78",
+            886
+          ],
+          [
+            "rolldown-binding.linux-x64-musl.node",
+            "c2160bbdddae60d899e365326f5aeb334e1e2668c07f41e6ca4a59d22df20f8c",
+            19529264
+          ]
+        ],
+        "layoutDirectories": [],
+        "os": [
+          "linux"
+        ],
+        "cpu": [
+          "x64"
+        ],
+        "libc": [
+          "musl"
+        ],
+        "declarationCounts": [
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "aspectIncompatibleLibcFiles": 9,
+    "aspectIncompatibleLibcBytes": 33833135,
+    "libc": "glibc",
+    "libcVersion": "2.39"
+  },
+  "samples": [
+    {
+      "case": "none",
+      "trial": -3,
+      "nonce": "20261008T123933.922485904-none--3",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 37000000,
+        "executionNanoseconds": 37000000,
+        "commandNanoseconds": 319750271,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "121ecc3ec33e41a1b4bb1030d03bfe0b2f1341a10d0981ffa6c60dad4e8ac724",
+        "log": "lattice-none-000.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 67000000,
+        "executionNanoseconds": 67000000,
+        "commandNanoseconds": 300495939,
+        "prerequisiteNanoseconds": 7000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "121ecc3ec33e41a1b4bb1030d03bfe0b2f1341a10d0981ffa6c60dad4e8ac724",
+        "log": "aspect-none-000.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": -2,
+      "nonce": "20261008T123933.922485904-none--2",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 37000000,
+        "executionNanoseconds": 37000000,
+        "commandNanoseconds": 284269395,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "20630f84d6c37f1b70438c884d298a46c602c6e349c748bba971eccb83f035d7",
+        "log": "lattice-none-001.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 56000000,
+        "executionNanoseconds": 56000000,
+        "commandNanoseconds": 294961317,
+        "prerequisiteNanoseconds": 8000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "20630f84d6c37f1b70438c884d298a46c602c6e349c748bba971eccb83f035d7",
+        "log": "aspect-none-001.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": -1,
+      "nonce": "20261008T123933.922485904-none--1",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 36000000,
+        "executionNanoseconds": 36000000,
+        "commandNanoseconds": 257045133,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "1411acb4904891d6d81683746b4d46e2715c20b3dcf0ee5a457ff8b67c937bbe",
+        "log": "lattice-none-002.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 42000000,
+        "executionNanoseconds": 42000000,
+        "commandNanoseconds": 198212141,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "1411acb4904891d6d81683746b4d46e2715c20b3dcf0ee5a457ff8b67c937bbe",
+        "log": "aspect-none-002.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 0,
+      "nonce": "20261008T123933.922485904-none-0",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 36000000,
+        "executionNanoseconds": 36000000,
+        "commandNanoseconds": 228119142,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "625e2af288ef3b0c9c01542508b994ef3e8dfdfe7cdc360c365ef79f41192963",
+        "log": "lattice-none-003.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 40000000,
+        "executionNanoseconds": 40000000,
+        "commandNanoseconds": 175089342,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "625e2af288ef3b0c9c01542508b994ef3e8dfdfe7cdc360c365ef79f41192963",
+        "log": "aspect-none-003.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 1,
+      "nonce": "20261008T123933.922485904-none-1",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 40000000,
+        "executionNanoseconds": 40000000,
+        "commandNanoseconds": 259809269,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "62c7d0240bbe005ebbeb0f11e66d64e57ce4e546b5eca3e87bcd9e9c07a0e7fc",
+        "log": "lattice-none-004.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 42000000,
+        "executionNanoseconds": 42000000,
+        "commandNanoseconds": 195916845,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "62c7d0240bbe005ebbeb0f11e66d64e57ce4e546b5eca3e87bcd9e9c07a0e7fc",
+        "log": "aspect-none-004.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 2,
+      "nonce": "20261008T123933.922485904-none-2",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 32000000,
+        "executionNanoseconds": 32000000,
+        "commandNanoseconds": 228458231,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "657c1a09f50eb64af6ba0adc85bf36e2c5896e32ee8c7c249810eb3118a8ee13",
+        "log": "lattice-none-005.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 40000000,
+        "executionNanoseconds": 40000000,
+        "commandNanoseconds": 165985994,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "657c1a09f50eb64af6ba0adc85bf36e2c5896e32ee8c7c249810eb3118a8ee13",
+        "log": "aspect-none-005.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 3,
+      "nonce": "20261008T123933.922485904-none-3",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 35000000,
+        "executionNanoseconds": 35000000,
+        "commandNanoseconds": 293727430,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "ddc629b174a0e7e9a625b1dab36ebda6e8ff1c2569babad85e6c09f85891499a",
+        "log": "lattice-none-006.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 40000000,
+        "executionNanoseconds": 40000000,
+        "commandNanoseconds": 179321374,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "ddc629b174a0e7e9a625b1dab36ebda6e8ff1c2569babad85e6c09f85891499a",
+        "log": "aspect-none-006.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 4,
+      "nonce": "20261008T123933.922485904-none-4",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 31000000,
+        "executionNanoseconds": 31000000,
+        "commandNanoseconds": 213743819,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "530eb500aa2c95fa499a2fff0a8c598af9676ac622f3430f7f272cbc1072711e",
+        "log": "lattice-none-007.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 39000000,
+        "executionNanoseconds": 39000000,
+        "commandNanoseconds": 167771906,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "530eb500aa2c95fa499a2fff0a8c598af9676ac622f3430f7f272cbc1072711e",
+        "log": "aspect-none-007.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 5,
+      "nonce": "20261008T123933.922485904-none-5",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 36000000,
+        "executionNanoseconds": 36000000,
+        "commandNanoseconds": 248915752,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "d2f25ed0c436cde42b53803fbaa8637fd9244fdaa4043da704cac5d1e863ba0f",
+        "log": "lattice-none-008.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 39000000,
+        "executionNanoseconds": 39000000,
+        "commandNanoseconds": 166150999,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "d2f25ed0c436cde42b53803fbaa8637fd9244fdaa4043da704cac5d1e863ba0f",
+        "log": "aspect-none-008.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 6,
+      "nonce": "20261008T123933.922485904-none-6",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 34000000,
+        "executionNanoseconds": 34000000,
+        "commandNanoseconds": 223771444,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "232124e51deaa7381b3a0e9ae093f47f64f28d4f48517cc7b5e451ad8e702c92",
+        "log": "lattice-none-009.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 42000000,
+        "executionNanoseconds": 42000000,
+        "commandNanoseconds": 172574491,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "232124e51deaa7381b3a0e9ae093f47f64f28d4f48517cc7b5e451ad8e702c92",
+        "log": "aspect-none-009.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 7,
+      "nonce": "20261008T123933.922485904-none-7",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 44000000,
+        "executionNanoseconds": 44000000,
+        "commandNanoseconds": 252563650,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "0f935a181189511880cdc060a21f4110dc277b9c7dc7c84a32bdd5b3ea56db82",
+        "log": "lattice-none-010.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 41000000,
+        "executionNanoseconds": 41000000,
+        "commandNanoseconds": 178596577,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "0f935a181189511880cdc060a21f4110dc277b9c7dc7c84a32bdd5b3ea56db82",
+        "log": "aspect-none-010.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 8,
+      "nonce": "20261008T123933.922485904-none-8",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 39000000,
+        "executionNanoseconds": 39000000,
+        "commandNanoseconds": 238175691,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "1dd48c9bd6f41ef7273834514e2e58747f7d4be92c32ea8ee46202c4a235791a",
+        "log": "lattice-none-011.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 41000000,
+        "executionNanoseconds": 41000000,
+        "commandNanoseconds": 179738080,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "1dd48c9bd6f41ef7273834514e2e58747f7d4be92c32ea8ee46202c4a235791a",
+        "log": "aspect-none-011.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 9,
+      "nonce": "20261008T123933.922485904-none-9",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 33000000,
+        "executionNanoseconds": 33000000,
+        "commandNanoseconds": 214048147,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "e04fe69b0d8146d3b38641478f5ad6ba4d311e8e55ffd01b14b837fb66899687",
+        "log": "lattice-none-012.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 43000000,
+        "executionNanoseconds": 43000000,
+        "commandNanoseconds": 172987826,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "e04fe69b0d8146d3b38641478f5ad6ba4d311e8e55ffd01b14b837fb66899687",
+        "log": "aspect-none-012.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 10,
+      "nonce": "20261008T123933.922485904-none-10",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 35000000,
+        "executionNanoseconds": 35000000,
+        "commandNanoseconds": 226339421,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "8101ad35503c2abaed575b94018893d97b67adfc8cc2bc983761c6c8af4ab6c9",
+        "log": "lattice-none-013.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 36000000,
+        "executionNanoseconds": 36000000,
+        "commandNanoseconds": 158852748,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "8101ad35503c2abaed575b94018893d97b67adfc8cc2bc983761c6c8af4ab6c9",
+        "log": "aspect-none-013.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 11,
+      "nonce": "20261008T123933.922485904-none-11",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 35000000,
+        "executionNanoseconds": 35000000,
+        "commandNanoseconds": 214970626,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "9551b026ea80225f4200c3a92efca37bf6e1e5706c0820bd37444525eb8d78e3",
+        "log": "lattice-none-014.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 40000000,
+        "executionNanoseconds": 40000000,
+        "commandNanoseconds": 164860391,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "9551b026ea80225f4200c3a92efca37bf6e1e5706c0820bd37444525eb8d78e3",
+        "log": "aspect-none-014.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 12,
+      "nonce": "20261008T123933.922485904-none-12",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 36000000,
+        "executionNanoseconds": 36000000,
+        "commandNanoseconds": 224610579,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "e167e1ef8d19277b7291ebf35b34402ee470cdf9c64fef9dd15ce606e75eb52c",
+        "log": "lattice-none-015.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 40000000,
+        "executionNanoseconds": 40000000,
+        "commandNanoseconds": 158541740,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "e167e1ef8d19277b7291ebf35b34402ee470cdf9c64fef9dd15ce606e75eb52c",
+        "log": "aspect-none-015.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 13,
+      "nonce": "20261008T123933.922485904-none-13",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 38000000,
+        "executionNanoseconds": 38000000,
+        "commandNanoseconds": 224527605,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "2ed0a578d3e7d720336454c0baee040997f6a74d30c8ec65b310140f9bb17ce0",
+        "log": "lattice-none-016.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 40000000,
+        "executionNanoseconds": 40000000,
+        "commandNanoseconds": 192443385,
+        "prerequisiteNanoseconds": 7000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "2ed0a578d3e7d720336454c0baee040997f6a74d30c8ec65b310140f9bb17ce0",
+        "log": "aspect-none-016.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 14,
+      "nonce": "20261008T123933.922485904-none-14",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 37000000,
+        "executionNanoseconds": 37000000,
+        "commandNanoseconds": 209384816,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "b3fb2bc969e91dc82083560d2de83b2f3cf63d621661f172ea4c4f3763cf2962",
+        "log": "lattice-none-017.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 41000000,
+        "executionNanoseconds": 41000000,
+        "commandNanoseconds": 164420191,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "b3fb2bc969e91dc82083560d2de83b2f3cf63d621661f172ea4c4f3763cf2962",
+        "log": "aspect-none-017.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 15,
+      "nonce": "20261008T123933.922485904-none-15",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 43000000,
+        "executionNanoseconds": 43000000,
+        "commandNanoseconds": 240854734,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "7c593dffc06579e9be64a7823c94e6d8208750778631fd1764051eeaeb9b5822",
+        "log": "lattice-none-018.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 42000000,
+        "executionNanoseconds": 42000000,
+        "commandNanoseconds": 183202581,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "7c593dffc06579e9be64a7823c94e6d8208750778631fd1764051eeaeb9b5822",
+        "log": "aspect-none-018.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 16,
+      "nonce": "20261008T123933.922485904-none-16",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 33000000,
+        "executionNanoseconds": 33000000,
+        "commandNanoseconds": 221509163,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "bafa8516adaafafa5e683793974797baa65aad5176d0157aa704184fffb82e73",
+        "log": "lattice-none-019.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 42000000,
+        "executionNanoseconds": 42000000,
+        "commandNanoseconds": 169914671,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "bafa8516adaafafa5e683793974797baa65aad5176d0157aa704184fffb82e73",
+        "log": "aspect-none-019.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 17,
+      "nonce": "20261008T123933.922485904-none-17",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 35000000,
+        "executionNanoseconds": 35000000,
+        "commandNanoseconds": 264224793,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "5078fe69f05247ea66354d9d066652cd48278256d6cd6a505af275973b0632ad",
+        "log": "lattice-none-020.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 42000000,
+        "executionNanoseconds": 42000000,
+        "commandNanoseconds": 177392918,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "5078fe69f05247ea66354d9d066652cd48278256d6cd6a505af275973b0632ad",
+        "log": "aspect-none-020.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 18,
+      "nonce": "20261008T123933.922485904-none-18",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 37000000,
+        "executionNanoseconds": 37000000,
+        "commandNanoseconds": 225943103,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "c5151f6c67488a873d6c2668f702cab8f0c452763dba3cb0e9e9c5f2937af93b",
+        "log": "lattice-none-021.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 41000000,
+        "executionNanoseconds": 41000000,
+        "commandNanoseconds": 155815311,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "c5151f6c67488a873d6c2668f702cab8f0c452763dba3cb0e9e9c5f2937af93b",
+        "log": "aspect-none-021.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 19,
+      "nonce": "20261008T123933.922485904-none-19",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 33000000,
+        "executionNanoseconds": 33000000,
+        "commandNanoseconds": 257047778,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "c995fcfaccaa4220cbde7b638f27c4124821e1b29df4b9ad7f8eb97aadac92eb",
+        "log": "lattice-none-022.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 40000000,
+        "executionNanoseconds": 40000000,
+        "commandNanoseconds": 165064893,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "c995fcfaccaa4220cbde7b638f27c4124821e1b29df4b9ad7f8eb97aadac92eb",
+        "log": "aspect-none-022.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 20,
+      "nonce": "20261008T123933.922485904-none-20",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 34000000,
+        "executionNanoseconds": 34000000,
+        "commandNanoseconds": 225527786,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "30b92ad8f29c647f149ee79695b3ba132b0acf7f1677f3847391b66c5f66d1a7",
+        "log": "lattice-none-023.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 42000000,
+        "executionNanoseconds": 42000000,
+        "commandNanoseconds": 170115129,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "30b92ad8f29c647f149ee79695b3ba132b0acf7f1677f3847391b66c5f66d1a7",
+        "log": "aspect-none-023.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 21,
+      "nonce": "20261008T123933.922485904-none-21",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 34000000,
+        "executionNanoseconds": 34000000,
+        "commandNanoseconds": 202021335,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "34cff8724d4011569f44468b71bd0b345c2c4ae118d82cf17b360e6a842f47d6",
+        "log": "lattice-none-024.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 40000000,
+        "executionNanoseconds": 40000000,
+        "commandNanoseconds": 163749185,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "34cff8724d4011569f44468b71bd0b345c2c4ae118d82cf17b360e6a842f47d6",
+        "log": "aspect-none-024.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 22,
+      "nonce": "20261008T123933.922485904-none-22",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 37000000,
+        "executionNanoseconds": 37000000,
+        "commandNanoseconds": 222726526,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "41db96a03854ca51131f5c35ae8e41365209f21c96c88456e1a2ac2f0772fd6d",
+        "log": "lattice-none-025.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 38000000,
+        "executionNanoseconds": 38000000,
+        "commandNanoseconds": 157625539,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "41db96a03854ca51131f5c35ae8e41365209f21c96c88456e1a2ac2f0772fd6d",
+        "log": "aspect-none-025.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 23,
+      "nonce": "20261008T123933.922485904-none-23",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 36000000,
+        "executionNanoseconds": 36000000,
+        "commandNanoseconds": 220985059,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "ce5ccdebd1f747ee7a1ab404a41d7b9e4f790f3ba60a4b18923acaa70f825e03",
+        "log": "lattice-none-026.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 42000000,
+        "executionNanoseconds": 42000000,
+        "commandNanoseconds": 155411191,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "ce5ccdebd1f747ee7a1ab404a41d7b9e4f790f3ba60a4b18923acaa70f825e03",
+        "log": "aspect-none-026.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 24,
+      "nonce": "20261008T123933.922485904-none-24",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 34000000,
+        "executionNanoseconds": 34000000,
+        "commandNanoseconds": 210639234,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "20c4501e9465a9ede9f270646533d70e0e5994f81a64fff879d27896fcb97db4",
+        "log": "lattice-none-027.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 39000000,
+        "executionNanoseconds": 39000000,
+        "commandNanoseconds": 179372443,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "20c4501e9465a9ede9f270646533d70e0e5994f81a64fff879d27896fcb97db4",
+        "log": "aspect-none-027.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 25,
+      "nonce": "20261008T123933.922485904-none-25",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 36000000,
+        "executionNanoseconds": 36000000,
+        "commandNanoseconds": 221414407,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "f589f4d0cfb2ea2d623faf56d684c61434aaa98fe4a4952a9640c92a673b95b1",
+        "log": "lattice-none-028.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 42000000,
+        "executionNanoseconds": 42000000,
+        "commandNanoseconds": 157885706,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "f589f4d0cfb2ea2d623faf56d684c61434aaa98fe4a4952a9640c92a673b95b1",
+        "log": "aspect-none-028.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 26,
+      "nonce": "20261008T123933.922485904-none-26",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 35000000,
+        "executionNanoseconds": 35000000,
+        "commandNanoseconds": 230031409,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "c59322a971889494a9ee66479c9cb9f4ea5ec7811f74a5e7d03708ce6a7bd0ad",
+        "log": "lattice-none-029.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 42000000,
+        "executionNanoseconds": 42000000,
+        "commandNanoseconds": 163558482,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "c59322a971889494a9ee66479c9cb9f4ea5ec7811f74a5e7d03708ce6a7bd0ad",
+        "log": "aspect-none-029.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 27,
+      "nonce": "20261008T123933.922485904-none-27",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 34000000,
+        "executionNanoseconds": 34000000,
+        "commandNanoseconds": 218943487,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "eb8a4d71bcb0d17a568559b4060e0e3ec07575d892d802b00994ed70c6c9033b",
+        "log": "lattice-none-030.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 43000000,
+        "executionNanoseconds": 43000000,
+        "commandNanoseconds": 176096193,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "eb8a4d71bcb0d17a568559b4060e0e3ec07575d892d802b00994ed70c6c9033b",
+        "log": "aspect-none-030.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 28,
+      "nonce": "20261008T123933.922485904-none-28",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 37000000,
+        "executionNanoseconds": 37000000,
+        "commandNanoseconds": 224019820,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "e6b87d1d8d7b3fb788ce1bc7664c27edfba65b97f435fb088dc30e2073ba199e",
+        "log": "lattice-none-031.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 41000000,
+        "executionNanoseconds": 41000000,
+        "commandNanoseconds": 170384339,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "e6b87d1d8d7b3fb788ce1bc7664c27edfba65b97f435fb088dc30e2073ba199e",
+        "log": "aspect-none-031.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 29,
+      "nonce": "20261008T123933.922485904-none-29",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 38000000,
+        "executionNanoseconds": 38000000,
+        "commandNanoseconds": 221840633,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "6ad9f7c5bd1362c47fefc9b291035b560b5d34bd46de6bafa377d33daf5ea105",
+        "log": "lattice-none-032.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 40000000,
+        "executionNanoseconds": 40000000,
+        "commandNanoseconds": 170285708,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "6ad9f7c5bd1362c47fefc9b291035b560b5d34bd46de6bafa377d33daf5ea105",
+        "log": "aspect-none-032.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": -3,
+      "nonce": "20261008T123933.922485904-many--3",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 339000000,
+        "executionNanoseconds": 339000000,
+        "commandNanoseconds": 636308277,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "290e1acba5209bb235b021139b786f84fd2324da79cebf45371fc0d1aef2d177",
+        "log": "lattice-many-000.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 124000000,
+        "executionNanoseconds": 124000000,
+        "commandNanoseconds": 861637498,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "290e1acba5209bb235b021139b786f84fd2324da79cebf45371fc0d1aef2d177",
+        "log": "aspect-many-000.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": -2,
+      "nonce": "20261008T123933.922485904-many--2",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 342000000,
+        "executionNanoseconds": 342000000,
+        "commandNanoseconds": 587817839,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "3fa7b08dc0603bc8d785ae03d8fd4ce0b16a301af676cf54b5d1345d1dd083fd",
+        "log": "lattice-many-001.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 129000000,
+        "executionNanoseconds": 129000000,
+        "commandNanoseconds": 385569420,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "3fa7b08dc0603bc8d785ae03d8fd4ce0b16a301af676cf54b5d1345d1dd083fd",
+        "log": "aspect-many-001.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": -1,
+      "nonce": "20261008T123933.922485904-many--1",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 346000000,
+        "executionNanoseconds": 346000000,
+        "commandNanoseconds": 598387926,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "c6533cf7f21ea06166e8deaafd203b064bfe6eba60f9ae19532697449e13d48b",
+        "log": "lattice-many-002.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 126000000,
+        "executionNanoseconds": 126000000,
+        "commandNanoseconds": 343732510,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "c6533cf7f21ea06166e8deaafd203b064bfe6eba60f9ae19532697449e13d48b",
+        "log": "aspect-many-002.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 0,
+      "nonce": "20261008T123933.922485904-many-0",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 339000000,
+        "executionNanoseconds": 339000000,
+        "commandNanoseconds": 563602502,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "a954d6537de0a640a553f8f188dc4c6ee3ab820850f3e2c992c4ac6feaf407dc",
+        "log": "lattice-many-003.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 132000000,
+        "executionNanoseconds": 132000000,
+        "commandNanoseconds": 364562976,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "a954d6537de0a640a553f8f188dc4c6ee3ab820850f3e2c992c4ac6feaf407dc",
+        "log": "aspect-many-003.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 1,
+      "nonce": "20261008T123933.922485904-many-1",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 370000000,
+        "executionNanoseconds": 370000000,
+        "commandNanoseconds": 597694667,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "1cf47feecabbd1251c957e2740b5612ad3ec1f729839cae62d2034e780d5672e",
+        "log": "lattice-many-004.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 132000000,
+        "executionNanoseconds": 132000000,
+        "commandNanoseconds": 596661426,
+        "prerequisiteNanoseconds": 231000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "1cf47feecabbd1251c957e2740b5612ad3ec1f729839cae62d2034e780d5672e",
+        "log": "aspect-many-004.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 2,
+      "nonce": "20261008T123933.922485904-many-2",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 376000000,
+        "executionNanoseconds": 376000000,
+        "commandNanoseconds": 639590534,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "35d275311787645bd81f13291fe48a63c6f5400852dd17259be612b99ddb6949",
+        "log": "lattice-many-005.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 127000000,
+        "executionNanoseconds": 127000000,
+        "commandNanoseconds": 405485306,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "35d275311787645bd81f13291fe48a63c6f5400852dd17259be612b99ddb6949",
+        "log": "aspect-many-005.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 3,
+      "nonce": "20261008T123933.922485904-many-3",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 339000000,
+        "executionNanoseconds": 339000000,
+        "commandNanoseconds": 575477037,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "6698a5b39a9d490c739b51dd966a34e8c67ad3e82f476afc4a9d5c292f41bd2c",
+        "log": "lattice-many-006.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 130000000,
+        "executionNanoseconds": 130000000,
+        "commandNanoseconds": 358094477,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "6698a5b39a9d490c739b51dd966a34e8c67ad3e82f476afc4a9d5c292f41bd2c",
+        "log": "aspect-many-006.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 4,
+      "nonce": "20261008T123933.922485904-many-4",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 349000000,
+        "executionNanoseconds": 349000000,
+        "commandNanoseconds": 591977990,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "af810c7fd2edd3ad4effad50a5b601ec1363e254dff86f218768cc7a64d600d9",
+        "log": "lattice-many-007.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 123000000,
+        "executionNanoseconds": 123000000,
+        "commandNanoseconds": 364699675,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "af810c7fd2edd3ad4effad50a5b601ec1363e254dff86f218768cc7a64d600d9",
+        "log": "aspect-many-007.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 5,
+      "nonce": "20261008T123933.922485904-many-5",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 334000000,
+        "executionNanoseconds": 334000000,
+        "commandNanoseconds": 566161517,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "9669bb8f53982204de0d3d0a7c90ed697ff0a08fb5caf5a6af9cb7ada42b190c",
+        "log": "lattice-many-008.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 127000000,
+        "executionNanoseconds": 127000000,
+        "commandNanoseconds": 353241696,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "9669bb8f53982204de0d3d0a7c90ed697ff0a08fb5caf5a6af9cb7ada42b190c",
+        "log": "aspect-many-008.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 6,
+      "nonce": "20261008T123933.922485904-many-6",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 331000000,
+        "executionNanoseconds": 331000000,
+        "commandNanoseconds": 561566925,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "ece461236fc91e78f75ebe2df158906df67c05c72542b567a0163c5ac569a17c",
+        "log": "lattice-many-009.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 174000000,
+        "executionNanoseconds": 174000000,
+        "commandNanoseconds": 417152577,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "ece461236fc91e78f75ebe2df158906df67c05c72542b567a0163c5ac569a17c",
+        "log": "aspect-many-009.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 7,
+      "nonce": "20261008T123933.922485904-many-7",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 336000000,
+        "executionNanoseconds": 336000000,
+        "commandNanoseconds": 545872686,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "dd7c210238f921005257d8e4e369904d6c22443ed89aa47601ecace03d43332d",
+        "log": "lattice-many-010.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 123000000,
+        "executionNanoseconds": 123000000,
+        "commandNanoseconds": 344066439,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "dd7c210238f921005257d8e4e369904d6c22443ed89aa47601ecace03d43332d",
+        "log": "aspect-many-010.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 8,
+      "nonce": "20261008T123933.922485904-many-8",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 345000000,
+        "executionNanoseconds": 345000000,
+        "commandNanoseconds": 567941395,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "a9a860af85bb28d54dd0b92694ca8978f9b35ee05f0b274bc581424296658787",
+        "log": "lattice-many-011.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 122000000,
+        "executionNanoseconds": 122000000,
+        "commandNanoseconds": 347526561,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "a9a860af85bb28d54dd0b92694ca8978f9b35ee05f0b274bc581424296658787",
+        "log": "aspect-many-011.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 9,
+      "nonce": "20261008T123933.922485904-many-9",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 345000000,
+        "executionNanoseconds": 345000000,
+        "commandNanoseconds": 581909070,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "3a0d04ee50533138cf8235577a35691754c3e9ebf910b4e2032c4a1131abaffd",
+        "log": "lattice-many-012.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 130000000,
+        "executionNanoseconds": 130000000,
+        "commandNanoseconds": 438174511,
+        "prerequisiteNanoseconds": 68000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "3a0d04ee50533138cf8235577a35691754c3e9ebf910b4e2032c4a1131abaffd",
+        "log": "aspect-many-012.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 10,
+      "nonce": "20261008T123933.922485904-many-10",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 335000000,
+        "executionNanoseconds": 335000000,
+        "commandNanoseconds": 607164589,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "3c5b9f58bf6d8cb8720471fcfe9b56dfd02001b340531c2c052bf9366919bb79",
+        "log": "lattice-many-013.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 128000000,
+        "executionNanoseconds": 128000000,
+        "commandNanoseconds": 478027886,
+        "prerequisiteNanoseconds": 59000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "3c5b9f58bf6d8cb8720471fcfe9b56dfd02001b340531c2c052bf9366919bb79",
+        "log": "aspect-many-013.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 11,
+      "nonce": "20261008T123933.922485904-many-11",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 338000000,
+        "executionNanoseconds": 338000000,
+        "commandNanoseconds": 570752767,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "3b9e3b2533b37de9af5efea42516e1f7aaec888806da4df4a83e4b77211ece73",
+        "log": "lattice-many-014.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 140000000,
+        "executionNanoseconds": 140000000,
+        "commandNanoseconds": 390272442,
+        "prerequisiteNanoseconds": 6000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "3b9e3b2533b37de9af5efea42516e1f7aaec888806da4df4a83e4b77211ece73",
+        "log": "aspect-many-014.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 12,
+      "nonce": "20261008T123933.922485904-many-12",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 349000000,
+        "executionNanoseconds": 349000000,
+        "commandNanoseconds": 558117537,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "85b11c54b9768129b3b9593d5d786c13f540f5964886afb5b294d6ee180e4006",
+        "log": "lattice-many-015.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 126000000,
+        "executionNanoseconds": 126000000,
+        "commandNanoseconds": 376945804,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "85b11c54b9768129b3b9593d5d786c13f540f5964886afb5b294d6ee180e4006",
+        "log": "aspect-many-015.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 13,
+      "nonce": "20261008T123933.922485904-many-13",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 359000000,
+        "executionNanoseconds": 359000000,
+        "commandNanoseconds": 619930069,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "7e3fe5fca67d674c65dd174f4860b1135ef1feaf1f31fc8ae4f2b94225817dc3",
+        "log": "lattice-many-016.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 125000000,
+        "executionNanoseconds": 125000000,
+        "commandNanoseconds": 326246118,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "7e3fe5fca67d674c65dd174f4860b1135ef1feaf1f31fc8ae4f2b94225817dc3",
+        "log": "aspect-many-016.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 14,
+      "nonce": "20261008T123933.922485904-many-14",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 332000000,
+        "executionNanoseconds": 332000000,
+        "commandNanoseconds": 567028729,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "da8fb833050565ca1cb3b4313e8ecddf4341ee6ebaa63672c306e3f23bcdd2b4",
+        "log": "lattice-many-017.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 124000000,
+        "executionNanoseconds": 124000000,
+        "commandNanoseconds": 346294678,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "da8fb833050565ca1cb3b4313e8ecddf4341ee6ebaa63672c306e3f23bcdd2b4",
+        "log": "aspect-many-017.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 15,
+      "nonce": "20261008T123933.922485904-many-15",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 336000000,
+        "executionNanoseconds": 336000000,
+        "commandNanoseconds": 560566910,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "a945ca1118e41d1f9f5960e92b260343b6a60b4486647a0e0e6e8c8e2c5d288a",
+        "log": "lattice-many-018.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 124000000,
+        "executionNanoseconds": 124000000,
+        "commandNanoseconds": 330942134,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "a945ca1118e41d1f9f5960e92b260343b6a60b4486647a0e0e6e8c8e2c5d288a",
+        "log": "aspect-many-018.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 16,
+      "nonce": "20261008T123933.922485904-many-16",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 338000000,
+        "executionNanoseconds": 338000000,
+        "commandNanoseconds": 553915339,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "3bd92981acd4de0690bf2480ffdf3e298a790ddd0980b49e738079a2263abcab",
+        "log": "lattice-many-019.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 125000000,
+        "executionNanoseconds": 125000000,
+        "commandNanoseconds": 332949926,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "3bd92981acd4de0690bf2480ffdf3e298a790ddd0980b49e738079a2263abcab",
+        "log": "aspect-many-019.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 17,
+      "nonce": "20261008T123933.922485904-many-17",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 332000000,
+        "executionNanoseconds": 332000000,
+        "commandNanoseconds": 550104923,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "88b41d5b608663ce29e4b30904f3bbb16e205d7ac11444cf6fd0b593b05d9337",
+        "log": "lattice-many-020.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 132000000,
+        "executionNanoseconds": 132000000,
+        "commandNanoseconds": 340447615,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "88b41d5b608663ce29e4b30904f3bbb16e205d7ac11444cf6fd0b593b05d9337",
+        "log": "aspect-many-020.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 18,
+      "nonce": "20261008T123933.922485904-many-18",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 341000000,
+        "executionNanoseconds": 341000000,
+        "commandNanoseconds": 575707332,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "9152d7206991859d82dd6ca7be2885a2498264749fb1a389ba261d399a80a4a3",
+        "log": "lattice-many-021.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 127000000,
+        "executionNanoseconds": 127000000,
+        "commandNanoseconds": 346620566,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "9152d7206991859d82dd6ca7be2885a2498264749fb1a389ba261d399a80a4a3",
+        "log": "aspect-many-021.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 19,
+      "nonce": "20261008T123933.922485904-many-19",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 339000000,
+        "executionNanoseconds": 339000000,
+        "commandNanoseconds": 569102120,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "023f95f8c1998027d15dc9380f9f0a0214319b1e1a0325a4ba2c3ce1ea3b1e90",
+        "log": "lattice-many-022.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 123000000,
+        "executionNanoseconds": 123000000,
+        "commandNanoseconds": 358641974,
+        "prerequisiteNanoseconds": 9000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "023f95f8c1998027d15dc9380f9f0a0214319b1e1a0325a4ba2c3ce1ea3b1e90",
+        "log": "aspect-many-022.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 20,
+      "nonce": "20261008T123933.922485904-many-20",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 348000000,
+        "executionNanoseconds": 348000000,
+        "commandNanoseconds": 586893068,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "22a7c85b2b84f1bb598b66ea6b6863501dee79455fb2d40891e8197f15124eac",
+        "log": "lattice-many-023.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 124000000,
+        "executionNanoseconds": 124000000,
+        "commandNanoseconds": 329834658,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "22a7c85b2b84f1bb598b66ea6b6863501dee79455fb2d40891e8197f15124eac",
+        "log": "aspect-many-023.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 21,
+      "nonce": "20261008T123933.922485904-many-21",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 333000000,
+        "executionNanoseconds": 333000000,
+        "commandNanoseconds": 561813052,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "aa70f2bdeb51c54b928304a6d4b33b5308e265e19f1858ef48824d12cd713d15",
+        "log": "lattice-many-024.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 124000000,
+        "executionNanoseconds": 124000000,
+        "commandNanoseconds": 329752489,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "aa70f2bdeb51c54b928304a6d4b33b5308e265e19f1858ef48824d12cd713d15",
+        "log": "aspect-many-024.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 22,
+      "nonce": "20261008T123933.922485904-many-22",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 336000000,
+        "executionNanoseconds": 336000000,
+        "commandNanoseconds": 537193146,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "b9ffce44193a4579359d8230dd3365a12a680a4e37358b9b9574a31bf13f5c08",
+        "log": "lattice-many-025.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 127000000,
+        "executionNanoseconds": 127000000,
+        "commandNanoseconds": 372211700,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "b9ffce44193a4579359d8230dd3365a12a680a4e37358b9b9574a31bf13f5c08",
+        "log": "aspect-many-025.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 23,
+      "nonce": "20261008T123933.922485904-many-23",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 352000000,
+        "executionNanoseconds": 352000000,
+        "commandNanoseconds": 575685794,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "ea357d3e84edb5b9d297bdd48673bfa961ed02e8d1092c7252fdc6cc4670f8ec",
+        "log": "lattice-many-026.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 124000000,
+        "executionNanoseconds": 124000000,
+        "commandNanoseconds": 343848522,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "ea357d3e84edb5b9d297bdd48673bfa961ed02e8d1092c7252fdc6cc4670f8ec",
+        "log": "aspect-many-026.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 24,
+      "nonce": "20261008T123933.922485904-many-24",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 337000000,
+        "executionNanoseconds": 337000000,
+        "commandNanoseconds": 571534821,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "d2861003c4f49346fb60c472e3f253b094f61723f21cd85eb7eb046ecdb24e2f",
+        "log": "lattice-many-027.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 127000000,
+        "executionNanoseconds": 127000000,
+        "commandNanoseconds": 358864591,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "d2861003c4f49346fb60c472e3f253b094f61723f21cd85eb7eb046ecdb24e2f",
+        "log": "aspect-many-027.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 25,
+      "nonce": "20261008T123933.922485904-many-25",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 332000000,
+        "executionNanoseconds": 332000000,
+        "commandNanoseconds": 585509798,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "a052f2e0d719fee46baf2cbc7260eef9d3502cee79498b2f6339598f02fdb3e0",
+        "log": "lattice-many-028.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 128000000,
+        "executionNanoseconds": 128000000,
+        "commandNanoseconds": 355699148,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "a052f2e0d719fee46baf2cbc7260eef9d3502cee79498b2f6339598f02fdb3e0",
+        "log": "aspect-many-028.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 26,
+      "nonce": "20261008T123933.922485904-many-26",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 337000000,
+        "executionNanoseconds": 337000000,
+        "commandNanoseconds": 550538713,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "f328be407b3782ff8051f7e14bcaa62a957156a43ef8f31e2c9285e9cc6b6873",
+        "log": "lattice-many-029.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 129000000,
+        "executionNanoseconds": 129000000,
+        "commandNanoseconds": 349446448,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "f328be407b3782ff8051f7e14bcaa62a957156a43ef8f31e2c9285e9cc6b6873",
+        "log": "aspect-many-029.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 27,
+      "nonce": "20261008T123933.922485904-many-27",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 331000000,
+        "executionNanoseconds": 331000000,
+        "commandNanoseconds": 543636539,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "648db54a17d00a4b2e1aadb2cf558373bbc1059e48a49aad2a5ff62b372cf9a8",
+        "log": "lattice-many-030.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 131000000,
+        "executionNanoseconds": 131000000,
+        "commandNanoseconds": 365545280,
+        "prerequisiteNanoseconds": 6000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "648db54a17d00a4b2e1aadb2cf558373bbc1059e48a49aad2a5ff62b372cf9a8",
+        "log": "aspect-many-030.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 28,
+      "nonce": "20261008T123933.922485904-many-28",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 340000000,
+        "executionNanoseconds": 340000000,
+        "commandNanoseconds": 552332002,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "8b70b43d47a8caf8b574dbb8acf996d7e994ee7494d94f751cf8c1f0b80cf076",
+        "log": "lattice-many-031.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 129000000,
+        "executionNanoseconds": 129000000,
+        "commandNanoseconds": 359932251,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "8b70b43d47a8caf8b574dbb8acf996d7e994ee7494d94f751cf8c1f0b80cf076",
+        "log": "aspect-many-031.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 29,
+      "nonce": "20261008T123933.922485904-many-29",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 345000000,
+        "executionNanoseconds": 345000000,
+        "commandNanoseconds": 572569884,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "b4c4e8c2d312382e5391c4f68594bdca3326c8683685f4c94ab57e466ff9ec23",
+        "log": "lattice-many-032.spawns.json",
+        "runner": "linux-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 128000000,
+        "executionNanoseconds": 128000000,
+        "commandNanoseconds": 341432081,
+        "prerequisiteNanoseconds": 5000000,
+        "expandedInputs": 5962,
+        "toolInputs": 2985,
+        "outputSha256": "b4c4e8c2d312382e5391c4f68594bdca3326c8683685f4c94ab57e466ff9ec23",
+        "log": "aspect-many-032.spawns.json",
+        "runner": "linux-sandbox"
+      }
+    }
+  ],
+  "summaries": {
+    "many": {
+      "pairs": 30,
+      "latticeMedianMilliseconds": 338.5,
+      "aspectMedianMilliseconds": 127,
+      "ratio": 2.6653543307086616,
+      "pairedBootstrap95Lower": 2.625,
+      "pairedBootstrap95Upper": 2.716535433070866,
+      "fasterWith95Confidence": false
+    },
+    "none": {
+      "pairs": 30,
+      "latticeMedianMilliseconds": 35.5,
+      "aspectMedianMilliseconds": 41,
+      "ratio": 0.8658536585365854,
+      "pairedBootstrap95Lower": 0.8333333333333334,
+      "pairedBootstrap95Upper": 0.9,
+      "fasterWith95Confidence": true
+    }
+  },
+  "qualified": true,
+  "probe": false
+}

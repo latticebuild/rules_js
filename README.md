@@ -97,16 +97,18 @@ live in js/providers.bzl and js/support/. Public Go helpers live under
 Both projects integrate Node.js tooling with Bazel. The main differences are
 dependency layout and where tools do their work:
 
-| Concern | Latticebuild rules_js | Aspect rules_js |
+| Concern | Latticebuild rules_js | Aspect rules_js 3.5.0 |
 | --- | --- | --- |
 | Dependency input | Reads an existing pnpm installation, with the hoisted node_modules layout used by this repository. | Translates a pnpm lockfile into Bazel repositories and lazily fetches packages needed by requested targets. |
 | Package layout | Observes physical installations, nested versions, workspace links, aliases and peer contexts; declared targets recreate those import locations. | Builds a pnpm-style package store and links node_modules from Bazel targets. Selected packages can be publicly hoisted. |
 | Build actions | Creates a private scratch tree from declared inputs, runs the tool there, and publishes declared outputs after success. | Runs tools using its layout in Bazel’s output tree, with sources and dependencies placed there. |
-| Node filesystem behavior | Uses native Node filesystem operations in the writable scratch tree; no filesystem patching. | Applies a filesystem patch to keep its linked dependency layout inside the sandbox. |
+| Node filesystem behavior | Uses native Node filesystem operations in the writable scratch tree; no filesystem patching. | Patches Node’s filesystem API by default on Linux and macOS; its Windows launcher disables these patches. |
 
-The Aspect column follows its [dependency documentation](https://github.com/aspect-build/rules_js/blob/main/docs/pnpm.md),
-[design explanation](https://github.com/aspect-build/rules_js#design), and
-[hoisting options](https://github.com/aspect-build/rules_js/blob/main/docs/troubleshooting.md#its-a-plugin).
+The Aspect column follows its [dependency documentation](https://github.com/aspect-build/rules_js/blob/v3.5.0/docs/pnpm.md),
+[design explanation](https://github.com/aspect-build/rules_js/tree/v3.5.0#design), and
+[hoisting options](https://github.com/aspect-build/rules_js/blob/v3.5.0/docs/troubleshooting.md#its-a-plugin).
+Its [filesystem patch defaults](https://github.com/aspect-build/rules_js/blob/v3.5.0/js/private/js_binary.bzl#L149)
+have a [Windows launcher exception](https://github.com/aspect-build/rules_js/blob/v3.5.0/js/private/js_binary.bzl#L499).
 Aspect supports hoisting; the difference here is using pnpm’s installed hoisted
 graph as the input rather than reproducing installation from the lockfile.
 
@@ -127,6 +129,21 @@ supported; it is not required for correctness and is not a performance guarantee
 
 ### Action benchmark
 
+Measured on 2026-10-08 at [3cfdea10f885](https://github.com/latticebuild/rules_js/commit/3cfdea10f885b5182d864cf90925107a1032f598) against Aspect rules_js 3.5.0:
+
+| Platform | Application dependencies | Latticebuild median | Aspect median | Ratio (Latticebuild / Aspect) | Paired 95% interval |
+| --- | --- | --- | --- | --- | --- |
+| Linux x64 | None | 35.5 ms | 41 ms | 0.866× | [0.833, 0.900] |
+| Linux x64 | 54 package instances | 338.5 ms | 127 ms | 2.665× | [2.625, 2.717] |
+| macOS 27 ARM64 | None | 85.5 ms | 89 ms | 0.961× | [0.863, 1.141] |
+| macOS 27 ARM64 | 55 package instances | 1099 ms | 231.5 ms | 4.747× | [4.198, 5.229] |
+| Windows x64 | None | 117 ms | 334.5 ms | 0.350× | [0.345, 0.359] |
+| Windows x64 | 54 package instances | 1489.5 ms | 549 ms | 2.713× | [2.623, 2.788] |
+
+These are Bazel main-spawn median times from 30 matched pairs per case. Lower ratios favor Latticebuild; the paired bootstrap interval describes uncertainty in that ratio. The macOS no-dependency result overlaps a tie. Many-dependency actions take longer with Latticebuild in this fixture. We accept that overhead to keep writable isolation and Node's native filesystem behavior.
+
+[Complete reports and host details](benchmarks/results/README.md) are checked in. [Native CI evidence](https://github.com/latticebuild/rules_js/actions/runs/37777521987) includes every execution log and dependency inventory. This fixture measures staging and package resolution overhead; compiler and bundler workloads have their own timings.
+
 The [benchmark](benchmarks/main.go) compares the actual scratch runner with
 Aspect 3.5.0's `js_binary` and `js_run_binary`. It runs on Linux, macOS 27 and
 Windows in CI. Each backend uses Bazel 9.2.0, Node 26.8.2, the same script, and
@@ -145,7 +162,7 @@ both actions traverse the same ABI-compatible dependency graph.
 Both fixtures disable lifecycle scripts. Dependency preparation, first builds
 and cached no-op builds are recorded separately from warm action samples.
 Neither fixture supplies extra Node flags. Backend defaults, including Aspect's
-symlink-main flag and filesystem patch, are retained and recorded separately.
+symlink-main flag and platform-dependent filesystem patch, are retained and recorded separately.
 
 After three warmup pairs, it retains 30 pairs per case, alternates backend order
 and supplies a new matching input nonce for each pair. Every sample must contain
@@ -177,10 +194,14 @@ bazel run //benchmarks:benchmark -- \
   --results="/path/to/new-benchmark-results"
 ```
 
+In Git Bash on Windows, set `MSYS2_ARG_CONV_EXCL='*'` to preserve Bazel label
+arguments.
+
 `--probe` runs one pair per case for harness development and cannot qualify a
 release. `--install-base` selects an existing Bazel embedded tool installation,
-including the Linux sandbox executable covered by a host profile. Native
-measurements are currently in progress; there is no qualified speedup claim yet.
+including the Linux sandbox executable covered by a host profile. The snapshot
+above records one complete native CI run; subsequent CI runs retain their own
+full evidence.
 
 <details>
 <summary>Repository map</summary>

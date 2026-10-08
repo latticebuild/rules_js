@@ -1,0 +1,2317 @@
+{
+  "schema": 2,
+  "sourceCommit": "3cfdea10f885b5182d864cf90925107a1032f598",
+  "dirty": false,
+  "platform": "darwin",
+  "architecture": "arm64",
+  "date": "2026-10-08T12:44:38.906223Z",
+  "versions": {
+    "aspect_rules_js": "3.5.0",
+    "bazel": "9.2.0",
+    "go": "go1.27.1",
+    "latticebuild_js": "0.1.1",
+    "node": "26.8.2",
+    "pnpm": "12.4.2",
+    "rules_nodejs": "6.7.5"
+  },
+  "environment": {
+    "cpu": "Apple M1 (Virtual)",
+    "logicalCPUs": "3",
+    "osVersion": "27.0",
+    "runnerArch": "ARM64",
+    "runnerOS": "macOS",
+    "storage": "Filesystem   512-blocks      Used Available Capacity  Mounted on\n/dev/disk2s5  303063040 192363824  59920200    77%    /System/Volumes/Data"
+  },
+  "fixtureSha256": {
+    "action.bzl": "bd40678548bd15fe2c75cfefb4c15102235e806d00dda2ebd85e04407d571658",
+    "action.mjs": "6b298a97482b8b53fb5b1ae4b6c9d0e81ea34ac07a8b747b78330e036a0fda7b",
+    "aspect.BUILD.bazel.template": "c885f3da83267a4574d897df693af08b7cab48c1fee48811afc495e4c1d8e65c",
+    "aspect.MODULE.bazel.template": "a0ebf4111852432c30cdfac6940895a12c578931a0e9fc8dcd45407a50061f49",
+    "lattice.BUILD.bazel.template": "a0570e50c0d0d924487fae26c1f79094be2af4d864f3cb90fb9e6c23d8f8e9db",
+    "lattice.MODULE.bazel.template": "1049330f130b740ccd31e9cd51b896f72173a5f842f66a2cfa824ac18daf53a8",
+    "package.json": "6faf531ba27081ffe9d3b672f9d7208aac0a248cb4b2e59da7820d0e58669c79",
+    "pnpm-lock.yaml": "4e23752b763b9e6fddf57ea94e57028f91bed2cf334f2f107ec82621aa042ee9",
+    "pnpm-workspace.yaml": "9e69eaf24bf07e45a06c6f62b9dafa19712e3d6c15db2f6c3f6e90e1b98f8b37"
+  },
+  "preparationNanoseconds": {
+    "aspect-first-inventory": 2123624792,
+    "aspect-first-many": 11579563667,
+    "aspect-first-none": 19139887416,
+    "aspect-install": 42,
+    "aspect-noop-many": 164972667,
+    "aspect-noop-none": 128681250,
+    "lattice-first-inventory": 2138107250,
+    "lattice-first-many": 4894066667,
+    "lattice-first-none": 113252488792,
+    "lattice-install": 2370179292,
+    "lattice-noop-many": 312909708,
+    "lattice-noop-none": 171646375
+  },
+  "inventory": {
+    "packageInstances": 55,
+    "commonPayloadFiles": 2899,
+    "commonPayloadBytes": 59258781,
+    "latticePayloadFiles": 2959,
+    "aspectPayloadFiles": 2899,
+    "aspectDefaultExclusions": [
+      {
+        "package": "@jridgewell/resolve-uri@3.1.2",
+        "path": "README.md",
+        "sha256": "17439eff29e4d28023e6b50554c81e3f565d304eeb7bb19f56041ded2a0f0d21",
+        "size": 2826
+      },
+      {
+        "package": "@jridgewell/sourcemap-codec@1.6.0",
+        "path": "README.md",
+        "sha256": "50e5282b46bafe5e2c87a0f224a86876067694f0434c5b27c0ea2d5bbceba5d7",
+        "size": 10051
+      },
+      {
+        "package": "@jridgewell/trace-mapping@0.3.31",
+        "path": "README.md",
+        "sha256": "bc4a19f3e6ac9a3faeefa0687570a6d32ea925365a0705523c064b721c47c799",
+        "size": 14417
+      },
+      {
+        "package": "@oxc-parser/binding-darwin-arm64@0.150.0",
+        "path": "README.md",
+        "sha256": "1ec5577a73c114fe4b58535b49d6337fc105d3892a0ad14f4f1cfaf4f093d641",
+        "size": 108
+      },
+      {
+        "package": "@oxc-project/types@0.150.0",
+        "path": "README.md",
+        "sha256": "a6d02a8c1016c2305e8cd9eeab91ad1b1d9c614b2b361edef0d0da3816a0775a",
+        "size": 55
+      },
+      {
+        "package": "@oxc-project/types@0.152.0",
+        "path": "README.md",
+        "sha256": "a6d02a8c1016c2305e8cd9eeab91ad1b1d9c614b2b361edef0d0da3816a0775a",
+        "size": 55
+      },
+      {
+        "package": "@oxc-resolver/binding-darwin-arm64@11.24.2",
+        "path": "README.md",
+        "sha256": "e932bbe5d6f1f5343d5450cab94817c2d7412adb33ed87292871b3c4dd04b0b4",
+        "size": 112
+      },
+      {
+        "package": "@rolldown/binding-darwin-arm64@1.2.12",
+        "path": "README.md",
+        "sha256": "d0ed9ea9f9b8215381c7db10404bb507d7e54146c4a6a2fa80ca1e8dccd3dad1",
+        "size": 104
+      },
+      {
+        "package": "@rolldown/pluginutils@1.0.1",
+        "path": "README.md",
+        "sha256": "4886d9da5238f5d7e44fa2558a3c8d4939e5eb212cc1a3e587472ee2b65fd3fd",
+        "size": 6177
+      },
+      {
+        "package": "@types/chai@5.2.3",
+        "path": "README.md",
+        "sha256": "885843315389cf2c05776cca29f4855304dd0eef55a5b3f6714245b44f8db920",
+        "size": 1009
+      },
+      {
+        "package": "@types/deep-eql@4.0.2",
+        "path": "README.md",
+        "sha256": "f291a03ec5c52df1f4e9b4263388840b5d699e9f5431945f07fc91bbce5536cb",
+        "size": 1712
+      },
+      {
+        "package": "@types/estree@1.0.9",
+        "path": "README.md",
+        "sha256": "284daa8ee1deb294176001d299e950b7af96026497c7147e000f15c00ee6f541",
+        "size": 458
+      },
+      {
+        "package": "@vitest/mocker@5.0.3",
+        "path": "README.md",
+        "sha256": "3446aaa76f25dffc11be580c86a58c39f80eb3a962a1716da5cd54f82a6e38f4",
+        "size": 349
+      },
+      {
+        "package": "@vitest/spy@5.0.3",
+        "path": "README.md",
+        "sha256": "88537bb8205304cd0bdad48ad06dd8a2d5fb22d5eaa51529ef533fbf5d3b151c",
+        "size": 303
+      },
+      {
+        "package": "assertion-error@2.0.1",
+        "path": "README.md",
+        "sha256": "5560ac0761bf18948b9e93468cc1edbe7bb92766ba46fb13c4249be927c1abd2",
+        "size": 1721
+      },
+      {
+        "package": "chai@6.3.0",
+        "path": "README.md",
+        "sha256": "c8711e0c188faa3511c4326cd30d1e03b8f03dce81d1890217248eb515fc27a7",
+        "size": 6222
+      },
+      {
+        "package": "detect-libc@2.1.2",
+        "path": "README.md",
+        "sha256": "51a97449c443889155bc872522e6de5a91a5fa73edeffa03d749e186bf0eebca",
+        "size": 3215
+      },
+      {
+        "package": "es-module-lexer@2.3.2",
+        "path": "README.md",
+        "sha256": "3de04445b4628a8aedc44c8e04bb87827a61e5bc0b9204e2805e549c2bbed014",
+        "size": 12156
+      },
+      {
+        "package": "estree-walker@3.0.3",
+        "path": "README.md",
+        "sha256": "182114d9ab2e497c9d147a0984f445ff1dc195691dc8d0cf562a631ad97ea0aa",
+        "size": 1591
+      },
+      {
+        "package": "expect-type@1.4.0",
+        "path": "README.md",
+        "sha256": "6add033c8506d4247d89570cd9f6157d1f9461723127219a5b235b234d6e738c",
+        "size": 38766
+      },
+      {
+        "package": "expect-type@1.4.0",
+        "path": "SECURITY.md",
+        "sha256": "ec859663a4d0572a13a3f00c576246f876548029e40ca044da2af30a941a0a17",
+        "size": 421
+      },
+      {
+        "package": "fd-package-json@2.0.0",
+        "path": "README.md",
+        "sha256": "fafd3d2805303cdd17672247c7be7d8f2b1b1592733517cdeb80d7f0bcb7602c",
+        "size": 929
+      },
+      {
+        "package": "fdir@6.5.0",
+        "path": "README.md",
+        "sha256": "99ba9a269bf78c24621c0eaaee2978fd2deea1680c147ede89eb2f900ea1d562",
+        "size": 3851
+      },
+      {
+        "package": "formatly@0.7.1",
+        "path": "LICENSE.md",
+        "sha256": "76c9d5f5ea942054715c026f33f8717c9e24603196a3737b8899afa216bcbdab",
+        "size": 1038
+      },
+      {
+        "package": "formatly@0.7.1",
+        "path": "README.md",
+        "sha256": "e8b7cceddea0a848aa7aeab351fb6a0f659fdb4c1a80ec00065ae289d5424e3c",
+        "size": 13432
+      },
+      {
+        "package": "fsevents@2.3.3",
+        "path": "README.md",
+        "sha256": "0311b7e1a5a37192243d37889a838d2252b2201554e9db49b57a657f9fb517c7",
+        "size": 3203
+      },
+      {
+        "package": "get-tsconfig@4.14.3",
+        "path": "README.md",
+        "sha256": "0735cbc7ad6193a7c3c2737819be4f4b96107fa28c63aecb5e8372040858a000",
+        "size": 8304
+      },
+      {
+        "package": "jiti@2.7.0",
+        "path": "README.md",
+        "sha256": "5c548c17b8eaa50ba090dab41baeea23cce50eac41e70bec34037727b7e0e881",
+        "size": 8558
+      },
+      {
+        "package": "knip@6.39.0",
+        "path": "README.md",
+        "sha256": "d0e6ca051dd8f51a9564bcee254805fbb8bd0da6b37aab2cef51eae36ba1ce57",
+        "size": 2749
+      },
+      {
+        "package": "lightningcss-darwin-arm64@1.33.0",
+        "path": "README.md",
+        "sha256": "1abbdc63f9f5bae3e65bdb9fc1c5368631ff15c0a41e697e95bceaac1d2f574d",
+        "size": 119
+      },
+      {
+        "package": "lightningcss@1.33.0",
+        "path": "README.md",
+        "sha256": "5c0c95d29d204230e9bdb1b998b6dc960f88524f4202e2375062b75bba2b957b",
+        "size": 6058
+      },
+      {
+        "package": "magic-string@1.4.3",
+        "path": "README.md",
+        "sha256": "2a93379f18a2ad928c839ac54572df72c25333b1835da1f8f2e676b83f616a51",
+        "size": 17848
+      },
+      {
+        "package": "nanoid@3.3.20",
+        "path": "README.md",
+        "sha256": "54449254570e72b9eac5e3fafa9232eccffcc2f1de403a4dae02b2ffabee720f",
+        "size": 1552
+      },
+      {
+        "package": "obug@2.2.1",
+        "path": "README.md",
+        "sha256": "7602d05818e45c0830a5b608ecd22cef5a378d6c1d7fb21b5c7931ae96485c01",
+        "size": 9006
+      },
+      {
+        "package": "oxc-parser@0.150.0",
+        "path": "README.md",
+        "sha256": "b1093d4996ed4c362920d07ea4cd2d348702981bdfdeacae13e24af1568c1be1",
+        "size": 5578
+      },
+      {
+        "package": "oxc-resolver@11.24.2",
+        "path": "README.md",
+        "sha256": "adec5716b6dfc0478a2ff4d49abf06fba6aca529777adf0e99fb3f89d1f3e19a",
+        "size": 20467
+      },
+      {
+        "package": "package-manager-detector@1.9.0",
+        "path": "README.md",
+        "sha256": "8186d1f2bafb9320ac869b97aa1f780c5f51d2916c94cfb0dfb5fd61c5eaec98",
+        "size": 4551
+      },
+      {
+        "package": "picocolors@1.1.1",
+        "path": "README.md",
+        "sha256": "5027b2836551ea0f91fa27b97335de905e24e1459d590eacfa45c0156962b70c",
+        "size": 622
+      },
+      {
+        "package": "picomatch@4.0.7",
+        "path": "README.md",
+        "sha256": "a69b87120fe2b9cb8f9057eaef6b9f9887f803e02185ca2f431e8162f6312220",
+        "size": 28319
+      },
+      {
+        "package": "postcss@8.5.29",
+        "path": "README.md",
+        "sha256": "92b501afb100c2e7f186dc3e45d5064ee47efeed91705c2cbf2f9ffd1fa7c6eb",
+        "size": 1159
+      },
+      {
+        "package": "prettier@3.9.9",
+        "path": "README.md",
+        "sha256": "f1f5a86cd0fd0f6a288882527830a9bbbd5851e3238c4d7426b7bbb496165cd1",
+        "size": 3396
+      },
+      {
+        "package": "prettier@3.9.9",
+        "path": "THIRD-PARTY-NOTICES.md",
+        "sha256": "aaf6032babb49d6e5601ab06f315d6d6bab605cb4672f03e9972ff3c80232cdc",
+        "size": 362597
+      },
+      {
+        "package": "resolve-pkg-maps@1.0.0",
+        "path": "README.md",
+        "sha256": "cb82232c87083b5f5afc2a4b4ed80b6dc3680ee443d1d52b16be8523283c2dc4",
+        "size": 7773
+      },
+      {
+        "package": "rolldown@1.2.12",
+        "path": "README.md",
+        "sha256": "3d65150aadb440393668579bd47674f9c6d51f32d1f352510e0c1d6ddf549005",
+        "size": 665
+      },
+      {
+        "package": "smol-toml@1.9.0",
+        "path": "README.md",
+        "sha256": "bcaaa3befbd5bc5373cc6d80f4502afbe83179f96dcf9a336c43deb7ffa24c65",
+        "size": 37677
+      },
+      {
+        "package": "source-map-js@1.2.2",
+        "path": "README.md",
+        "sha256": "8e1a57daf01cd2fc8969ecd0afeae51d1c05c7c79e9413ea82016a0f65e97646",
+        "size": 26040
+      },
+      {
+        "package": "std-env@4.3.0",
+        "path": "README.md",
+        "sha256": "810c8e1b8ce38fc2551e6400a829718f0d7b0bb330ebc27d4fdd365adddede57",
+        "size": 4329
+      },
+      {
+        "package": "strip-json-comments@5.0.3",
+        "path": "readme.md",
+        "sha256": "2b62630fdec65078a32592fab01c9c4844c8e092e777aa158f5c2326f0cfd679",
+        "size": 1529
+      },
+      {
+        "package": "tinybench@6.2.1",
+        "path": "README.md",
+        "sha256": "f4c5d5691515c7fa61bd92b2d527bedd91158b4c6ba9b50d3f8bf76c2aa602d2",
+        "size": 23012
+      },
+      {
+        "package": "tinyexec@1.3.1",
+        "path": "README.md",
+        "sha256": "9a731c250584760e51f33bf6b149f34a51f2bd4d33ad21527c25b10250ed11da",
+        "size": 7605
+      },
+      {
+        "package": "tinyglobby@0.2.17",
+        "path": "README.md",
+        "sha256": "657d808498dddf2ea2049dd44f008cd18c260893ef73920285d7b3e9afcb7072",
+        "size": 931
+      },
+      {
+        "package": "unbash@4.0.12",
+        "path": "README.md",
+        "sha256": "13feb53aba087d403c556d22c884a148a4e0be911b7a5849b50431de4aadcb81",
+        "size": 10189
+      },
+      {
+        "package": "vite@8.3.2",
+        "path": "LICENSE.md",
+        "sha256": "a47172e44a86a7e2cd1c16282341f7726ec60caafe3a6166fe3e0602005b6fa6",
+        "size": 108786
+      },
+      {
+        "package": "vite@8.3.2",
+        "path": "README.md",
+        "sha256": "01cebf4365cd21396688c4dcb0dc8d360ccbafb3a36735d3849c5d8efd3cd060",
+        "size": 1179
+      },
+      {
+        "package": "vitest@5.0.3",
+        "path": "LICENSE.md",
+        "sha256": "c8f14eea9df88b94c4710b4c476d8642e080832d7de0d861eba1337746494b4d",
+        "size": 45233
+      },
+      {
+        "package": "vitest@5.0.3",
+        "path": "README.md",
+        "sha256": "1e870589f0aa14b261587531486354c4a87f78e8d3170c29b0fa3b74ccbe190e",
+        "size": 256
+      },
+      {
+        "package": "walk-up-path@4.0.0",
+        "path": "README.md",
+        "sha256": "9c2df9100b985e0b80a64a75c731d40799a42a17c7334a2f183abedbba9a2326",
+        "size": 707
+      },
+      {
+        "package": "why-is-node-running@3.2.1",
+        "path": "README.md",
+        "sha256": "9e36a93f2b40322588a52228cf1e2f83d522457790741659d9398f1d31856be5",
+        "size": 2510
+      },
+      {
+        "package": "yaml@2.9.1",
+        "path": "README.md",
+        "sha256": "c8aa393826fb1c55ae195399864e7f454a2c66c4d9491459545b26cac4b958e6",
+        "size": 6266
+      },
+      {
+        "package": "zod@4.6.5",
+        "path": "README.md",
+        "sha256": "b5651740a66d68e8c55c4fdea2df8b00448f99a0433008fef99a54f859024039",
+        "size": 7304
+      }
+    ],
+    "dependencyLayoutDirectories": {
+      "lattice": 1
+    },
+    "backendNodeDefaults": {
+      "aspect": {
+        "execArgv": [
+          "--require",
+          "/Users/runner/work/_temp/benchmark/rules-js-benchmark-1864052038/bazel/aspect/ae14b9a486aa3ab6956da27a96ec624e/sandbox/darwin-sandbox/117/execroot/_main/bazel-out/darwin_arm64-opt-exec/bin/tool_many_/tool_many.runfiles/aspect_rules_js+/js/private/node-bootstrap/bootstrap.cjs",
+          "--preserve-symlinks-main"
+        ],
+        "nodeOptions": ""
+      },
+      "lattice": {
+        "execArgv": [],
+        "nodeOptions": ""
+      }
+    },
+    "physicalPackageInstances": {
+      "aspect": 55,
+      "lattice": 55
+    },
+    "aspectIncompatibleLibcInputs": null,
+    "aspectIncompatibleLibcFiles": 0,
+    "aspectIncompatibleLibcBytes": 0,
+    "libc": "",
+    "libcVersion": ""
+  },
+  "samples": [
+    {
+      "case": "none",
+      "trial": -3,
+      "nonce": "20261008T124438.906223000-none--3",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 545000000,
+        "executionNanoseconds": 545000000,
+        "commandNanoseconds": 1308832666,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "d028b7fd31dda60106fe89ebb0af0250f093879f69faa787459c1139a8211bcf",
+        "log": "lattice-none-000.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 133000000,
+        "executionNanoseconds": 133000000,
+        "commandNanoseconds": 441681375,
+        "prerequisiteNanoseconds": 26000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "d028b7fd31dda60106fe89ebb0af0250f093879f69faa787459c1139a8211bcf",
+        "log": "aspect-none-000.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": -2,
+      "nonce": "20261008T124438.906223000-none--2",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 113000000,
+        "executionNanoseconds": 113000000,
+        "commandNanoseconds": 485138666,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "b9e0883435b0cfd5f768fd6b58da859c04746c25d653c511b4d0e90a3c53a050",
+        "log": "lattice-none-001.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 111000000,
+        "executionNanoseconds": 111000000,
+        "commandNanoseconds": 430227416,
+        "prerequisiteNanoseconds": 47000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "b9e0883435b0cfd5f768fd6b58da859c04746c25d653c511b4d0e90a3c53a050",
+        "log": "aspect-none-001.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": -1,
+      "nonce": "20261008T124438.906223000-none--1",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 95000000,
+        "executionNanoseconds": 95000000,
+        "commandNanoseconds": 908802416,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "90eee78dee03dd325bec9519a6c8b4e3543508f24c2d32c98936e23776d253fe",
+        "log": "lattice-none-002.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 106000000,
+        "executionNanoseconds": 106000000,
+        "commandNanoseconds": 306150584,
+        "prerequisiteNanoseconds": 29000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "90eee78dee03dd325bec9519a6c8b4e3543508f24c2d32c98936e23776d253fe",
+        "log": "aspect-none-002.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 0,
+      "nonce": "20261008T124438.906223000-none-0",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 80000000,
+        "executionNanoseconds": 80000000,
+        "commandNanoseconds": 469566750,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "38a5d3d6736d9eadba9fca25f2c6835aeba5f4e20c08b363710bd30a10a4cac3",
+        "log": "lattice-none-003.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 68000000,
+        "executionNanoseconds": 68000000,
+        "commandNanoseconds": 236256958,
+        "prerequisiteNanoseconds": 25000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "38a5d3d6736d9eadba9fca25f2c6835aeba5f4e20c08b363710bd30a10a4cac3",
+        "log": "aspect-none-003.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 1,
+      "nonce": "20261008T124438.906223000-none-1",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 109000000,
+        "executionNanoseconds": 109000000,
+        "commandNanoseconds": 474212000,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "80850c5ee9f22ee7b5a0f875779c0726d6cfa3d6d4e64a71b0d0c49e35cebe58",
+        "log": "lattice-none-004.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 78000000,
+        "executionNanoseconds": 78000000,
+        "commandNanoseconds": 280171084,
+        "prerequisiteNanoseconds": 29000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "80850c5ee9f22ee7b5a0f875779c0726d6cfa3d6d4e64a71b0d0c49e35cebe58",
+        "log": "aspect-none-004.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 2,
+      "nonce": "20261008T124438.906223000-none-2",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 96000000,
+        "executionNanoseconds": 96000000,
+        "commandNanoseconds": 538157500,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "fd95121012a8e0dd258667ba30092d4c3243d2fb2ea6c06d04840669b75b175e",
+        "log": "lattice-none-005.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 90000000,
+        "executionNanoseconds": 90000000,
+        "commandNanoseconds": 280160416,
+        "prerequisiteNanoseconds": 26000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "fd95121012a8e0dd258667ba30092d4c3243d2fb2ea6c06d04840669b75b175e",
+        "log": "aspect-none-005.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 3,
+      "nonce": "20261008T124438.906223000-none-3",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 99000000,
+        "executionNanoseconds": 99000000,
+        "commandNanoseconds": 422724875,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "e622f1d2b5a9f88257886afce3ced3be4943c32814b7cf7075df42f7b5e00f34",
+        "log": "lattice-none-006.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 128000000,
+        "executionNanoseconds": 128000000,
+        "commandNanoseconds": 407682958,
+        "prerequisiteNanoseconds": 44000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "e622f1d2b5a9f88257886afce3ced3be4943c32814b7cf7075df42f7b5e00f34",
+        "log": "aspect-none-006.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 4,
+      "nonce": "20261008T124438.906223000-none-4",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 114000000,
+        "executionNanoseconds": 114000000,
+        "commandNanoseconds": 566366792,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "29261f71cbd252eee8d979e91ff2e239c5eb351b2188d44f3202665bb74b56d8",
+        "log": "lattice-none-007.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 131000000,
+        "executionNanoseconds": 131000000,
+        "commandNanoseconds": 403805167,
+        "prerequisiteNanoseconds": 39000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "29261f71cbd252eee8d979e91ff2e239c5eb351b2188d44f3202665bb74b56d8",
+        "log": "aspect-none-007.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 5,
+      "nonce": "20261008T124438.906223000-none-5",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 78000000,
+        "executionNanoseconds": 78000000,
+        "commandNanoseconds": 480407541,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "8a008c5ab19444bfb880330b0b66d84a9be3180d55ed102cc56b80f0e33bf095",
+        "log": "lattice-none-008.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 100000000,
+        "executionNanoseconds": 100000000,
+        "commandNanoseconds": 305812000,
+        "prerequisiteNanoseconds": 33000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "8a008c5ab19444bfb880330b0b66d84a9be3180d55ed102cc56b80f0e33bf095",
+        "log": "aspect-none-008.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 6,
+      "nonce": "20261008T124438.906223000-none-6",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 66000000,
+        "executionNanoseconds": 66000000,
+        "commandNanoseconds": 283462625,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "1d525b125267543fe6d71d2238038d90aec4ca78e46b5794768b8407c7bc569d",
+        "log": "lattice-none-009.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 100000000,
+        "executionNanoseconds": 100000000,
+        "commandNanoseconds": 375882500,
+        "prerequisiteNanoseconds": 40000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "1d525b125267543fe6d71d2238038d90aec4ca78e46b5794768b8407c7bc569d",
+        "log": "aspect-none-009.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 7,
+      "nonce": "20261008T124438.906223000-none-7",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 108000000,
+        "executionNanoseconds": 108000000,
+        "commandNanoseconds": 510884875,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "a89485ebfb376bf307f4a00e4389cdafa0d581be1816eb2420c3491f3d9c72cc",
+        "log": "lattice-none-010.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 76000000,
+        "executionNanoseconds": 76000000,
+        "commandNanoseconds": 340098667,
+        "prerequisiteNanoseconds": 41000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "a89485ebfb376bf307f4a00e4389cdafa0d581be1816eb2420c3491f3d9c72cc",
+        "log": "aspect-none-010.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 8,
+      "nonce": "20261008T124438.906223000-none-8",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 107000000,
+        "executionNanoseconds": 107000000,
+        "commandNanoseconds": 401572041,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "cc74b11babfb1a2e30547ce8de3fb062a8eddcee5dcf8abf16bccd6238b6be5b",
+        "log": "lattice-none-011.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 89000000,
+        "executionNanoseconds": 89000000,
+        "commandNanoseconds": 253713792,
+        "prerequisiteNanoseconds": 23000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "cc74b11babfb1a2e30547ce8de3fb062a8eddcee5dcf8abf16bccd6238b6be5b",
+        "log": "aspect-none-011.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 9,
+      "nonce": "20261008T124438.906223000-none-9",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 82000000,
+        "executionNanoseconds": 82000000,
+        "commandNanoseconds": 518278166,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "50ca28a0d0fabf7edc7a978331fa2ce6de52d8a9e4c898dfc09c815d5a2222d1",
+        "log": "lattice-none-012.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 107000000,
+        "executionNanoseconds": 107000000,
+        "commandNanoseconds": 318919458,
+        "prerequisiteNanoseconds": 31000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "50ca28a0d0fabf7edc7a978331fa2ce6de52d8a9e4c898dfc09c815d5a2222d1",
+        "log": "aspect-none-012.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 10,
+      "nonce": "20261008T124438.906223000-none-10",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 113000000,
+        "executionNanoseconds": 113000000,
+        "commandNanoseconds": 393252709,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "818e4abfc001871de05c53f80d9243c2c493a901d93cff6d664febe96d6a1551",
+        "log": "lattice-none-013.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 98000000,
+        "executionNanoseconds": 98000000,
+        "commandNanoseconds": 373163292,
+        "prerequisiteNanoseconds": 49000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "818e4abfc001871de05c53f80d9243c2c493a901d93cff6d664febe96d6a1551",
+        "log": "aspect-none-013.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 11,
+      "nonce": "20261008T124438.906223000-none-11",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 93000000,
+        "executionNanoseconds": 93000000,
+        "commandNanoseconds": 374439166,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "1f9775c61b513678ec8e1f7d6db50f888e69076d6ad13d39c7357fbd040da7b8",
+        "log": "lattice-none-014.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 108000000,
+        "executionNanoseconds": 108000000,
+        "commandNanoseconds": 351280708,
+        "prerequisiteNanoseconds": 37000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "1f9775c61b513678ec8e1f7d6db50f888e69076d6ad13d39c7357fbd040da7b8",
+        "log": "aspect-none-014.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 12,
+      "nonce": "20261008T124438.906223000-none-12",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 105000000,
+        "executionNanoseconds": 105000000,
+        "commandNanoseconds": 341038292,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "56aaf929e56082436a46434f660e01ebaf6c712d6176734e93abb3c72fe986a1",
+        "log": "lattice-none-015.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 93000000,
+        "executionNanoseconds": 93000000,
+        "commandNanoseconds": 301860709,
+        "prerequisiteNanoseconds": 28000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "56aaf929e56082436a46434f660e01ebaf6c712d6176734e93abb3c72fe986a1",
+        "log": "aspect-none-015.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 13,
+      "nonce": "20261008T124438.906223000-none-13",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 68000000,
+        "executionNanoseconds": 68000000,
+        "commandNanoseconds": 296476166,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "31c8e8eb660489667d3cc4a67ec48a8a62b95a1000e6fdcfa4ef758ad5248938",
+        "log": "lattice-none-016.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 67000000,
+        "executionNanoseconds": 67000000,
+        "commandNanoseconds": 243645375,
+        "prerequisiteNanoseconds": 21000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "31c8e8eb660489667d3cc4a67ec48a8a62b95a1000e6fdcfa4ef758ad5248938",
+        "log": "aspect-none-016.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 14,
+      "nonce": "20261008T124438.906223000-none-14",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 89000000,
+        "executionNanoseconds": 89000000,
+        "commandNanoseconds": 277196167,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "8a737ad037c3c8893c39d1160070584f741a0df932bc9f67371033da7ec111c7",
+        "log": "lattice-none-017.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 71000000,
+        "executionNanoseconds": 71000000,
+        "commandNanoseconds": 216553541,
+        "prerequisiteNanoseconds": 22000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "8a737ad037c3c8893c39d1160070584f741a0df932bc9f67371033da7ec111c7",
+        "log": "aspect-none-017.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 15,
+      "nonce": "20261008T124438.906223000-none-15",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 113000000,
+        "executionNanoseconds": 113000000,
+        "commandNanoseconds": 389047458,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "97a8b52b8d4e6b57988686033a8321f96d422a39a44eb4605d0b60a6686a342f",
+        "log": "lattice-none-018.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 68000000,
+        "executionNanoseconds": 68000000,
+        "commandNanoseconds": 217089875,
+        "prerequisiteNanoseconds": 19000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "97a8b52b8d4e6b57988686033a8321f96d422a39a44eb4605d0b60a6686a342f",
+        "log": "aspect-none-018.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 16,
+      "nonce": "20261008T124438.906223000-none-16",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 75000000,
+        "executionNanoseconds": 75000000,
+        "commandNanoseconds": 347890208,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "396d74d9c4b623bfef6b7c768ee430ae6e2a97aced152e01559de2ed819d7518",
+        "log": "lattice-none-019.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 68000000,
+        "executionNanoseconds": 68000000,
+        "commandNanoseconds": 219196875,
+        "prerequisiteNanoseconds": 22000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "396d74d9c4b623bfef6b7c768ee430ae6e2a97aced152e01559de2ed819d7518",
+        "log": "aspect-none-019.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 17,
+      "nonce": "20261008T124438.906223000-none-17",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 69000000,
+        "executionNanoseconds": 69000000,
+        "commandNanoseconds": 251876791,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "af6d2bd95a7b31bda4236eeceed84a301e23ee7ff403c35212c3909c93fb2aa2",
+        "log": "lattice-none-020.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 78000000,
+        "executionNanoseconds": 78000000,
+        "commandNanoseconds": 241164875,
+        "prerequisiteNanoseconds": 23000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "af6d2bd95a7b31bda4236eeceed84a301e23ee7ff403c35212c3909c93fb2aa2",
+        "log": "aspect-none-020.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 18,
+      "nonce": "20261008T124438.906223000-none-18",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 96000000,
+        "executionNanoseconds": 96000000,
+        "commandNanoseconds": 294820542,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "08d836cd327f52f8a4225a3f9c0edb7b06c6881e0d92587f1e0b9aaea29038bf",
+        "log": "lattice-none-021.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 89000000,
+        "executionNanoseconds": 89000000,
+        "commandNanoseconds": 1023850125,
+        "prerequisiteNanoseconds": 32000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "08d836cd327f52f8a4225a3f9c0edb7b06c6881e0d92587f1e0b9aaea29038bf",
+        "log": "aspect-none-021.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 19,
+      "nonce": "20261008T124438.906223000-none-19",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 90000000,
+        "executionNanoseconds": 90000000,
+        "commandNanoseconds": 343703833,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "4a0d048c7784168925598979586f80fe90b8daf18c47ca00eba33a786aa0d7c9",
+        "log": "lattice-none-022.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 94000000,
+        "executionNanoseconds": 94000000,
+        "commandNanoseconds": 298936458,
+        "prerequisiteNanoseconds": 27000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "4a0d048c7784168925598979586f80fe90b8daf18c47ca00eba33a786aa0d7c9",
+        "log": "aspect-none-022.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 20,
+      "nonce": "20261008T124438.906223000-none-20",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 73000000,
+        "executionNanoseconds": 73000000,
+        "commandNanoseconds": 283019709,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "2d0f7b3d1d81d051967d889dabd58b9a0d6408b97d9a02fa6c378b081d757569",
+        "log": "lattice-none-023.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 87000000,
+        "executionNanoseconds": 87000000,
+        "commandNanoseconds": 285590166,
+        "prerequisiteNanoseconds": 28000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "2d0f7b3d1d81d051967d889dabd58b9a0d6408b97d9a02fa6c378b081d757569",
+        "log": "aspect-none-023.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 21,
+      "nonce": "20261008T124438.906223000-none-21",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 72000000,
+        "executionNanoseconds": 72000000,
+        "commandNanoseconds": 340444833,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "1bcaf6cd2635a6410c8dab8feddd923da1a9dbc2514fdd3aa7efb1a4214c9493",
+        "log": "lattice-none-024.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 75000000,
+        "executionNanoseconds": 75000000,
+        "commandNanoseconds": 227740500,
+        "prerequisiteNanoseconds": 23000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "1bcaf6cd2635a6410c8dab8feddd923da1a9dbc2514fdd3aa7efb1a4214c9493",
+        "log": "aspect-none-024.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 22,
+      "nonce": "20261008T124438.906223000-none-22",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 73000000,
+        "executionNanoseconds": 73000000,
+        "commandNanoseconds": 269852500,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "57519ff0e4cbfc2187734065b3cec5900fadce3bea024d53d886b81890b7cd14",
+        "log": "lattice-none-025.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 89000000,
+        "executionNanoseconds": 89000000,
+        "commandNanoseconds": 246577792,
+        "prerequisiteNanoseconds": 23000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "57519ff0e4cbfc2187734065b3cec5900fadce3bea024d53d886b81890b7cd14",
+        "log": "aspect-none-025.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 23,
+      "nonce": "20261008T124438.906223000-none-23",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 82000000,
+        "executionNanoseconds": 82000000,
+        "commandNanoseconds": 311139875,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "2a017f1fcc2b4bd1cbb8ea62e838a7ad2668134afc5bfb0b33eaca163c60d8c4",
+        "log": "lattice-none-026.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 77000000,
+        "executionNanoseconds": 77000000,
+        "commandNanoseconds": 301912416,
+        "prerequisiteNanoseconds": 26000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "2a017f1fcc2b4bd1cbb8ea62e838a7ad2668134afc5bfb0b33eaca163c60d8c4",
+        "log": "aspect-none-026.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 24,
+      "nonce": "20261008T124438.906223000-none-24",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 81000000,
+        "executionNanoseconds": 81000000,
+        "commandNanoseconds": 307233041,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "65e609852a4d140113de1c38fc0cb42cf2da2deb36f24da311d00470a2fbcef4",
+        "log": "lattice-none-027.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 78000000,
+        "executionNanoseconds": 78000000,
+        "commandNanoseconds": 258773792,
+        "prerequisiteNanoseconds": 31000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "65e609852a4d140113de1c38fc0cb42cf2da2deb36f24da311d00470a2fbcef4",
+        "log": "aspect-none-027.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 25,
+      "nonce": "20261008T124438.906223000-none-25",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 93000000,
+        "executionNanoseconds": 93000000,
+        "commandNanoseconds": 368869791,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "531b4274f12fcd36dfc7f57131c5722fd8f6f7223100b9083339c03bac2f7db9",
+        "log": "lattice-none-028.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 96000000,
+        "executionNanoseconds": 96000000,
+        "commandNanoseconds": 316433500,
+        "prerequisiteNanoseconds": 31000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "531b4274f12fcd36dfc7f57131c5722fd8f6f7223100b9083339c03bac2f7db9",
+        "log": "aspect-none-028.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 26,
+      "nonce": "20261008T124438.906223000-none-26",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 70000000,
+        "executionNanoseconds": 70000000,
+        "commandNanoseconds": 286532125,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "767b4c38ccef6c78d334d900dfd425b66b8ff473c32a0b2e5a45a7345972a595",
+        "log": "lattice-none-029.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 90000000,
+        "executionNanoseconds": 90000000,
+        "commandNanoseconds": 372757958,
+        "prerequisiteNanoseconds": 39000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "767b4c38ccef6c78d334d900dfd425b66b8ff473c32a0b2e5a45a7345972a595",
+        "log": "aspect-none-029.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 27,
+      "nonce": "20261008T124438.906223000-none-27",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 62000000,
+        "executionNanoseconds": 62000000,
+        "commandNanoseconds": 231013333,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "6f6b4ad630b77cf1ac07ce2c1f864a3d14decf127315520837117d69e14142ba",
+        "log": "lattice-none-030.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 88000000,
+        "executionNanoseconds": 88000000,
+        "commandNanoseconds": 272646375,
+        "prerequisiteNanoseconds": 34000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "6f6b4ad630b77cf1ac07ce2c1f864a3d14decf127315520837117d69e14142ba",
+        "log": "aspect-none-030.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 28,
+      "nonce": "20261008T124438.906223000-none-28",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 97000000,
+        "executionNanoseconds": 97000000,
+        "commandNanoseconds": 407995000,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "1a0708b8a720e068fde180c12fe2cb6291b9cd9cba2526149809ec4c636e30e8",
+        "log": "lattice-none-031.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 96000000,
+        "executionNanoseconds": 96000000,
+        "commandNanoseconds": 278878250,
+        "prerequisiteNanoseconds": 29000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "1a0708b8a720e068fde180c12fe2cb6291b9cd9cba2526149809ec4c636e30e8",
+        "log": "aspect-none-031.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 29,
+      "nonce": "20261008T124438.906223000-none-29",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 71000000,
+        "executionNanoseconds": 71000000,
+        "commandNanoseconds": 275550709,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "f135c5321fa831ae19cd52a299c966ca2043f9a518f382659aab946125836840",
+        "log": "lattice-none-032.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 70000000,
+        "executionNanoseconds": 70000000,
+        "commandNanoseconds": 205327833,
+        "prerequisiteNanoseconds": 19000000,
+        "expandedInputs": 14,
+        "toolInputs": 11,
+        "outputSha256": "f135c5321fa831ae19cd52a299c966ca2043f9a518f382659aab946125836840",
+        "log": "aspect-none-032.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": -3,
+      "nonce": "20261008T124438.906223000-many--3",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1533000000,
+        "executionNanoseconds": 1533000000,
+        "commandNanoseconds": 2138676875,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "a7c96f9da4613998b380dfb34febd6b01574aefedecf2cce2bc480ccdcee91c2",
+        "log": "lattice-many-000.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 305000000,
+        "executionNanoseconds": 305000000,
+        "commandNanoseconds": 1363492666,
+        "prerequisiteNanoseconds": 68000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "a7c96f9da4613998b380dfb34febd6b01574aefedecf2cce2bc480ccdcee91c2",
+        "log": "aspect-many-000.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": -2,
+      "nonce": "20261008T124438.906223000-many--2",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1194000000,
+        "executionNanoseconds": 1194000000,
+        "commandNanoseconds": 1690461208,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "93a7272f4ad49319fbae3f55770d1a1109260cbd2d431dc17c9e54863ca0d99c",
+        "log": "lattice-many-001.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 280000000,
+        "executionNanoseconds": 280000000,
+        "commandNanoseconds": 802577750,
+        "prerequisiteNanoseconds": 40000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "93a7272f4ad49319fbae3f55770d1a1109260cbd2d431dc17c9e54863ca0d99c",
+        "log": "aspect-many-001.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": -1,
+      "nonce": "20261008T124438.906223000-many--1",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1325000000,
+        "executionNanoseconds": 1325000000,
+        "commandNanoseconds": 2061602125,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "5630950a961a92079f816c8a69050a46b0cac574aa867ef8c07f7a89b62e3127",
+        "log": "lattice-many-002.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 230000000,
+        "executionNanoseconds": 230000000,
+        "commandNanoseconds": 685315709,
+        "prerequisiteNanoseconds": 46000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "5630950a961a92079f816c8a69050a46b0cac574aa867ef8c07f7a89b62e3127",
+        "log": "aspect-many-002.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 0,
+      "nonce": "20261008T124438.906223000-many-0",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1028000000,
+        "executionNanoseconds": 1028000000,
+        "commandNanoseconds": 1418556625,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "9a0d82fe4af7cedb8767c43f31e32805ae487ed76001e61e935dc693633588eb",
+        "log": "lattice-many-003.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 210000000,
+        "executionNanoseconds": 210000000,
+        "commandNanoseconds": 620864250,
+        "prerequisiteNanoseconds": 38000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "9a0d82fe4af7cedb8767c43f31e32805ae487ed76001e61e935dc693633588eb",
+        "log": "aspect-many-003.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 1,
+      "nonce": "20261008T124438.906223000-many-1",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1367000000,
+        "executionNanoseconds": 1367000000,
+        "commandNanoseconds": 1816915083,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "b1b47a21a3f78619aa8b628a5051743ef2cdd17dd7efdfe3b0f6ca1dcb6dc672",
+        "log": "lattice-many-004.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 348000000,
+        "executionNanoseconds": 348000000,
+        "commandNanoseconds": 1010706166,
+        "prerequisiteNanoseconds": 61000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "b1b47a21a3f78619aa8b628a5051743ef2cdd17dd7efdfe3b0f6ca1dcb6dc672",
+        "log": "aspect-many-004.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 2,
+      "nonce": "20261008T124438.906223000-many-2",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1436000000,
+        "executionNanoseconds": 1436000000,
+        "commandNanoseconds": 2278083375,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "988ded876b4f6779be7517808e4180b2b7b6da72db3309d99c022dad3c73d6b2",
+        "log": "lattice-many-005.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 336000000,
+        "executionNanoseconds": 336000000,
+        "commandNanoseconds": 1048292583,
+        "prerequisiteNanoseconds": 54000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "988ded876b4f6779be7517808e4180b2b7b6da72db3309d99c022dad3c73d6b2",
+        "log": "aspect-many-005.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 3,
+      "nonce": "20261008T124438.906223000-many-3",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1545000000,
+        "executionNanoseconds": 1545000000,
+        "commandNanoseconds": 2118056625,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "d3fa9cc859a2af114ab37319444a10e1c3cacfbf11edae7e5b68d216602e37a4",
+        "log": "lattice-many-006.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 350000000,
+        "executionNanoseconds": 350000000,
+        "commandNanoseconds": 1211693875,
+        "prerequisiteNanoseconds": 45000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "d3fa9cc859a2af114ab37319444a10e1c3cacfbf11edae7e5b68d216602e37a4",
+        "log": "aspect-many-006.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 4,
+      "nonce": "20261008T124438.906223000-many-4",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1367000000,
+        "executionNanoseconds": 1367000000,
+        "commandNanoseconds": 1939414042,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "eb4b7278e31296812960314316a2327682042866e66930263ffaff05e5a4b321",
+        "log": "lattice-many-007.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 264000000,
+        "executionNanoseconds": 264000000,
+        "commandNanoseconds": 717124542,
+        "prerequisiteNanoseconds": 32000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "eb4b7278e31296812960314316a2327682042866e66930263ffaff05e5a4b321",
+        "log": "aspect-many-007.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 5,
+      "nonce": "20261008T124438.906223000-many-5",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1185000000,
+        "executionNanoseconds": 1185000000,
+        "commandNanoseconds": 1743536667,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "e78df7fc7cb4a18f55de1d4d01a4798b9f57137ec2f6c802e690552b83f04a79",
+        "log": "lattice-many-008.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 265000000,
+        "executionNanoseconds": 265000000,
+        "commandNanoseconds": 993341834,
+        "prerequisiteNanoseconds": 41000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "e78df7fc7cb4a18f55de1d4d01a4798b9f57137ec2f6c802e690552b83f04a79",
+        "log": "aspect-many-008.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 6,
+      "nonce": "20261008T124438.906223000-many-6",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1101000000,
+        "executionNanoseconds": 1101000000,
+        "commandNanoseconds": 1702544000,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "e009db3f8f8328b0b8d84a152e77e40d81a9df7e8e8a83e3421097e2a99c1442",
+        "log": "lattice-many-009.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 214000000,
+        "executionNanoseconds": 214000000,
+        "commandNanoseconds": 605263791,
+        "prerequisiteNanoseconds": 39000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "e009db3f8f8328b0b8d84a152e77e40d81a9df7e8e8a83e3421097e2a99c1442",
+        "log": "aspect-many-009.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 7,
+      "nonce": "20261008T124438.906223000-many-7",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 813000000,
+        "executionNanoseconds": 813000000,
+        "commandNanoseconds": 1166824250,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "0273f73127a1d7f127b3df6b1b3ef4707cb52a83cfe040d99425f9c84fdc4f0c",
+        "log": "lattice-many-010.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 233000000,
+        "executionNanoseconds": 233000000,
+        "commandNanoseconds": 846370458,
+        "prerequisiteNanoseconds": 71000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "0273f73127a1d7f127b3df6b1b3ef4707cb52a83cfe040d99425f9c84fdc4f0c",
+        "log": "aspect-many-010.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 8,
+      "nonce": "20261008T124438.906223000-many-8",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1553000000,
+        "executionNanoseconds": 1553000000,
+        "commandNanoseconds": 2181682625,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "1bfb31ca049abf9cd6b875efcacd39251252fb395672e667eec2001cfd6e331d",
+        "log": "lattice-many-011.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 267000000,
+        "executionNanoseconds": 267000000,
+        "commandNanoseconds": 947752750,
+        "prerequisiteNanoseconds": 42000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "1bfb31ca049abf9cd6b875efcacd39251252fb395672e667eec2001cfd6e331d",
+        "log": "aspect-many-011.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 9,
+      "nonce": "20261008T124438.906223000-many-9",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 951000000,
+        "executionNanoseconds": 951000000,
+        "commandNanoseconds": 1588460708,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "6fee0c8c90de5d959cb39d44eaa8423a11fe2b614a048054f803bb3578b3b6e6",
+        "log": "lattice-many-012.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 204000000,
+        "executionNanoseconds": 204000000,
+        "commandNanoseconds": 604742250,
+        "prerequisiteNanoseconds": 35000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "6fee0c8c90de5d959cb39d44eaa8423a11fe2b614a048054f803bb3578b3b6e6",
+        "log": "aspect-many-012.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 10,
+      "nonce": "20261008T124438.906223000-many-10",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1065000000,
+        "executionNanoseconds": 1065000000,
+        "commandNanoseconds": 1384065958,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "e63b09ccc99cd378ff97a38439d8b5407c06593617353061c664262170d5bb39",
+        "log": "lattice-many-013.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 164000000,
+        "executionNanoseconds": 164000000,
+        "commandNanoseconds": 484433041,
+        "prerequisiteNanoseconds": 28000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "e63b09ccc99cd378ff97a38439d8b5407c06593617353061c664262170d5bb39",
+        "log": "aspect-many-013.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 11,
+      "nonce": "20261008T124438.906223000-many-11",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 983000000,
+        "executionNanoseconds": 983000000,
+        "commandNanoseconds": 1406848250,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "2a2eb38b27f78b08e64f56a3439908dbc1baadf0c5faa0bff311c3fe1880bbf2",
+        "log": "lattice-many-014.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 152000000,
+        "executionNanoseconds": 152000000,
+        "commandNanoseconds": 490184833,
+        "prerequisiteNanoseconds": 36000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "2a2eb38b27f78b08e64f56a3439908dbc1baadf0c5faa0bff311c3fe1880bbf2",
+        "log": "aspect-many-014.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 12,
+      "nonce": "20261008T124438.906223000-many-12",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1120000000,
+        "executionNanoseconds": 1120000000,
+        "commandNanoseconds": 1577119917,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "964d4bdc4eabfe2948bd81a8599a719915d30bcd364ae78dddfe0aa50f19ff6e",
+        "log": "lattice-many-015.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 154000000,
+        "executionNanoseconds": 154000000,
+        "commandNanoseconds": 438680125,
+        "prerequisiteNanoseconds": 28000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "964d4bdc4eabfe2948bd81a8599a719915d30bcd364ae78dddfe0aa50f19ff6e",
+        "log": "aspect-many-015.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 13,
+      "nonce": "20261008T124438.906223000-many-13",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1156000000,
+        "executionNanoseconds": 1156000000,
+        "commandNanoseconds": 1645030625,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "85a79c8c217ae226e7a876d467b11411b5e40e00b78053baf231d31f46d7c6ae",
+        "log": "lattice-many-016.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 258000000,
+        "executionNanoseconds": 258000000,
+        "commandNanoseconds": 730666666,
+        "prerequisiteNanoseconds": 42000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "85a79c8c217ae226e7a876d467b11411b5e40e00b78053baf231d31f46d7c6ae",
+        "log": "aspect-many-016.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 14,
+      "nonce": "20261008T124438.906223000-many-14",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1155000000,
+        "executionNanoseconds": 1155000000,
+        "commandNanoseconds": 1612781917,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "a6bbd1650c5f3eb77275d8c611ba5db49a924ef7d18711ea5491de261f6e5935",
+        "log": "lattice-many-017.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 254000000,
+        "executionNanoseconds": 254000000,
+        "commandNanoseconds": 709941792,
+        "prerequisiteNanoseconds": 39000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "a6bbd1650c5f3eb77275d8c611ba5db49a924ef7d18711ea5491de261f6e5935",
+        "log": "aspect-many-017.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 15,
+      "nonce": "20261008T124438.906223000-many-15",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1184000000,
+        "executionNanoseconds": 1184000000,
+        "commandNanoseconds": 1591468208,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "a4a9e8cf296bd865de26bcf1706b3339172900a46a727453c137a87a86574588",
+        "log": "lattice-many-018.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 256000000,
+        "executionNanoseconds": 256000000,
+        "commandNanoseconds": 654200334,
+        "prerequisiteNanoseconds": 30000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "a4a9e8cf296bd865de26bcf1706b3339172900a46a727453c137a87a86574588",
+        "log": "aspect-many-018.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 16,
+      "nonce": "20261008T124438.906223000-many-16",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1168000000,
+        "executionNanoseconds": 1168000000,
+        "commandNanoseconds": 1604976333,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "a18ff829eacf0657c1c409eb1ebfa020432b1aea0e1224218ff694c54c215292",
+        "log": "lattice-many-019.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 248000000,
+        "executionNanoseconds": 248000000,
+        "commandNanoseconds": 718869666,
+        "prerequisiteNanoseconds": 37000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "a18ff829eacf0657c1c409eb1ebfa020432b1aea0e1224218ff694c54c215292",
+        "log": "aspect-many-019.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 17,
+      "nonce": "20261008T124438.906223000-many-17",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1083000000,
+        "executionNanoseconds": 1083000000,
+        "commandNanoseconds": 1556928541,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "db0a5dc47ba86b72dab82a1bacdd0a8e658791334bb3a4a0d5c0b81e20803662",
+        "log": "lattice-many-020.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 304000000,
+        "executionNanoseconds": 304000000,
+        "commandNanoseconds": 851706000,
+        "prerequisiteNanoseconds": 55000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "db0a5dc47ba86b72dab82a1bacdd0a8e658791334bb3a4a0d5c0b81e20803662",
+        "log": "aspect-many-020.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 18,
+      "nonce": "20261008T124438.906223000-many-18",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 999000000,
+        "executionNanoseconds": 999000000,
+        "commandNanoseconds": 1386384042,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "1516796bf2843daa4ea2afe79e5db27b9eb967fc45700204d743443bffee1878",
+        "log": "lattice-many-021.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 297000000,
+        "executionNanoseconds": 297000000,
+        "commandNanoseconds": 960345000,
+        "prerequisiteNanoseconds": 75000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "1516796bf2843daa4ea2afe79e5db27b9eb967fc45700204d743443bffee1878",
+        "log": "aspect-many-021.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 19,
+      "nonce": "20261008T124438.906223000-many-19",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1025000000,
+        "executionNanoseconds": 1025000000,
+        "commandNanoseconds": 1449640250,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "b93fdafaebd556584f711fe88c5f3332169cfb744330f26224d368aa090dcb9d",
+        "log": "lattice-many-022.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 215000000,
+        "executionNanoseconds": 215000000,
+        "commandNanoseconds": 663783333,
+        "prerequisiteNanoseconds": 34000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "b93fdafaebd556584f711fe88c5f3332169cfb744330f26224d368aa090dcb9d",
+        "log": "aspect-many-022.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 20,
+      "nonce": "20261008T124438.906223000-many-20",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 944000000,
+        "executionNanoseconds": 944000000,
+        "commandNanoseconds": 1561891666,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "299f0a7870be1da51f568422a41113957679177fc26a9a1be946a64dd0c9ae13",
+        "log": "lattice-many-023.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 187000000,
+        "executionNanoseconds": 187000000,
+        "commandNanoseconds": 544536166,
+        "prerequisiteNanoseconds": 28000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "299f0a7870be1da51f568422a41113957679177fc26a9a1be946a64dd0c9ae13",
+        "log": "aspect-many-023.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 21,
+      "nonce": "20261008T124438.906223000-many-21",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1102000000,
+        "executionNanoseconds": 1102000000,
+        "commandNanoseconds": 1417338792,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "a384ab5da5280522f61a4c8a8ecc4f00388778664aea5b735cf5b0a69eef1c63",
+        "log": "lattice-many-024.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 190000000,
+        "executionNanoseconds": 190000000,
+        "commandNanoseconds": 550181875,
+        "prerequisiteNanoseconds": 27000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "a384ab5da5280522f61a4c8a8ecc4f00388778664aea5b735cf5b0a69eef1c63",
+        "log": "aspect-many-024.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 22,
+      "nonce": "20261008T124438.906223000-many-22",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1222000000,
+        "executionNanoseconds": 1222000000,
+        "commandNanoseconds": 1501858833,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "6c92ce75529221af27cde7bb085fb57058c5b5652d3746c50ef59e0cc196d8c9",
+        "log": "lattice-many-025.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 230000000,
+        "executionNanoseconds": 230000000,
+        "commandNanoseconds": 662357000,
+        "prerequisiteNanoseconds": 43000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "6c92ce75529221af27cde7bb085fb57058c5b5652d3746c50ef59e0cc196d8c9",
+        "log": "aspect-many-025.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 23,
+      "nonce": "20261008T124438.906223000-many-23",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1313000000,
+        "executionNanoseconds": 1313000000,
+        "commandNanoseconds": 1801250584,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "63a5bf3efcba1afee4b2fffc6c2796618260d977ccc4c2429161a060dadaa44a",
+        "log": "lattice-many-026.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 314000000,
+        "executionNanoseconds": 314000000,
+        "commandNanoseconds": 875511250,
+        "prerequisiteNanoseconds": 51000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "63a5bf3efcba1afee4b2fffc6c2796618260d977ccc4c2429161a060dadaa44a",
+        "log": "aspect-many-026.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 24,
+      "nonce": "20261008T124438.906223000-many-24",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 964000000,
+        "executionNanoseconds": 964000000,
+        "commandNanoseconds": 1292095583,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "57db4747acd05d07919a607a66aa410ed9f4abd0042016c6d92fb6143b2677d1",
+        "log": "lattice-many-027.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 181000000,
+        "executionNanoseconds": 181000000,
+        "commandNanoseconds": 676354334,
+        "prerequisiteNanoseconds": 58000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "57db4747acd05d07919a607a66aa410ed9f4abd0042016c6d92fb6143b2677d1",
+        "log": "aspect-many-027.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 25,
+      "nonce": "20261008T124438.906223000-many-25",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1097000000,
+        "executionNanoseconds": 1097000000,
+        "commandNanoseconds": 1584333667,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "db1f7456f78cbac5cd5427050cc53b3db7aa356a90ce42ecd90195770c6808d3",
+        "log": "lattice-many-028.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 172000000,
+        "executionNanoseconds": 172000000,
+        "commandNanoseconds": 538560041,
+        "prerequisiteNanoseconds": 28000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "db1f7456f78cbac5cd5427050cc53b3db7aa356a90ce42ecd90195770c6808d3",
+        "log": "aspect-many-028.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 26,
+      "nonce": "20261008T124438.906223000-many-26",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 883000000,
+        "executionNanoseconds": 883000000,
+        "commandNanoseconds": 1200718541,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "0129014817989b1fcee72d361940e35b2b736ba7f5781f43d26ac18eb309e2e6",
+        "log": "lattice-many-029.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 194000000,
+        "executionNanoseconds": 194000000,
+        "commandNanoseconds": 585831875,
+        "prerequisiteNanoseconds": 40000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "0129014817989b1fcee72d361940e35b2b736ba7f5781f43d26ac18eb309e2e6",
+        "log": "aspect-many-029.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 27,
+      "nonce": "20261008T124438.906223000-many-27",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 865000000,
+        "executionNanoseconds": 865000000,
+        "commandNanoseconds": 1285403750,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "69b99a24f83aafb42a187069793118ed8a41e10fee80815802dc10ab11ca0338",
+        "log": "lattice-many-030.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 214000000,
+        "executionNanoseconds": 214000000,
+        "commandNanoseconds": 617386250,
+        "prerequisiteNanoseconds": 34000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "69b99a24f83aafb42a187069793118ed8a41e10fee80815802dc10ab11ca0338",
+        "log": "aspect-many-030.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 28,
+      "nonce": "20261008T124438.906223000-many-28",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 937000000,
+        "executionNanoseconds": 937000000,
+        "commandNanoseconds": 1227137709,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "f7860e21a0348c54708be56a62f5cdcf2997884748cd63434ba8fba863a5645d",
+        "log": "lattice-many-031.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 173000000,
+        "executionNanoseconds": 173000000,
+        "commandNanoseconds": 481763750,
+        "prerequisiteNanoseconds": 24000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "f7860e21a0348c54708be56a62f5cdcf2997884748cd63434ba8fba863a5645d",
+        "log": "aspect-many-031.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 29,
+      "nonce": "20261008T124438.906223000-many-29",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 962000000,
+        "executionNanoseconds": 962000000,
+        "commandNanoseconds": 1280903833,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2968,
+        "toolInputs": 4,
+        "outputSha256": "6cbc403dea060a407b0d5eac76e138af00c0a5534dd654b40a38d5560de76b69",
+        "log": "lattice-many-032.spawns.json",
+        "runner": "darwin-sandbox"
+      },
+      "aspect": {
+        "totalNanoseconds": 273000000,
+        "executionNanoseconds": 273000000,
+        "commandNanoseconds": 657991708,
+        "prerequisiteNanoseconds": 32000000,
+        "expandedInputs": 5948,
+        "toolInputs": 2978,
+        "outputSha256": "6cbc403dea060a407b0d5eac76e138af00c0a5534dd654b40a38d5560de76b69",
+        "log": "aspect-many-032.spawns.json",
+        "runner": "darwin-sandbox"
+      }
+    }
+  ],
+  "summaries": {
+    "many": {
+      "pairs": 30,
+      "latticeMedianMilliseconds": 1099,
+      "aspectMedianMilliseconds": 231.5,
+      "ratio": 4.747300215982722,
+      "pairedBootstrap95Lower": 4.1976744186046515,
+      "pairedBootstrap95Upper": 5.22877358490566,
+      "fasterWith95Confidence": false
+    },
+    "none": {
+      "pairs": 30,
+      "latticeMedianMilliseconds": 85.5,
+      "aspectMedianMilliseconds": 89,
+      "ratio": 0.9606741573033708,
+      "pairedBootstrap95Lower": 0.8631578947368421,
+      "pairedBootstrap95Upper": 1.141025641025641,
+      "fasterWith95Confidence": false
+    }
+  },
+  "qualified": true,
+  "probe": false
+}

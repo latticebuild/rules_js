@@ -1,0 +1,2310 @@
+{
+  "schema": 2,
+  "sourceCommit": "3cfdea10f885b5182d864cf90925107a1032f598",
+  "dirty": false,
+  "platform": "windows",
+  "architecture": "amd64",
+  "date": "2026-10-08T12:43:41.3424448Z",
+  "versions": {
+    "aspect_rules_js": "3.5.0",
+    "bazel": "9.2.0",
+    "go": "go1.27.1",
+    "latticebuild_js": "0.1.1",
+    "node": "26.8.2",
+    "pnpm": "12.4.2",
+    "rules_nodejs": "6.7.5"
+  },
+  "environment": {
+    "cpu": "Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz",
+    "logicalCPUs": "4",
+    "osVersion": "Microsoft Windows NT 10.0.26100.0",
+    "runnerArch": "X64",
+    "runnerOS": "Windows"
+  },
+  "fixtureSha256": {
+    "action.bzl": "bd40678548bd15fe2c75cfefb4c15102235e806d00dda2ebd85e04407d571658",
+    "action.mjs": "6b298a97482b8b53fb5b1ae4b6c9d0e81ea34ac07a8b747b78330e036a0fda7b",
+    "aspect.BUILD.bazel.template": "c885f3da83267a4574d897df693af08b7cab48c1fee48811afc495e4c1d8e65c",
+    "aspect.MODULE.bazel.template": "a0ebf4111852432c30cdfac6940895a12c578931a0e9fc8dcd45407a50061f49",
+    "lattice.BUILD.bazel.template": "a0570e50c0d0d924487fae26c1f79094be2af4d864f3cb90fb9e6c23d8f8e9db",
+    "lattice.MODULE.bazel.template": "1049330f130b740ccd31e9cd51b896f72173a5f842f66a2cfa824ac18daf53a8",
+    "package.json": "6faf531ba27081ffe9d3b672f9d7208aac0a248cb4b2e59da7820d0e58669c79",
+    "pnpm-lock.yaml": "4e23752b763b9e6fddf57ea94e57028f91bed2cf334f2f107ec82621aa042ee9",
+    "pnpm-workspace.yaml": "9e69eaf24bf07e45a06c6f62b9dafa19712e3d6c15db2f6c3f6e90e1b98f8b37"
+  },
+  "preparationNanoseconds": {
+    "aspect-first-inventory": 13911984100,
+    "aspect-first-many": 21975993900,
+    "aspect-first-none": 20479157100,
+    "aspect-install": 0,
+    "aspect-noop-many": 10972516400,
+    "aspect-noop-none": 10234350400,
+    "lattice-first-inventory": 25158304000,
+    "lattice-first-many": 24821094300,
+    "lattice-first-none": 129500423200,
+    "lattice-install": 22464731400,
+    "lattice-noop-many": 22903328800,
+    "lattice-noop-none": 17114414100
+  },
+  "inventory": {
+    "packageInstances": 54,
+    "commonPayloadFiles": 2894,
+    "commonPayloadBytes": 64639540,
+    "latticePayloadFiles": 2953,
+    "aspectPayloadFiles": 2894,
+    "aspectDefaultExclusions": [
+      {
+        "package": "@jridgewell/resolve-uri@3.1.2",
+        "path": "README.md",
+        "sha256": "17439eff29e4d28023e6b50554c81e3f565d304eeb7bb19f56041ded2a0f0d21",
+        "size": 2826
+      },
+      {
+        "package": "@jridgewell/sourcemap-codec@1.6.0",
+        "path": "README.md",
+        "sha256": "50e5282b46bafe5e2c87a0f224a86876067694f0434c5b27c0ea2d5bbceba5d7",
+        "size": 10051
+      },
+      {
+        "package": "@jridgewell/trace-mapping@0.3.31",
+        "path": "README.md",
+        "sha256": "bc4a19f3e6ac9a3faeefa0687570a6d32ea925365a0705523c064b721c47c799",
+        "size": 14417
+      },
+      {
+        "package": "@oxc-parser/binding-win32-x64-msvc@0.150.0",
+        "path": "README.md",
+        "sha256": "db1762e8b55148e695bfa8795042b63cad8d1b11d584e546eebf48d7cddbb955",
+        "size": 112
+      },
+      {
+        "package": "@oxc-project/types@0.150.0",
+        "path": "README.md",
+        "sha256": "a6d02a8c1016c2305e8cd9eeab91ad1b1d9c614b2b361edef0d0da3816a0775a",
+        "size": 55
+      },
+      {
+        "package": "@oxc-project/types@0.152.0",
+        "path": "README.md",
+        "sha256": "a6d02a8c1016c2305e8cd9eeab91ad1b1d9c614b2b361edef0d0da3816a0775a",
+        "size": 55
+      },
+      {
+        "package": "@oxc-resolver/binding-win32-x64-msvc@11.24.2",
+        "path": "README.md",
+        "sha256": "e272899035592daf175391a088ba7a51e8ea9c3a5200bd389f47e2ef6a9ed9f0",
+        "size": 116
+      },
+      {
+        "package": "@rolldown/binding-win32-x64-msvc@1.2.12",
+        "path": "README.md",
+        "sha256": "327b514303b86e589a6d6bb831928bb9720678fb72648f81c8c2cdcb2f7a856f",
+        "size": 108
+      },
+      {
+        "package": "@rolldown/pluginutils@1.0.1",
+        "path": "README.md",
+        "sha256": "4886d9da5238f5d7e44fa2558a3c8d4939e5eb212cc1a3e587472ee2b65fd3fd",
+        "size": 6177
+      },
+      {
+        "package": "@types/chai@5.2.3",
+        "path": "README.md",
+        "sha256": "885843315389cf2c05776cca29f4855304dd0eef55a5b3f6714245b44f8db920",
+        "size": 1009
+      },
+      {
+        "package": "@types/deep-eql@4.0.2",
+        "path": "README.md",
+        "sha256": "f291a03ec5c52df1f4e9b4263388840b5d699e9f5431945f07fc91bbce5536cb",
+        "size": 1712
+      },
+      {
+        "package": "@types/estree@1.0.9",
+        "path": "README.md",
+        "sha256": "284daa8ee1deb294176001d299e950b7af96026497c7147e000f15c00ee6f541",
+        "size": 458
+      },
+      {
+        "package": "@vitest/mocker@5.0.3",
+        "path": "README.md",
+        "sha256": "3446aaa76f25dffc11be580c86a58c39f80eb3a962a1716da5cd54f82a6e38f4",
+        "size": 349
+      },
+      {
+        "package": "@vitest/spy@5.0.3",
+        "path": "README.md",
+        "sha256": "88537bb8205304cd0bdad48ad06dd8a2d5fb22d5eaa51529ef533fbf5d3b151c",
+        "size": 303
+      },
+      {
+        "package": "assertion-error@2.0.1",
+        "path": "README.md",
+        "sha256": "5560ac0761bf18948b9e93468cc1edbe7bb92766ba46fb13c4249be927c1abd2",
+        "size": 1721
+      },
+      {
+        "package": "chai@6.3.0",
+        "path": "README.md",
+        "sha256": "c8711e0c188faa3511c4326cd30d1e03b8f03dce81d1890217248eb515fc27a7",
+        "size": 6222
+      },
+      {
+        "package": "detect-libc@2.1.2",
+        "path": "README.md",
+        "sha256": "51a97449c443889155bc872522e6de5a91a5fa73edeffa03d749e186bf0eebca",
+        "size": 3215
+      },
+      {
+        "package": "es-module-lexer@2.3.2",
+        "path": "README.md",
+        "sha256": "3de04445b4628a8aedc44c8e04bb87827a61e5bc0b9204e2805e549c2bbed014",
+        "size": 12156
+      },
+      {
+        "package": "estree-walker@3.0.3",
+        "path": "README.md",
+        "sha256": "182114d9ab2e497c9d147a0984f445ff1dc195691dc8d0cf562a631ad97ea0aa",
+        "size": 1591
+      },
+      {
+        "package": "expect-type@1.4.0",
+        "path": "README.md",
+        "sha256": "6add033c8506d4247d89570cd9f6157d1f9461723127219a5b235b234d6e738c",
+        "size": 38766
+      },
+      {
+        "package": "expect-type@1.4.0",
+        "path": "SECURITY.md",
+        "sha256": "ec859663a4d0572a13a3f00c576246f876548029e40ca044da2af30a941a0a17",
+        "size": 421
+      },
+      {
+        "package": "fd-package-json@2.0.0",
+        "path": "README.md",
+        "sha256": "fafd3d2805303cdd17672247c7be7d8f2b1b1592733517cdeb80d7f0bcb7602c",
+        "size": 929
+      },
+      {
+        "package": "fdir@6.5.0",
+        "path": "README.md",
+        "sha256": "99ba9a269bf78c24621c0eaaee2978fd2deea1680c147ede89eb2f900ea1d562",
+        "size": 3851
+      },
+      {
+        "package": "formatly@0.7.1",
+        "path": "LICENSE.md",
+        "sha256": "76c9d5f5ea942054715c026f33f8717c9e24603196a3737b8899afa216bcbdab",
+        "size": 1038
+      },
+      {
+        "package": "formatly@0.7.1",
+        "path": "README.md",
+        "sha256": "e8b7cceddea0a848aa7aeab351fb6a0f659fdb4c1a80ec00065ae289d5424e3c",
+        "size": 13432
+      },
+      {
+        "package": "get-tsconfig@4.14.3",
+        "path": "README.md",
+        "sha256": "0735cbc7ad6193a7c3c2737819be4f4b96107fa28c63aecb5e8372040858a000",
+        "size": 8304
+      },
+      {
+        "package": "jiti@2.7.0",
+        "path": "README.md",
+        "sha256": "5c548c17b8eaa50ba090dab41baeea23cce50eac41e70bec34037727b7e0e881",
+        "size": 8558
+      },
+      {
+        "package": "knip@6.39.0",
+        "path": "README.md",
+        "sha256": "d0e6ca051dd8f51a9564bcee254805fbb8bd0da6b37aab2cef51eae36ba1ce57",
+        "size": 2749
+      },
+      {
+        "package": "lightningcss-win32-x64-msvc@1.33.0",
+        "path": "README.md",
+        "sha256": "7a8ce7a98de104127a9414f2ad3d1c36e169609c8c85b0e9c232dc723178bd2c",
+        "size": 121
+      },
+      {
+        "package": "lightningcss@1.33.0",
+        "path": "README.md",
+        "sha256": "5c0c95d29d204230e9bdb1b998b6dc960f88524f4202e2375062b75bba2b957b",
+        "size": 6058
+      },
+      {
+        "package": "magic-string@1.4.3",
+        "path": "README.md",
+        "sha256": "2a93379f18a2ad928c839ac54572df72c25333b1835da1f8f2e676b83f616a51",
+        "size": 17848
+      },
+      {
+        "package": "nanoid@3.3.20",
+        "path": "README.md",
+        "sha256": "54449254570e72b9eac5e3fafa9232eccffcc2f1de403a4dae02b2ffabee720f",
+        "size": 1552
+      },
+      {
+        "package": "obug@2.2.1",
+        "path": "README.md",
+        "sha256": "7602d05818e45c0830a5b608ecd22cef5a378d6c1d7fb21b5c7931ae96485c01",
+        "size": 9006
+      },
+      {
+        "package": "oxc-parser@0.150.0",
+        "path": "README.md",
+        "sha256": "b1093d4996ed4c362920d07ea4cd2d348702981bdfdeacae13e24af1568c1be1",
+        "size": 5578
+      },
+      {
+        "package": "oxc-resolver@11.24.2",
+        "path": "README.md",
+        "sha256": "adec5716b6dfc0478a2ff4d49abf06fba6aca529777adf0e99fb3f89d1f3e19a",
+        "size": 20467
+      },
+      {
+        "package": "package-manager-detector@1.9.0",
+        "path": "README.md",
+        "sha256": "8186d1f2bafb9320ac869b97aa1f780c5f51d2916c94cfb0dfb5fd61c5eaec98",
+        "size": 4551
+      },
+      {
+        "package": "picocolors@1.1.1",
+        "path": "README.md",
+        "sha256": "5027b2836551ea0f91fa27b97335de905e24e1459d590eacfa45c0156962b70c",
+        "size": 622
+      },
+      {
+        "package": "picomatch@4.0.7",
+        "path": "README.md",
+        "sha256": "a69b87120fe2b9cb8f9057eaef6b9f9887f803e02185ca2f431e8162f6312220",
+        "size": 28319
+      },
+      {
+        "package": "postcss@8.5.29",
+        "path": "README.md",
+        "sha256": "92b501afb100c2e7f186dc3e45d5064ee47efeed91705c2cbf2f9ffd1fa7c6eb",
+        "size": 1159
+      },
+      {
+        "package": "prettier@3.9.9",
+        "path": "README.md",
+        "sha256": "f1f5a86cd0fd0f6a288882527830a9bbbd5851e3238c4d7426b7bbb496165cd1",
+        "size": 3396
+      },
+      {
+        "package": "prettier@3.9.9",
+        "path": "THIRD-PARTY-NOTICES.md",
+        "sha256": "aaf6032babb49d6e5601ab06f315d6d6bab605cb4672f03e9972ff3c80232cdc",
+        "size": 362597
+      },
+      {
+        "package": "resolve-pkg-maps@1.0.0",
+        "path": "README.md",
+        "sha256": "cb82232c87083b5f5afc2a4b4ed80b6dc3680ee443d1d52b16be8523283c2dc4",
+        "size": 7773
+      },
+      {
+        "package": "rolldown@1.2.12",
+        "path": "README.md",
+        "sha256": "3d65150aadb440393668579bd47674f9c6d51f32d1f352510e0c1d6ddf549005",
+        "size": 665
+      },
+      {
+        "package": "smol-toml@1.9.0",
+        "path": "README.md",
+        "sha256": "bcaaa3befbd5bc5373cc6d80f4502afbe83179f96dcf9a336c43deb7ffa24c65",
+        "size": 37677
+      },
+      {
+        "package": "source-map-js@1.2.2",
+        "path": "README.md",
+        "sha256": "8e1a57daf01cd2fc8969ecd0afeae51d1c05c7c79e9413ea82016a0f65e97646",
+        "size": 26040
+      },
+      {
+        "package": "std-env@4.3.0",
+        "path": "README.md",
+        "sha256": "810c8e1b8ce38fc2551e6400a829718f0d7b0bb330ebc27d4fdd365adddede57",
+        "size": 4329
+      },
+      {
+        "package": "strip-json-comments@5.0.3",
+        "path": "readme.md",
+        "sha256": "2b62630fdec65078a32592fab01c9c4844c8e092e777aa158f5c2326f0cfd679",
+        "size": 1529
+      },
+      {
+        "package": "tinybench@6.2.1",
+        "path": "README.md",
+        "sha256": "f4c5d5691515c7fa61bd92b2d527bedd91158b4c6ba9b50d3f8bf76c2aa602d2",
+        "size": 23012
+      },
+      {
+        "package": "tinyexec@1.3.1",
+        "path": "README.md",
+        "sha256": "9a731c250584760e51f33bf6b149f34a51f2bd4d33ad21527c25b10250ed11da",
+        "size": 7605
+      },
+      {
+        "package": "tinyglobby@0.2.17",
+        "path": "README.md",
+        "sha256": "657d808498dddf2ea2049dd44f008cd18c260893ef73920285d7b3e9afcb7072",
+        "size": 931
+      },
+      {
+        "package": "unbash@4.0.12",
+        "path": "README.md",
+        "sha256": "13feb53aba087d403c556d22c884a148a4e0be911b7a5849b50431de4aadcb81",
+        "size": 10189
+      },
+      {
+        "package": "vite@8.3.2",
+        "path": "LICENSE.md",
+        "sha256": "a47172e44a86a7e2cd1c16282341f7726ec60caafe3a6166fe3e0602005b6fa6",
+        "size": 108786
+      },
+      {
+        "package": "vite@8.3.2",
+        "path": "README.md",
+        "sha256": "01cebf4365cd21396688c4dcb0dc8d360ccbafb3a36735d3849c5d8efd3cd060",
+        "size": 1179
+      },
+      {
+        "package": "vitest@5.0.3",
+        "path": "LICENSE.md",
+        "sha256": "c8f14eea9df88b94c4710b4c476d8642e080832d7de0d861eba1337746494b4d",
+        "size": 45233
+      },
+      {
+        "package": "vitest@5.0.3",
+        "path": "README.md",
+        "sha256": "1e870589f0aa14b261587531486354c4a87f78e8d3170c29b0fa3b74ccbe190e",
+        "size": 256
+      },
+      {
+        "package": "walk-up-path@4.0.0",
+        "path": "README.md",
+        "sha256": "9c2df9100b985e0b80a64a75c731d40799a42a17c7334a2f183abedbba9a2326",
+        "size": 707
+      },
+      {
+        "package": "why-is-node-running@3.2.1",
+        "path": "README.md",
+        "sha256": "9e36a93f2b40322588a52228cf1e2f83d522457790741659d9398f1d31856be5",
+        "size": 2510
+      },
+      {
+        "package": "yaml@2.9.1",
+        "path": "README.md",
+        "sha256": "c8aa393826fb1c55ae195399864e7f454a2c66c4d9491459545b26cac4b958e6",
+        "size": 6266
+      },
+      {
+        "package": "zod@4.6.5",
+        "path": "README.md",
+        "sha256": "b5651740a66d68e8c55c4fdea2df8b00448f99a0433008fef99a54f859024039",
+        "size": 7304
+      }
+    ],
+    "dependencyLayoutDirectories": {
+      "lattice": 1
+    },
+    "backendNodeDefaults": {
+      "aspect": {
+        "execArgv": [
+          "--require",
+          "D:\\benchmark\\rules-js-benchmark-4057942681\\bazel\\aspect\\ou2fzjb5\\execroot\\_main\\bazel-out\\x64_windows-opt-exec\\bin\\tool_many_\\tool_many.bat.runfiles\\aspect_rules_js+\\js\\private\\node-bootstrap\\bootstrap.cjs",
+          "--preserve-symlinks-main"
+        ],
+        "nodeOptions": ""
+      },
+      "lattice": {
+        "execArgv": [],
+        "nodeOptions": ""
+      }
+    },
+    "physicalPackageInstances": {
+      "aspect": 54,
+      "lattice": 54
+    },
+    "aspectIncompatibleLibcInputs": null,
+    "aspectIncompatibleLibcFiles": 0,
+    "aspectIncompatibleLibcBytes": 0,
+    "libc": "",
+    "libcVersion": ""
+  },
+  "samples": [
+    {
+      "case": "none",
+      "trial": -3,
+      "nonce": "20261008T124341.342444800-none--3",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 118000000,
+        "executionNanoseconds": 109000000,
+        "commandNanoseconds": 18848523600,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "3999456ca851763ac5c1af2cb545fabfe001c640abb7be22ed42adf5ddad8edb",
+        "log": "lattice-none-000.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 327000000,
+        "executionNanoseconds": 326000000,
+        "commandNanoseconds": 9834266100,
+        "prerequisiteNanoseconds": 34000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "3999456ca851763ac5c1af2cb545fabfe001c640abb7be22ed42adf5ddad8edb",
+        "log": "aspect-none-000.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": -2,
+      "nonce": "20261008T124341.342444800-none--2",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 118000000,
+        "executionNanoseconds": 106000000,
+        "commandNanoseconds": 15915287800,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "019bf64414785f65e0609c019e0dd5f78b1f6c8eafa5e8936e63292a86e2e298",
+        "log": "lattice-none-001.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 331000000,
+        "executionNanoseconds": 329000000,
+        "commandNanoseconds": 9901837800,
+        "prerequisiteNanoseconds": 32000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "019bf64414785f65e0609c019e0dd5f78b1f6c8eafa5e8936e63292a86e2e298",
+        "log": "aspect-none-001.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": -1,
+      "nonce": "20261008T124341.342444800-none--1",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 160000000,
+        "executionNanoseconds": 131000000,
+        "commandNanoseconds": 16676945000,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "790d5a148e9ae0bf0440ba60c020ccbe95c9e051872883fb25bd7de670334caa",
+        "log": "lattice-none-002.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 326000000,
+        "executionNanoseconds": 324000000,
+        "commandNanoseconds": 10139974800,
+        "prerequisiteNanoseconds": 32000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "790d5a148e9ae0bf0440ba60c020ccbe95c9e051872883fb25bd7de670334caa",
+        "log": "aspect-none-002.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 0,
+      "nonce": "20261008T124341.342444800-none-0",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 113000000,
+        "executionNanoseconds": 105000000,
+        "commandNanoseconds": 15801502700,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "8ced886e76e818718443feb894dccbad61525c3e3b34ea9e54929e2cc3f0c844",
+        "log": "lattice-none-003.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 332000000,
+        "executionNanoseconds": 331000000,
+        "commandNanoseconds": 9799320800,
+        "prerequisiteNanoseconds": 35000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "8ced886e76e818718443feb894dccbad61525c3e3b34ea9e54929e2cc3f0c844",
+        "log": "aspect-none-003.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 1,
+      "nonce": "20261008T124341.342444800-none-1",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 114000000,
+        "executionNanoseconds": 106000000,
+        "commandNanoseconds": 15946668700,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "4f041cf6936fe38bc567d0568b584a96be9a8f890f19d0916901ec4ca994207a",
+        "log": "lattice-none-004.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 335000000,
+        "executionNanoseconds": 333000000,
+        "commandNanoseconds": 9890343900,
+        "prerequisiteNanoseconds": 33000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "4f041cf6936fe38bc567d0568b584a96be9a8f890f19d0916901ec4ca994207a",
+        "log": "aspect-none-004.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 2,
+      "nonce": "20261008T124341.342444800-none-2",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 115000000,
+        "executionNanoseconds": 106000000,
+        "commandNanoseconds": 16163483200,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "5a626f196040757d11c1706c6c23a0d24ad741ff8c7d0f0a6fd5514bb9aab76d",
+        "log": "lattice-none-005.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 332000000,
+        "executionNanoseconds": 330000000,
+        "commandNanoseconds": 10385556800,
+        "prerequisiteNanoseconds": 42000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "5a626f196040757d11c1706c6c23a0d24ad741ff8c7d0f0a6fd5514bb9aab76d",
+        "log": "aspect-none-005.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 3,
+      "nonce": "20261008T124341.342444800-none-3",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 135000000,
+        "executionNanoseconds": 123000000,
+        "commandNanoseconds": 15622413700,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "ed0493863410b8eebffadf43d5c87466f95bcf2745d44bca96da8391357f38c6",
+        "log": "lattice-none-006.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 345000000,
+        "executionNanoseconds": 343000000,
+        "commandNanoseconds": 10078273000,
+        "prerequisiteNanoseconds": 34000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "ed0493863410b8eebffadf43d5c87466f95bcf2745d44bca96da8391357f38c6",
+        "log": "aspect-none-006.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 4,
+      "nonce": "20261008T124341.342444800-none-4",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 117000000,
+        "executionNanoseconds": 108000000,
+        "commandNanoseconds": 16172731100,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "41be3c353a9af410fdbdd08b385eabeda7f61761d794d6319cdc714cc782b649",
+        "log": "lattice-none-007.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 347000000,
+        "executionNanoseconds": 344000000,
+        "commandNanoseconds": 9996383300,
+        "prerequisiteNanoseconds": 46000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "41be3c353a9af410fdbdd08b385eabeda7f61761d794d6319cdc714cc782b649",
+        "log": "aspect-none-007.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 5,
+      "nonce": "20261008T124341.342444800-none-5",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 120000000,
+        "executionNanoseconds": 110000000,
+        "commandNanoseconds": 15802839600,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "480fccf6d1787286816a434b3536d5a966eda775fdaeeea1740bc198ac54adbc",
+        "log": "lattice-none-008.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 347000000,
+        "executionNanoseconds": 345000000,
+        "commandNanoseconds": 10093961100,
+        "prerequisiteNanoseconds": 34000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "480fccf6d1787286816a434b3536d5a966eda775fdaeeea1740bc198ac54adbc",
+        "log": "aspect-none-008.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 6,
+      "nonce": "20261008T124341.342444800-none-6",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 125000000,
+        "executionNanoseconds": 114000000,
+        "commandNanoseconds": 15697318300,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "a45999850e44dce158e76f7b6ded3dcc21325e43801eca2c8a4070ebb7f953c3",
+        "log": "lattice-none-009.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 333000000,
+        "executionNanoseconds": 331000000,
+        "commandNanoseconds": 9976380200,
+        "prerequisiteNanoseconds": 32000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "a45999850e44dce158e76f7b6ded3dcc21325e43801eca2c8a4070ebb7f953c3",
+        "log": "aspect-none-009.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 7,
+      "nonce": "20261008T124341.342444800-none-7",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 118000000,
+        "executionNanoseconds": 106000000,
+        "commandNanoseconds": 15709304900,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "d0de72889c75cded694842147b070d94da87ca8c8805c138a0b577c6245f9f93",
+        "log": "lattice-none-010.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 336000000,
+        "executionNanoseconds": 334000000,
+        "commandNanoseconds": 9782050100,
+        "prerequisiteNanoseconds": 32000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "d0de72889c75cded694842147b070d94da87ca8c8805c138a0b577c6245f9f93",
+        "log": "aspect-none-010.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 8,
+      "nonce": "20261008T124341.342444800-none-8",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 112000000,
+        "executionNanoseconds": 104000000,
+        "commandNanoseconds": 15404043900,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "f40f88d17b4ab70ed99d3b2bb03115b4cdf43d47c2114f5fb515a85b0819ba4b",
+        "log": "lattice-none-011.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 338000000,
+        "executionNanoseconds": 337000000,
+        "commandNanoseconds": 9941182200,
+        "prerequisiteNanoseconds": 31000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "f40f88d17b4ab70ed99d3b2bb03115b4cdf43d47c2114f5fb515a85b0819ba4b",
+        "log": "aspect-none-011.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 9,
+      "nonce": "20261008T124341.342444800-none-9",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 134000000,
+        "executionNanoseconds": 126000000,
+        "commandNanoseconds": 16046380000,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "5a5752ed65b5bb09be621b1fb0eff0ad8ed5d0b00e6448a97339bca805bc2adf",
+        "log": "lattice-none-012.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 335000000,
+        "executionNanoseconds": 333000000,
+        "commandNanoseconds": 9796559900,
+        "prerequisiteNanoseconds": 34000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "5a5752ed65b5bb09be621b1fb0eff0ad8ed5d0b00e6448a97339bca805bc2adf",
+        "log": "aspect-none-012.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 10,
+      "nonce": "20261008T124341.342444800-none-10",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 112000000,
+        "executionNanoseconds": 103000000,
+        "commandNanoseconds": 15755581100,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "d9d1a1fae4561f35499b1e619d10fc256329bf108c25f8f9cc431b96ea3f0023",
+        "log": "lattice-none-013.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 329000000,
+        "executionNanoseconds": 328000000,
+        "commandNanoseconds": 9708908900,
+        "prerequisiteNanoseconds": 47000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "d9d1a1fae4561f35499b1e619d10fc256329bf108c25f8f9cc431b96ea3f0023",
+        "log": "aspect-none-013.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 11,
+      "nonce": "20261008T124341.342444800-none-11",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 115000000,
+        "executionNanoseconds": 107000000,
+        "commandNanoseconds": 15770553200,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "a163a53040b4ae6e72dda592c582b13b738aad0d69a0c9bf5b09a4ffc0950abc",
+        "log": "lattice-none-014.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 340000000,
+        "executionNanoseconds": 339000000,
+        "commandNanoseconds": 9993366200,
+        "prerequisiteNanoseconds": 34000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "a163a53040b4ae6e72dda592c582b13b738aad0d69a0c9bf5b09a4ffc0950abc",
+        "log": "aspect-none-014.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 12,
+      "nonce": "20261008T124341.342444800-none-12",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 113000000,
+        "executionNanoseconds": 102000000,
+        "commandNanoseconds": 15183575900,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "1c69f4ae4fbe75a6c3c4a6abd49647f045ec01d3fbea990e03b9282f4dd0c5af",
+        "log": "lattice-none-015.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 393000000,
+        "executionNanoseconds": 391000000,
+        "commandNanoseconds": 9768922300,
+        "prerequisiteNanoseconds": 33000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "1c69f4ae4fbe75a6c3c4a6abd49647f045ec01d3fbea990e03b9282f4dd0c5af",
+        "log": "aspect-none-015.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 13,
+      "nonce": "20261008T124341.342444800-none-13",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 118000000,
+        "executionNanoseconds": 110000000,
+        "commandNanoseconds": 15754806000,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "56800cd362b903ea363880bca9e52f332edee28f47acd0b1b2811f5c90af7543",
+        "log": "lattice-none-016.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 333000000,
+        "executionNanoseconds": 332000000,
+        "commandNanoseconds": 9808847100,
+        "prerequisiteNanoseconds": 32000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "56800cd362b903ea363880bca9e52f332edee28f47acd0b1b2811f5c90af7543",
+        "log": "aspect-none-016.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 14,
+      "nonce": "20261008T124341.342444800-none-14",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 114000000,
+        "executionNanoseconds": 104000000,
+        "commandNanoseconds": 15630545900,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "36b9554f3c8e5bef56b9e701e313b0ebd3db6b58da7f4004b7418605a23264c6",
+        "log": "lattice-none-017.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 331000000,
+        "executionNanoseconds": 329000000,
+        "commandNanoseconds": 10505525200,
+        "prerequisiteNanoseconds": 50000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "36b9554f3c8e5bef56b9e701e313b0ebd3db6b58da7f4004b7418605a23264c6",
+        "log": "aspect-none-017.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 15,
+      "nonce": "20261008T124341.342444800-none-15",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 122000000,
+        "executionNanoseconds": 113000000,
+        "commandNanoseconds": 15682542200,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "767f6a31c66d3ed68ee56ec8a14328752593dd151bbb31c35c5b1b8cb35bb92d",
+        "log": "lattice-none-018.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 343000000,
+        "executionNanoseconds": 342000000,
+        "commandNanoseconds": 9947115500,
+        "prerequisiteNanoseconds": 33000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "767f6a31c66d3ed68ee56ec8a14328752593dd151bbb31c35c5b1b8cb35bb92d",
+        "log": "aspect-none-018.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 16,
+      "nonce": "20261008T124341.342444800-none-16",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 116000000,
+        "executionNanoseconds": 108000000,
+        "commandNanoseconds": 15698787800,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "890c6171569267a4ddb1a8965a6a3c430c1942c218da34ea1a908db1e2d7e605",
+        "log": "lattice-none-019.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 337000000,
+        "executionNanoseconds": 335000000,
+        "commandNanoseconds": 9936100700,
+        "prerequisiteNanoseconds": 34000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "890c6171569267a4ddb1a8965a6a3c430c1942c218da34ea1a908db1e2d7e605",
+        "log": "aspect-none-019.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 17,
+      "nonce": "20261008T124341.342444800-none-17",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 146000000,
+        "executionNanoseconds": 136000000,
+        "commandNanoseconds": 15727472200,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "f01756040a3779ef94be0bdbf86a41e83327c50cad8d5f2659809583da1af569",
+        "log": "lattice-none-020.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 333000000,
+        "executionNanoseconds": 331000000,
+        "commandNanoseconds": 9947712500,
+        "prerequisiteNanoseconds": 33000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "f01756040a3779ef94be0bdbf86a41e83327c50cad8d5f2659809583da1af569",
+        "log": "aspect-none-020.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 18,
+      "nonce": "20261008T124341.342444800-none-18",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 119000000,
+        "executionNanoseconds": 109000000,
+        "commandNanoseconds": 15935899600,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "3e583cb0a7622cbc35d1957aa09dbc1d13f2c5798767382cf54eab1e7d490bf9",
+        "log": "lattice-none-021.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 334000000,
+        "executionNanoseconds": 332000000,
+        "commandNanoseconds": 9859878400,
+        "prerequisiteNanoseconds": 33000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "3e583cb0a7622cbc35d1957aa09dbc1d13f2c5798767382cf54eab1e7d490bf9",
+        "log": "aspect-none-021.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 19,
+      "nonce": "20261008T124341.342444800-none-19",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 116000000,
+        "executionNanoseconds": 108000000,
+        "commandNanoseconds": 15270351300,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "d8e853871a4e1880f6ba118f7c160081e8face8085498a4f5f325ff7b4236821",
+        "log": "lattice-none-022.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 339000000,
+        "executionNanoseconds": 337000000,
+        "commandNanoseconds": 9783232900,
+        "prerequisiteNanoseconds": 35000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "d8e853871a4e1880f6ba118f7c160081e8face8085498a4f5f325ff7b4236821",
+        "log": "aspect-none-022.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 20,
+      "nonce": "20261008T124341.342444800-none-20",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 123000000,
+        "executionNanoseconds": 113000000,
+        "commandNanoseconds": 15801209800,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "25fe52dc470e67aab45542f3a3b46c29c3aed9f9714547462fd5df7d6c2ee960",
+        "log": "lattice-none-023.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 382000000,
+        "executionNanoseconds": 380000000,
+        "commandNanoseconds": 9782969000,
+        "prerequisiteNanoseconds": 32000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "25fe52dc470e67aab45542f3a3b46c29c3aed9f9714547462fd5df7d6c2ee960",
+        "log": "aspect-none-023.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 21,
+      "nonce": "20261008T124341.342444800-none-21",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 116000000,
+        "executionNanoseconds": 108000000,
+        "commandNanoseconds": 15927211500,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "25e25f38e696f0c5ef5dc583a80517e1e0ae6a01d97cd439a5261253feb125db",
+        "log": "lattice-none-024.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 328000000,
+        "executionNanoseconds": 326000000,
+        "commandNanoseconds": 9892345600,
+        "prerequisiteNanoseconds": 32000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "25e25f38e696f0c5ef5dc583a80517e1e0ae6a01d97cd439a5261253feb125db",
+        "log": "aspect-none-024.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 22,
+      "nonce": "20261008T124341.342444800-none-22",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 121000000,
+        "executionNanoseconds": 109000000,
+        "commandNanoseconds": 15538737900,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "91250d9f1aaf3b24453a219fbe9b8507f73938ad36b4eab6f197a429cbfe8a85",
+        "log": "lattice-none-025.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 333000000,
+        "executionNanoseconds": 331000000,
+        "commandNanoseconds": 9886080700,
+        "prerequisiteNanoseconds": 35000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "91250d9f1aaf3b24453a219fbe9b8507f73938ad36b4eab6f197a429cbfe8a85",
+        "log": "aspect-none-025.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 23,
+      "nonce": "20261008T124341.342444800-none-23",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 116000000,
+        "executionNanoseconds": 106000000,
+        "commandNanoseconds": 16020645300,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "26c617c2cdbeb6809dfc339f5829f029507744ffa6f602ceff93e8fc557b49ee",
+        "log": "lattice-none-026.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 335000000,
+        "executionNanoseconds": 333000000,
+        "commandNanoseconds": 10075762800,
+        "prerequisiteNanoseconds": 40000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "26c617c2cdbeb6809dfc339f5829f029507744ffa6f602ceff93e8fc557b49ee",
+        "log": "aspect-none-026.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 24,
+      "nonce": "20261008T124341.342444800-none-24",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 122000000,
+        "executionNanoseconds": 113000000,
+        "commandNanoseconds": 16611470700,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "0c078f89a91cd4b75925f866d9154356511ffbf2b5a6dce1c0e4e888dac3a312",
+        "log": "lattice-none-027.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 334000000,
+        "executionNanoseconds": 333000000,
+        "commandNanoseconds": 9770943800,
+        "prerequisiteNanoseconds": 34000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "0c078f89a91cd4b75925f866d9154356511ffbf2b5a6dce1c0e4e888dac3a312",
+        "log": "aspect-none-027.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 25,
+      "nonce": "20261008T124341.342444800-none-25",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 116000000,
+        "executionNanoseconds": 107000000,
+        "commandNanoseconds": 15584390800,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "c073b8cd4d5241117bac9a4c1f70e88c289ea24f1463ff9600db909aba547ee0",
+        "log": "lattice-none-028.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 329000000,
+        "executionNanoseconds": 327000000,
+        "commandNanoseconds": 9999208400,
+        "prerequisiteNanoseconds": 35000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "c073b8cd4d5241117bac9a4c1f70e88c289ea24f1463ff9600db909aba547ee0",
+        "log": "aspect-none-028.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 26,
+      "nonce": "20261008T124341.342444800-none-26",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 139000000,
+        "executionNanoseconds": 128000000,
+        "commandNanoseconds": 18298287100,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "e7abfa97fb7050b07ce285482fdbf047dc9a68262c07364cf6987b0ebff9d24b",
+        "log": "lattice-none-029.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 334000000,
+        "executionNanoseconds": 333000000,
+        "commandNanoseconds": 10002044800,
+        "prerequisiteNanoseconds": 32000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "e7abfa97fb7050b07ce285482fdbf047dc9a68262c07364cf6987b0ebff9d24b",
+        "log": "aspect-none-029.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 27,
+      "nonce": "20261008T124341.342444800-none-27",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 112000000,
+        "executionNanoseconds": 105000000,
+        "commandNanoseconds": 16079734100,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "704472d50f2bf18d8e1865d48a0f84910f9de313b3e9f1a5228765fa62469f55",
+        "log": "lattice-none-030.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 345000000,
+        "executionNanoseconds": 343000000,
+        "commandNanoseconds": 10213474200,
+        "prerequisiteNanoseconds": 34000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "704472d50f2bf18d8e1865d48a0f84910f9de313b3e9f1a5228765fa62469f55",
+        "log": "aspect-none-030.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 28,
+      "nonce": "20261008T124341.342444800-none-28",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 120000000,
+        "executionNanoseconds": 111000000,
+        "commandNanoseconds": 16135636100,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "2ed2c36c74e855484f8674205c5698c40f0cb8cb7c75b54a66166be667c23549",
+        "log": "lattice-none-031.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 333000000,
+        "executionNanoseconds": 331000000,
+        "commandNanoseconds": 10322543500,
+        "prerequisiteNanoseconds": 37000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "2ed2c36c74e855484f8674205c5698c40f0cb8cb7c75b54a66166be667c23549",
+        "log": "aspect-none-031.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "none",
+      "trial": 29,
+      "nonce": "20261008T124341.342444800-none-29",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 117000000,
+        "executionNanoseconds": 108000000,
+        "commandNanoseconds": 15948718000,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 9,
+        "toolInputs": 4,
+        "outputSha256": "13f8d188a7fac48ff1eb3129a4fedc8d071696c1262828604054f26c43606b9b",
+        "log": "lattice-none-032.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 333000000,
+        "executionNanoseconds": 331000000,
+        "commandNanoseconds": 10277555400,
+        "prerequisiteNanoseconds": 34000000,
+        "expandedInputs": 15,
+        "toolInputs": 12,
+        "outputSha256": "13f8d188a7fac48ff1eb3129a4fedc8d071696c1262828604054f26c43606b9b",
+        "log": "aspect-none-032.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": -3,
+      "nonce": "20261008T124341.342444800-many--3",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1549000000,
+        "executionNanoseconds": 1536000000,
+        "commandNanoseconds": 26814441200,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "6ec4ca852e7532a58f6b7a4990df83999c3fc90b38bd46329944e148c9f39af8",
+        "log": "lattice-many-000.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 535000000,
+        "executionNanoseconds": 518000000,
+        "commandNanoseconds": 12868347100,
+        "prerequisiteNanoseconds": 36000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "6ec4ca852e7532a58f6b7a4990df83999c3fc90b38bd46329944e148c9f39af8",
+        "log": "aspect-many-000.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": -2,
+      "nonce": "20261008T124341.342444800-many--2",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1522000000,
+        "executionNanoseconds": 1506000000,
+        "commandNanoseconds": 32069702000,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "6b31fb4d851bf25a56e47268ad68ea1c2736911d4960ac9a9f1eef22d77ba94d",
+        "log": "lattice-many-001.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 565000000,
+        "executionNanoseconds": 555000000,
+        "commandNanoseconds": 14700083900,
+        "prerequisiteNanoseconds": 44000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "6b31fb4d851bf25a56e47268ad68ea1c2736911d4960ac9a9f1eef22d77ba94d",
+        "log": "aspect-many-001.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": -1,
+      "nonce": "20261008T124341.342444800-many--1",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1594000000,
+        "executionNanoseconds": 1580000000,
+        "commandNanoseconds": 25972472100,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "251a857cc954a9a402b17ca22e1041faefb20973bada90fa777e44adb2f184ec",
+        "log": "lattice-many-002.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 513000000,
+        "executionNanoseconds": 503000000,
+        "commandNanoseconds": 12877524100,
+        "prerequisiteNanoseconds": 47000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "251a857cc954a9a402b17ca22e1041faefb20973bada90fa777e44adb2f184ec",
+        "log": "aspect-many-002.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 0,
+      "nonce": "20261008T124341.342444800-many-0",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1571000000,
+        "executionNanoseconds": 1549000000,
+        "commandNanoseconds": 26144787100,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "fb2e2ec86f93eb25b5de17604d9632589dff31e80c51a6fecaca1ff1d4faa403",
+        "log": "lattice-many-003.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 534000000,
+        "executionNanoseconds": 525000000,
+        "commandNanoseconds": 12224308300,
+        "prerequisiteNanoseconds": 33000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "fb2e2ec86f93eb25b5de17604d9632589dff31e80c51a6fecaca1ff1d4faa403",
+        "log": "aspect-many-003.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 1,
+      "nonce": "20261008T124341.342444800-many-1",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1465000000,
+        "executionNanoseconds": 1451000000,
+        "commandNanoseconds": 25051985800,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "f7633424391c0ce8e6e32e12508bf65233714843181eed6f374d4afdb1993b3f",
+        "log": "lattice-many-004.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 521000000,
+        "executionNanoseconds": 510000000,
+        "commandNanoseconds": 12176230500,
+        "prerequisiteNanoseconds": 43000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "f7633424391c0ce8e6e32e12508bf65233714843181eed6f374d4afdb1993b3f",
+        "log": "aspect-many-004.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 2,
+      "nonce": "20261008T124341.342444800-many-2",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1549000000,
+        "executionNanoseconds": 1532000000,
+        "commandNanoseconds": 26610905100,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "ef49223e02db980b8b4486cd969bcc8b03b4ec7fa8d9cfd349c7c86ba7fcbfc7",
+        "log": "lattice-many-005.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 530000000,
+        "executionNanoseconds": 520000000,
+        "commandNanoseconds": 12207244700,
+        "prerequisiteNanoseconds": 42000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "ef49223e02db980b8b4486cd969bcc8b03b4ec7fa8d9cfd349c7c86ba7fcbfc7",
+        "log": "aspect-many-005.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 3,
+      "nonce": "20261008T124341.342444800-many-3",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1542000000,
+        "executionNanoseconds": 1529000000,
+        "commandNanoseconds": 27157393100,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "120d0083c917bd0e5334bd27006a41b3aeecfe97062af18ba077e9135e748bcb",
+        "log": "lattice-many-006.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 545000000,
+        "executionNanoseconds": 532000000,
+        "commandNanoseconds": 13531567700,
+        "prerequisiteNanoseconds": 45000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "120d0083c917bd0e5334bd27006a41b3aeecfe97062af18ba077e9135e748bcb",
+        "log": "aspect-many-006.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 4,
+      "nonce": "20261008T124341.342444800-many-4",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1545000000,
+        "executionNanoseconds": 1529000000,
+        "commandNanoseconds": 27598184100,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "284fc1100abc9fe79358c627a102e3b149e7d41046553071b61ad0d5f919b20c",
+        "log": "lattice-many-007.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 525000000,
+        "executionNanoseconds": 517000000,
+        "commandNanoseconds": 13662525000,
+        "prerequisiteNanoseconds": 47000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "284fc1100abc9fe79358c627a102e3b149e7d41046553071b61ad0d5f919b20c",
+        "log": "aspect-many-007.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 5,
+      "nonce": "20261008T124341.342444800-many-5",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1480000000,
+        "executionNanoseconds": 1465000000,
+        "commandNanoseconds": 26630513500,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "dc424bac5817c2fada9a336e6d3a2d363dd7cd7c1b6e2bf1fd31c73255388fae",
+        "log": "lattice-many-008.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 522000000,
+        "executionNanoseconds": 513000000,
+        "commandNanoseconds": 11920155400,
+        "prerequisiteNanoseconds": 40000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "dc424bac5817c2fada9a336e6d3a2d363dd7cd7c1b6e2bf1fd31c73255388fae",
+        "log": "aspect-many-008.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 6,
+      "nonce": "20261008T124341.342444800-many-6",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1479000000,
+        "executionNanoseconds": 1461000000,
+        "commandNanoseconds": 25210766500,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "a98770a98ec6c8385d5e532440bed3710b5a69390f2b8055e8a14e555b1a031d",
+        "log": "lattice-many-009.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 523000000,
+        "executionNanoseconds": 515000000,
+        "commandNanoseconds": 11555810200,
+        "prerequisiteNanoseconds": 40000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "a98770a98ec6c8385d5e532440bed3710b5a69390f2b8055e8a14e555b1a031d",
+        "log": "aspect-many-009.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 7,
+      "nonce": "20261008T124341.342444800-many-7",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1458000000,
+        "executionNanoseconds": 1444000000,
+        "commandNanoseconds": 24363504900,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "c5481e38726d118d1fd7afedcd9c9bf77147205c1c9f1e9264638921f22f33f3",
+        "log": "lattice-many-010.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 581000000,
+        "executionNanoseconds": 572000000,
+        "commandNanoseconds": 14471898500,
+        "prerequisiteNanoseconds": 35000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "c5481e38726d118d1fd7afedcd9c9bf77147205c1c9f1e9264638921f22f33f3",
+        "log": "aspect-many-010.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 8,
+      "nonce": "20261008T124341.342444800-many-8",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1564000000,
+        "executionNanoseconds": 1542000000,
+        "commandNanoseconds": 32116049100,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "29d0881f20f47cd068146383f4f43a097a4887f985972b30eb9a9bb4ff996c73",
+        "log": "lattice-many-011.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 555000000,
+        "executionNanoseconds": 546000000,
+        "commandNanoseconds": 15668506800,
+        "prerequisiteNanoseconds": 36000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "29d0881f20f47cd068146383f4f43a097a4887f985972b30eb9a9bb4ff996c73",
+        "log": "aspect-many-011.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 9,
+      "nonce": "20261008T124341.342444800-many-9",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1526000000,
+        "executionNanoseconds": 1509000000,
+        "commandNanoseconds": 24877370900,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "e395b04aa0594768c0b014fe3f8b20ef90d740c8bab096364c295c2d10860cf6",
+        "log": "lattice-many-012.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 567000000,
+        "executionNanoseconds": 557000000,
+        "commandNanoseconds": 12211589800,
+        "prerequisiteNanoseconds": 32000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "e395b04aa0594768c0b014fe3f8b20ef90d740c8bab096364c295c2d10860cf6",
+        "log": "aspect-many-012.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 10,
+      "nonce": "20261008T124341.342444800-many-10",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1470000000,
+        "executionNanoseconds": 1455000000,
+        "commandNanoseconds": 24313051000,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "94af88b1db502591bc26a240427a7636bcc130258d366d3c1caa49cfc508f3aa",
+        "log": "lattice-many-013.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 540000000,
+        "executionNanoseconds": 532000000,
+        "commandNanoseconds": 11945156800,
+        "prerequisiteNanoseconds": 37000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "94af88b1db502591bc26a240427a7636bcc130258d366d3c1caa49cfc508f3aa",
+        "log": "aspect-many-013.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 11,
+      "nonce": "20261008T124341.342444800-many-11",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1479000000,
+        "executionNanoseconds": 1461000000,
+        "commandNanoseconds": 24421121000,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "cdff44748212172323517c587ba26aee43f71a0d3146700817f3ed77f5d46d9d",
+        "log": "lattice-many-014.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 596000000,
+        "executionNanoseconds": 581000000,
+        "commandNanoseconds": 14658667100,
+        "prerequisiteNanoseconds": 35000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "cdff44748212172323517c587ba26aee43f71a0d3146700817f3ed77f5d46d9d",
+        "log": "aspect-many-014.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 12,
+      "nonce": "20261008T124341.342444800-many-12",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1561000000,
+        "executionNanoseconds": 1549000000,
+        "commandNanoseconds": 33194661700,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "b25b2bb1ed2dc6389e2f0fce90426aadf0bedc67c01a318df439f4e6a4ee35a8",
+        "log": "lattice-many-015.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 621000000,
+        "executionNanoseconds": 609000000,
+        "commandNanoseconds": 15860408500,
+        "prerequisiteNanoseconds": 37000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "b25b2bb1ed2dc6389e2f0fce90426aadf0bedc67c01a318df439f4e6a4ee35a8",
+        "log": "aspect-many-015.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 13,
+      "nonce": "20261008T124341.342444800-many-13",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1472000000,
+        "executionNanoseconds": 1460000000,
+        "commandNanoseconds": 24623422400,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "9429c195176d455b1a106159b6e2b0647e0551db7e6a940fae9f31a237dbb028",
+        "log": "lattice-many-016.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 507000000,
+        "executionNanoseconds": 498000000,
+        "commandNanoseconds": 14235937300,
+        "prerequisiteNanoseconds": 59000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "9429c195176d455b1a106159b6e2b0647e0551db7e6a940fae9f31a237dbb028",
+        "log": "aspect-many-016.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 14,
+      "nonce": "20261008T124341.342444800-many-14",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1491000000,
+        "executionNanoseconds": 1474000000,
+        "commandNanoseconds": 24631165300,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "f785b6ada72958d4ab9d32c8a2fe702bd6005f212bd4c4ff1508b63ce1dd54b0",
+        "log": "lattice-many-017.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 532000000,
+        "executionNanoseconds": 522000000,
+        "commandNanoseconds": 11759318300,
+        "prerequisiteNanoseconds": 37000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "f785b6ada72958d4ab9d32c8a2fe702bd6005f212bd4c4ff1508b63ce1dd54b0",
+        "log": "aspect-many-017.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 15,
+      "nonce": "20261008T124341.342444800-many-15",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1484000000,
+        "executionNanoseconds": 1465000000,
+        "commandNanoseconds": 24293585500,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "b6c012e6e75b6bf1a225ef9157ed8391d1154c387bcb1e85fa7f3a90d857609d",
+        "log": "lattice-many-018.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 638000000,
+        "executionNanoseconds": 628000000,
+        "commandNanoseconds": 16047584800,
+        "prerequisiteNanoseconds": 59000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "b6c012e6e75b6bf1a225ef9157ed8391d1154c387bcb1e85fa7f3a90d857609d",
+        "log": "aspect-many-018.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 16,
+      "nonce": "20261008T124341.342444800-many-16",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1508000000,
+        "executionNanoseconds": 1494000000,
+        "commandNanoseconds": 31191191500,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "d15cfccf7d1fc566fd4d94fb8c6da7642a757d2d9e89bcb395fc7e2723f5c679",
+        "log": "lattice-many-019.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 675000000,
+        "executionNanoseconds": 660000000,
+        "commandNanoseconds": 15445812800,
+        "prerequisiteNanoseconds": 40000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "d15cfccf7d1fc566fd4d94fb8c6da7642a757d2d9e89bcb395fc7e2723f5c679",
+        "log": "aspect-many-019.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 17,
+      "nonce": "20261008T124341.342444800-many-17",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1469000000,
+        "executionNanoseconds": 1453000000,
+        "commandNanoseconds": 24531369100,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "b5a7e971a2804d8febc7d0c78f95ae1841471e1fea810258b05eba0621001223",
+        "log": "lattice-many-020.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 569000000,
+        "executionNanoseconds": 560000000,
+        "commandNanoseconds": 14502376800,
+        "prerequisiteNanoseconds": 38000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "b5a7e971a2804d8febc7d0c78f95ae1841471e1fea810258b05eba0621001223",
+        "log": "aspect-many-020.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 18,
+      "nonce": "20261008T124341.342444800-many-18",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1512000000,
+        "executionNanoseconds": 1496000000,
+        "commandNanoseconds": 30909297700,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "b6a30b048f55309e03b5811b36e99aef2ea0dc3ad858aec613b9d9e2acdb96d4",
+        "log": "lattice-many-021.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 586000000,
+        "executionNanoseconds": 578000000,
+        "commandNanoseconds": 15730613600,
+        "prerequisiteNanoseconds": 50000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "b6a30b048f55309e03b5811b36e99aef2ea0dc3ad858aec613b9d9e2acdb96d4",
+        "log": "aspect-many-021.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 19,
+      "nonce": "20261008T124341.342444800-many-19",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1538000000,
+        "executionNanoseconds": 1520000000,
+        "commandNanoseconds": 24303472000,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "947bc556a92e6c0a124bcea9293f34500bfbbd670db1409e983e7cf51f847b96",
+        "log": "lattice-many-022.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 580000000,
+        "executionNanoseconds": 571000000,
+        "commandNanoseconds": 11902927000,
+        "prerequisiteNanoseconds": 40000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "947bc556a92e6c0a124bcea9293f34500bfbbd670db1409e983e7cf51f847b96",
+        "log": "aspect-many-022.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 20,
+      "nonce": "20261008T124341.342444800-many-20",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1488000000,
+        "executionNanoseconds": 1472000000,
+        "commandNanoseconds": 24682416700,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "1a02324c7a4e81877e0c9ccc3635dc898f746fa15d669714ff5bf42b405640dd",
+        "log": "lattice-many-023.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 543000000,
+        "executionNanoseconds": 533000000,
+        "commandNanoseconds": 12127564100,
+        "prerequisiteNanoseconds": 46000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "1a02324c7a4e81877e0c9ccc3635dc898f746fa15d669714ff5bf42b405640dd",
+        "log": "aspect-many-023.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 21,
+      "nonce": "20261008T124341.342444800-many-21",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1488000000,
+        "executionNanoseconds": 1472000000,
+        "commandNanoseconds": 24541925500,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "bedf5c893d8346b0bfebee910f80ce81a71792e8153c0f68a3ae9163675d0136",
+        "log": "lattice-many-024.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 562000000,
+        "executionNanoseconds": 551000000,
+        "commandNanoseconds": 14835036000,
+        "prerequisiteNanoseconds": 52000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "bedf5c893d8346b0bfebee910f80ce81a71792e8153c0f68a3ae9163675d0136",
+        "log": "aspect-many-024.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 22,
+      "nonce": "20261008T124341.342444800-many-22",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1483000000,
+        "executionNanoseconds": 1469000000,
+        "commandNanoseconds": 29649785900,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "a3c51970ddef4386eb6ad78ba5d9f2424babf137406aad73dbdccf91f2d9b9f0",
+        "log": "lattice-many-025.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 611000000,
+        "executionNanoseconds": 599000000,
+        "commandNanoseconds": 15838090700,
+        "prerequisiteNanoseconds": 55000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "a3c51970ddef4386eb6ad78ba5d9f2424babf137406aad73dbdccf91f2d9b9f0",
+        "log": "aspect-many-025.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 23,
+      "nonce": "20261008T124341.342444800-many-23",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1500000000,
+        "executionNanoseconds": 1481000000,
+        "commandNanoseconds": 24438944200,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "d503da9f5e07fdd44d2da8177763d64d76f2e432948e9ba6c1199c6813d8d041",
+        "log": "lattice-many-026.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 538000000,
+        "executionNanoseconds": 530000000,
+        "commandNanoseconds": 11825682100,
+        "prerequisiteNanoseconds": 44000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "d503da9f5e07fdd44d2da8177763d64d76f2e432948e9ba6c1199c6813d8d041",
+        "log": "aspect-many-026.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 24,
+      "nonce": "20261008T124341.342444800-many-24",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1452000000,
+        "executionNanoseconds": 1438000000,
+        "commandNanoseconds": 24394644000,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "5a99bd1f967637a9a5a0cb4116b3f16c448d7449a670ff7091db9dc10b70607d",
+        "log": "lattice-many-027.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 521000000,
+        "executionNanoseconds": 514000000,
+        "commandNanoseconds": 11853743700,
+        "prerequisiteNanoseconds": 37000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "5a99bd1f967637a9a5a0cb4116b3f16c448d7449a670ff7091db9dc10b70607d",
+        "log": "aspect-many-027.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 25,
+      "nonce": "20261008T124341.342444800-many-25",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1488000000,
+        "executionNanoseconds": 1475000000,
+        "commandNanoseconds": 24186029400,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "ed8bcd7b2d51cb5fda7b127b196639034a8baa2ecbab377bffcf615593b909b1",
+        "log": "lattice-many-028.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 564000000,
+        "executionNanoseconds": 555000000,
+        "commandNanoseconds": 11651476600,
+        "prerequisiteNanoseconds": 35000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "ed8bcd7b2d51cb5fda7b127b196639034a8baa2ecbab377bffcf615593b909b1",
+        "log": "aspect-many-028.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 26,
+      "nonce": "20261008T124341.342444800-many-26",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1517000000,
+        "executionNanoseconds": 1503000000,
+        "commandNanoseconds": 24626598200,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "14534a539a452bd7c55cfe8d96f714c11de7498e91abaea55df8fed759964d84",
+        "log": "lattice-many-029.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 545000000,
+        "executionNanoseconds": 536000000,
+        "commandNanoseconds": 11836804200,
+        "prerequisiteNanoseconds": 37000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "14534a539a452bd7c55cfe8d96f714c11de7498e91abaea55df8fed759964d84",
+        "log": "aspect-many-029.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 27,
+      "nonce": "20261008T124341.342444800-many-27",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1467000000,
+        "executionNanoseconds": 1453000000,
+        "commandNanoseconds": 24697515800,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "1a98c250b4a67b738a15fd4b593c99fdc9d131972cd302255c6fd89f187e7f15",
+        "log": "lattice-many-030.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 545000000,
+        "executionNanoseconds": 535000000,
+        "commandNanoseconds": 11870689600,
+        "prerequisiteNanoseconds": 35000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "1a98c250b4a67b738a15fd4b593c99fdc9d131972cd302255c6fd89f187e7f15",
+        "log": "aspect-many-030.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 28,
+      "nonce": "20261008T124341.342444800-many-28",
+      "first": "aspect",
+      "lattice": {
+        "totalNanoseconds": 1532000000,
+        "executionNanoseconds": 1517000000,
+        "commandNanoseconds": 25045932400,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "a43caaa43f160bcf90e88c96796e517a2852655cbae1de5b5439b8d80d6d5601",
+        "log": "lattice-many-031.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 553000000,
+        "executionNanoseconds": 544000000,
+        "commandNanoseconds": 11705227500,
+        "prerequisiteNanoseconds": 34000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "a43caaa43f160bcf90e88c96796e517a2852655cbae1de5b5439b8d80d6d5601",
+        "log": "aspect-many-031.spawns.json",
+        "runner": "local"
+      }
+    },
+    {
+      "case": "many",
+      "trial": 29,
+      "nonce": "20261008T124341.342444800-many-29",
+      "first": "lattice",
+      "lattice": {
+        "totalNanoseconds": 1634000000,
+        "executionNanoseconds": 1617000000,
+        "commandNanoseconds": 30616683500,
+        "prerequisiteNanoseconds": 0,
+        "expandedInputs": 2962,
+        "toolInputs": 4,
+        "outputSha256": "57b5acbfa758f4b953ba3c237777d34217365ac1a444eb8ef44e79013e21049b",
+        "log": "lattice-many-032.spawns.json",
+        "runner": "local"
+      },
+      "aspect": {
+        "totalNanoseconds": 634000000,
+        "executionNanoseconds": 621000000,
+        "commandNanoseconds": 16362111400,
+        "prerequisiteNanoseconds": 36000000,
+        "expandedInputs": 5937,
+        "toolInputs": 2973,
+        "outputSha256": "57b5acbfa758f4b953ba3c237777d34217365ac1a444eb8ef44e79013e21049b",
+        "log": "aspect-many-032.spawns.json",
+        "runner": "local"
+      }
+    }
+  ],
+  "summaries": {
+    "many": {
+      "pairs": 30,
+      "latticeMedianMilliseconds": 1489.5,
+      "aspectMedianMilliseconds": 549,
+      "ratio": 2.7131147540983607,
+      "pairedBootstrap95Lower": 2.6231244483671667,
+      "pairedBootstrap95Upper": 2.7881040892193307,
+      "fasterWith95Confidence": false
+    },
+    "none": {
+      "pairs": 30,
+      "latticeMedianMilliseconds": 117,
+      "aspectMedianMilliseconds": 334.5,
+      "ratio": 0.34977578475336324,
+      "pairedBootstrap95Lower": 0.34467455621301774,
+      "pairedBootstrap95Upper": 0.3592814371257485,
+      "fasterWith95Confidence": true
+    }
+  },
+  "qualified": true,
+  "probe": false
+}
