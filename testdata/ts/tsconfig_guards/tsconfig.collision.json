@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "outFile": "validation_collision_build.tsconfig_check",
+    "module": "amd",
+    "types": [],
+    "ignoreDeprecations": "6.0"
+  },
+  "files": ["src/index.ts"]
+}

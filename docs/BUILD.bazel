@@ -1,0 +1,81 @@
+load("@stardoc//stardoc:stardoc.bzl", "stardoc")
+
+package(default_visibility = ["//visibility:public"])
+
+stardoc(
+    name = "api_rules",
+    out = "api-rules.generated.md",
+    input = "//js:defs.bzl",
+    stamp = 0,
+    deps = ["//js:defs"],
+)
+
+stardoc(
+    name = "api_providers",
+    out = "api-providers.generated.md",
+    input = "//js:providers.bzl",
+    stamp = 0,
+    deps = ["//js:providers"],
+)
+
+stardoc(
+    name = "api_repositories",
+    out = "api-repositories.generated.md",
+    input = "//js:repositories.bzl",
+    stamp = 0,
+    deps = ["//js:repositories"],
+)
+
+stardoc(
+    name = "api_action",
+    out = "api-action.generated.md",
+    input = "//js/support:action.bzl",
+    stamp = 0,
+    deps = ["//js/support:action"],
+)
+
+stardoc(
+    name = "api_coverage",
+    out = "api-coverage.generated.md",
+    input = "//js/support:coverage.bzl",
+    stamp = 0,
+    deps = ["//js/support:coverage"],
+)
+
+stardoc(
+    name = "api_execution",
+    out = "api-execution.generated.md",
+    input = "//js/support:execution.bzl",
+    stamp = 0,
+    deps = ["//js/support:execution"],
+)
+
+stardoc(
+    name = "api_fix",
+    out = "api-fix.generated.md",
+    input = "//js/support:fix.bzl",
+    stamp = 0,
+    deps = ["//js/support:fix"],
+)
+
+stardoc(
+    name = "api_layout",
+    out = "api-layout.generated.md",
+    input = "//js/support:layout.bzl",
+    stamp = 0,
+    deps = ["//js/support:layout"],
+)
+
+filegroup(
+    name = "api",
+    srcs = [
+        ":api_action",
+        ":api_coverage",
+        ":api_execution",
+        ":api_fix",
+        ":api_layout",
+        ":api_providers",
+        ":api_repositories",
+        ":api_rules",
+    ],
+)

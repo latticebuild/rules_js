@@ -1,0 +1,24 @@
+load(":defs.bzl", "mismatched_package")
+
+package(default_testonly = True)
+
+mismatched_package(
+    name = "inventory",
+    case = "inventory",
+    tags = ["manual"],
+    visibility = ["//testdata/vite/actions:__pkg__"],
+)
+
+mismatched_package(
+    name = "identity",
+    case = "identity",
+    tags = ["manual"],
+    visibility = ["//testdata/vite/actions:__pkg__"],
+)
+
+mismatched_package(
+    name = "bindings",
+    case = "bindings",
+    tags = ["manual"],
+    visibility = ["//testdata/vite/actions:__pkg__"],
+)

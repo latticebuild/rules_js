@@ -1,0 +1,60 @@
+load("//js:defs.bzl", "js_svelte_kit")
+
+# Analysis-fail fixtures for :svelte_kit_test (manual): a configuration sync
+# does not load, and sources that sync would read in place of, or besides,
+# what the rule declares.
+
+package(
+    default_testonly = True,
+    default_visibility = ["//visibility:private"],
+)
+
+js_svelte_kit(
+    name = "other_config",
+    config = "kit.config.js",
+    kit = "@pnpm//node_modules/@sveltejs/kit:svelte-kit",
+    tags = ["manual"],
+    target_compatible_with = [],
+    typescript = "@pnpm//node_modules/typescript",
+    visibility = ["//tests/svelte:__pkg__"],
+)
+
+js_svelte_kit(
+    name = "staged_vite_config",
+    srcs = ["vite.config.js"],
+    kit = "@pnpm//node_modules/@sveltejs/kit:svelte-kit",
+    tags = ["manual"],
+    target_compatible_with = [],
+    typescript = "@pnpm//node_modules/typescript",
+    visibility = ["//tests/svelte:__pkg__"],
+)
+
+js_svelte_kit(
+    name = "staged_svelte_config",
+    srcs = ["svelte.config.ts"],
+    kit = "@pnpm//node_modules/@sveltejs/kit:svelte-kit",
+    tags = ["manual"],
+    target_compatible_with = [],
+    typescript = "@pnpm//node_modules/typescript",
+    visibility = ["//tests/svelte:__pkg__"],
+)
+
+js_svelte_kit(
+    name = "staged_tsconfig",
+    srcs = ["tsconfig.json"],
+    kit = "@pnpm//node_modules/@sveltejs/kit:svelte-kit",
+    tags = ["manual"],
+    target_compatible_with = [],
+    typescript = "@pnpm//node_modules/typescript",
+    visibility = ["//tests/svelte:__pkg__"],
+)
+
+js_svelte_kit(
+    name = "staged_jsconfig",
+    srcs = ["jsconfig.json"],
+    kit = "@pnpm//node_modules/@sveltejs/kit:svelte-kit",
+    tags = ["manual"],
+    target_compatible_with = [],
+    typescript = "@pnpm//node_modules/typescript",
+    visibility = ["//tests/svelte:__pkg__"],
+)

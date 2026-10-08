@@ -2,14 +2,13 @@
 
 The foundation owns the installed npm graph, package layouts, native action and
 test runners, and shared provider identities. Language adapters consume these
-interfaces so a TypeScript configuration or a Vite configuration keeps the same
-identity across independently named Bazel repositories.
+interfaces so every compiler, framework and checker uses the same
+identity, including when consumers rename the module or npm repository.
 
 The public rules in [defs.bzl](js/defs.bzl) describe packages, executable package
 scripts, staged trees, and Node tests. [providers.bzl](js/providers.bzl) defines all
 shared providers. [support](js/support/BUILD.bazel) exposes the small layout,
-action, coverage, execution, and fix primitives used by adapter owners. Private
-implementations have repository-local visibility; adapters cannot import them.
+action, coverage, execution, and fix primitives used by adapter owners. Tool implementations under js/private/<family> have repository-local visibility.
 Selected Go helpers under `go/` are public because native adapters need identical
 file copying, process cleanup, reporting, and argument behavior.
 
@@ -29,10 +28,21 @@ enter the caller's workspace only through the explicit Bazel run environment.
 The process helper depends on [graceproc](https://github.com/latticebuild/graceproc)
 for bounded descendant cleanup on each native operating system.
 
-Keeping all tool-specific adapters outside this module prevents a foundation
-consumer from acquiring TypeScript, Vite, Svelte, or lint tool dependencies.
-Consumers supply their installed tools explicitly to those adapters. Splitting
-the provider definitions would break identity checks, so they remain here.
+All JavaScript rules share one public facade and one Go module. Compiler, bundler,
+framework and checker implementations live in separate private family packages.
+Consumers select installed tools explicitly; dependencies of this repository's
+examples and tests belong to its development installation. Browser payloads come
+from [rules_playwright](https://github.com/latticebuild/rules_playwright), a development
+dependency for the native examples. The browser module's production closure does
+not depend on JavaScript execution.
+
+TypeScript configurations carry inheritance independently of compiler actions;
+the compiler validates declared output ownership before publishing. SvelteKit
+provides generated route declarations and an explicit editor writer. Vite
+reconciles target packages with execution plugins before bundling. Vitest, Node
+and Storybook runners supervise native processes and keep reports, caches and
+browser profiles in owned locations. Formatters and fix commands enter a caller's
+checkout through the explicit Bazel run environment, with staging and path guards.
 
 The graph and layout tests cover rejected inputs, collisions, symlink graphs,
 platform selection, and dependency validation. Native tests cover scratch-tree

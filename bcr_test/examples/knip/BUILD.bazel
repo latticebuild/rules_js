@@ -1,0 +1,18 @@
+package(
+    default_testonly = True,
+    default_visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "artifacts",
+    srcs = ["//examples/knip/library:unused_fix"],
+)
+
+test_suite(
+    name = "test",
+    tests = [
+        "//examples/knip/library:production_test",
+        "//examples/knip/library:unused_test",
+        "//examples/knip/library:value_test",
+    ],
+)

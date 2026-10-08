@@ -1,0 +1,33 @@
+load("@subject//js:defs.bzl", "js_package", "js_test", "js_tsc", "js_tsconfig")
+
+package(default_visibility = ["//visibility:public"])
+
+js_tsconfig(
+    name = "config",
+    srcs = ["src/index.ts"],
+    compiler_options = {
+        "rootDir": "src",
+        "outDir": "dist",
+    },
+    config = "tsconfig.json",
+    extends = ["//examples/ts/base:base"],
+)
+
+js_tsc(
+    name = "compile",
+    config = ":config",
+    tsc = "@pnpm//node_modules/@typescript/native:tsc",
+    typescript = "@pnpm//node_modules/typescript",
+)
+
+js_package(
+    name = "js",
+    package_name = "@example/typed-library",
+    srcs = [":compile"],
+)
+
+js_test(
+    name = "emissions_test",
+    srcs = ["emissions.test.mjs"],
+    data = [":js"],
+)

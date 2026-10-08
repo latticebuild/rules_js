@@ -1,0 +1,20 @@
+package(
+    default_testonly = True,
+    default_visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "artifacts",
+    srcs = [
+        "//examples/ox/checks:format_fix",
+        "//examples/ox/checks:lint_fix",
+    ],
+)
+
+test_suite(
+    name = "test",
+    tests = [
+        "//examples/ox/checks:format_test",
+        "//examples/ox/checks:lint_test",
+    ],
+)

@@ -1,0 +1,5 @@
+load(":svelte_kit_tests.bzl", "svelte_kit_test_suite")
+
+package(default_testonly = True)
+
+svelte_kit_test_suite(name = "kit_test")

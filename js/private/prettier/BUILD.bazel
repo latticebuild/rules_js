@@ -1,0 +1,29 @@
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+
+package(default_visibility = ["//visibility:private"])
+# Starlark library dependency graph.
+
+bzl_library(
+    name = "prettier_fix_bzl",
+    srcs = ["prettier_fix.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//js:providers",
+        "//js/support:execution",
+        "//js/support:fix",
+        "//js/support:layout",
+    ],
+)
+
+bzl_library(
+    name = "prettier_test_bzl",
+    srcs = ["prettier_test.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//js:providers",
+        "//js/private/prettier:prettier_fix_bzl",
+        "//js/support:execution",
+        "//js/support:fix",
+        "//js/support:layout",
+    ],
+)

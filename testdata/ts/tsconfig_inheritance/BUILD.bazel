@@ -1,0 +1,37 @@
+load("//js:defs.bzl", "js_tsconfig")
+
+# A chain of configurations for :tsconfig_inheritance_test (manual): each
+# passes on its configuration and data to the next, never its sources.
+
+package(
+    default_testonly = True,
+    default_visibility = ["//visibility:private"],
+)
+
+js_tsconfig(
+    name = "leaf",
+    srcs = ["leaf.ts"],
+    config = "tsconfig.json",
+    extends = [":middle"],
+    tags = ["manual"],
+    target_compatible_with = [],
+    visibility = ["//tests/ts:__pkg__"],
+)
+
+js_tsconfig(
+    name = "middle",
+    srcs = ["middle.ts"],
+    config = "middle.json",
+    extends = [":base"],
+    tags = ["manual"],
+    target_compatible_with = [],
+)
+
+js_tsconfig(
+    name = "base",
+    srcs = ["base.ts"],
+    config = "base.json",
+    data = ["base.data.json"],
+    tags = ["manual"],
+    target_compatible_with = [],
+)

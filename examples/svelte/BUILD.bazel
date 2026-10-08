@@ -1,0 +1,19 @@
+package(
+    default_testonly = True,
+    default_visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "artifacts",
+    srcs = [
+        "//examples/svelte/kit",
+        "//examples/svelte/kit:kit_write",
+        "//examples/svelte/kit:typecheck",
+        "//examples/svelte/kit:write_config",
+    ],
+)
+
+test_suite(
+    name = "test",
+    tests = ["//tests/svelte:kit_test"],
+)

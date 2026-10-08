@@ -1,0 +1,15 @@
+load("//js:defs.bzl", "js_package")
+load("//testdata/vite/configured:defs.bzl", "configured_file")
+
+package(default_testonly = True)
+
+js_package(
+    name = "package",
+    package_name = "build-plugin",
+    srcs = [":file"],
+    package = "fixture-package.json",
+    target_compatible_with = [],
+    visibility = ["//testdata/vite/actions:__pkg__"],
+)
+
+configured_file(name = "file")

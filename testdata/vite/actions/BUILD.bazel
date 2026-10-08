@@ -1,0 +1,233 @@
+load("//js:defs.bzl", "js_binary", "js_tsc", "js_tsconfig", "js_vite", "js_vite_config")
+
+package(
+    default_testonly = True,
+    default_visibility = ["//visibility:private"],
+)
+
+js_vite(
+    name = "shared_tool_bundle",
+    out = "shared-tool-dist",
+    config = ":vite_config",
+    tags = ["manual"],
+    target_compatible_with = [],
+    visibility = ["//tests/vite:__pkg__"],
+    vite = ":shared_tool",
+    deps = ["//testdata/vite/configured/source:package"],
+)
+
+js_vite_config(
+    name = "vite_config",
+    testonly = False,
+    config = "vite.config.mjs",
+    package = "fixture-package.json",
+    tags = ["manual"],
+    target_compatible_with = [],
+    visibility = ["//tests/vite:__pkg__"],
+)
+
+js_binary(
+    name = "shared_tool",
+    bin = "tool.mjs",
+    data = ["//testdata/vite/configured/source:package"],
+    tags = ["manual"],
+    target_compatible_with = [],
+)
+
+platform(
+    name = "execution_platform",
+    flags = [
+        "--action_env=NODE_OPTIONS=--undeclared-option",
+        "--host_action_env=NODE_OPTIONS=--undeclared-option",
+    ],
+    parents = ["@platforms//host"],
+    visibility = ["//tests/vite:__pkg__"],
+)
+
+js_tsc(
+    name = "typescript",
+    testonly = False,
+    config = ":typescript_tsconfig",
+    tags = ["manual"],
+    target_compatible_with = [],
+    tsc = ":tool",
+    typescript = "@pnpm//node_modules/typescript",
+    visibility = ["//tests/vite:__pkg__"],
+)
+
+js_tsconfig(
+    name = "typescript_tsconfig",
+    testonly = False,
+    srcs = ["src/index.ts"],
+    compiler_options = {
+        "declaration": True,
+        "outDir": "dist",
+        "resolveJsonModule": True,
+        "rootDir": "src",
+    },
+    config = "tsconfig.lib.json",
+    package = "fixture-package.json",
+    tags = ["manual"],
+    target_compatible_with = [],
+    visibility = ["//tests/vite:__pkg__"],
+)
+
+js_binary(
+    name = "tool",
+    testonly = False,
+    bin = "tool.mjs",
+    data = [":tool_tsc"],
+    tags = ["manual"],
+    target_compatible_with = [],
+    visibility = ["//tests/vite:__pkg__"],
+)
+
+js_tsc(
+    name = "tool_tsc",
+    testonly = False,
+    config = ":tool_tsconfig",
+    tags = ["manual"],
+    target_compatible_with = [],
+    tsc = "@pnpm//node_modules/@typescript/native:tsc",
+    typescript = "@pnpm//node_modules/typescript",
+)
+
+js_tsconfig(
+    name = "tool_tsconfig",
+    testonly = False,
+    srcs = ["tool.d.ts"],
+    compiler_options = {"noEmit": True},
+    config = "tsconfig.tool.json",
+    target_compatible_with = [],
+)
+
+js_tsconfig(
+    name = "tsconfig",
+    testonly = False,
+    srcs = ["src/index.ts"],
+    compiler_options = {
+        "declaration": True,
+        "noEmit": True,
+        "outDir": "dist",
+        "resolveJsonModule": True,
+        "rootDir": "src",
+    },
+    config = "tsconfig.json",
+    data = ["tsconfig.lib.json"],
+    tags = ["manual"],
+    target_compatible_with = [],
+)
+
+# Execution-configured files: generated outputs and a project whose package
+# dependencies stay unbound, as they do through srcs.
+js_vite(
+    name = "tool_data",
+    srcs = ["src/index.ts"],
+    out = "tool-data-dist",
+    config = ":vite_config",
+    tags = ["manual"],
+    target_compatible_with = [],
+    tool_data = [
+        ":configured_tsconfig",
+        ":typescript",
+    ],
+    visibility = ["//tests/vite:__pkg__"],
+    vite = ":tool",
+)
+
+# A project with a package dependency. tool_data stages its files in the
+# execution configuration without binding that package.
+js_tsconfig(
+    name = "configured_tsconfig",
+    srcs = ["src/index.ts"],
+    config = "tsconfig.json",
+    data = ["tsconfig.lib.json"],
+    package = "fixture-package.json",
+    tags = ["manual"],
+    target_compatible_with = [],
+    visibility = ["//tests/vite:__pkg__"],
+    deps = ["//testdata/vite/configured/plugin:package"],
+)
+
+js_vite(
+    name = "conflicting_configurations",
+    srcs = [
+        "src/index.ts",
+        ":tsconfig",
+    ],
+    out = "conflict-dist",
+    config = ":vite_config",
+    mode = "test",
+    tags = ["manual"],
+    target_compatible_with = [],
+    tool_deps = ["//testdata/vite/configured/source:package"],
+    visibility = ["//tests/vite:__pkg__"],
+    vite = ":tool",
+    deps = ["//testdata/vite/configured/source:package"],
+)
+
+js_vite(
+    name = "conflicting_aliases",
+    srcs = [
+        "src/index.ts",
+        ":tsconfig",
+    ],
+    out = "alias-conflict-dist",
+    aliases = {"build-plugin": "//testdata/vite/configured/source:package"},
+    config = ":vite_config",
+    mode = "test",
+    tags = ["manual"],
+    target_compatible_with = [],
+    tool_deps = ["//testdata/vite/configured/plugin:package"],
+    visibility = ["//tests/vite:__pkg__"],
+    vite = ":tool",
+)
+
+# Plain files from both configurations cannot share a path.
+js_vite(
+    name = "conflicting_tool_data",
+    srcs = [":typescript"],
+    out = "tool-data-conflict-dist",
+    config = ":vite_config",
+    tags = ["manual"],
+    target_compatible_with = [],
+    tool_data = [":typescript"],
+    visibility = ["//tests/vite:__pkg__"],
+    vite = ":tool",
+)
+
+js_vite(
+    name = "conflicting_inventory",
+    out = "inventory-dist",
+    config = ":vite_config",
+    tags = ["manual"],
+    target_compatible_with = [],
+    tool_deps = ["//testdata/vite/configured:inventory"],
+    visibility = ["//tests/vite:__pkg__"],
+    vite = ":tool",
+    deps = ["//testdata/vite/configured:inventory"],
+)
+
+js_vite(
+    name = "conflicting_identity",
+    out = "identity-dist",
+    config = ":vite_config",
+    tags = ["manual"],
+    target_compatible_with = [],
+    tool_deps = ["//testdata/vite/configured:identity"],
+    visibility = ["//tests/vite:__pkg__"],
+    vite = ":tool",
+    deps = ["//testdata/vite/configured:identity"],
+)
+
+js_vite(
+    name = "conflicting_bindings",
+    out = "bindings-dist",
+    config = ":vite_config",
+    tags = ["manual"],
+    target_compatible_with = [],
+    tool_deps = ["//testdata/vite/configured:bindings"],
+    visibility = ["//tests/vite:__pkg__"],
+    vite = ":tool",
+    deps = ["//testdata/vite/configured:bindings"],
+)

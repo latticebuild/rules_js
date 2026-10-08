@@ -7,6 +7,14 @@ visibility("//...")
 
 # Keep package.json relative to the calling BUILD, not this .bzl file.
 def js_package(name, package_name, package = "package.json", **kwargs):
+    """Declares a package's files and import bindings at its repository location.
+
+    Args:
+      name: Bazel target name.
+      package_name: npm import name for this package.
+      package: Package manifest in the calling BUILD package.
+      **kwargs: srcs, deps, aliases, observed installs and standard rule attributes.
+    """
     _js_package(
         name = name,
         package_name = package_name,

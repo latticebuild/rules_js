@@ -1,0 +1,26 @@
+load("//js:defs.bzl", "js_vite_config", "js_vitest")
+
+package(
+    default_testonly = True,
+    default_visibility = ["//:__subpackages__"],
+)
+
+js_vite_config(
+    name = "config",
+    config = "vitest.config.mjs",
+    deps = [
+        "@pnpm//node_modules/@vitest/browser-playwright",
+        "@pnpm//node_modules/vitest",
+    ],
+)
+
+js_vitest(
+    name = "browser_test",
+    srcs = ["browser.test.mjs"],
+    browser = "@browser_payload//:chromium",
+    config = ":config",
+    coverage_provider = "@pnpm//node_modules/@vitest/coverage-v8",
+    tags = ["no-sandbox"],
+    vitest = "@pnpm//node_modules/vitest:bin",
+    deps = ["@pnpm//node_modules/effection"],
+)

@@ -1,0 +1,54 @@
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+
+package(default_visibility = ["//visibility:private"])
+# Starlark library dependency graph.
+
+bzl_library(
+    name = "oxfmt_fix_bzl",
+    srcs = ["oxfmt_fix.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//js:providers",
+        "//js/support:execution",
+        "//js/support:fix",
+        "//js/support:layout",
+    ],
+)
+
+bzl_library(
+    name = "oxfmt_test_bzl",
+    srcs = ["oxfmt_test.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//js:providers",
+        "//js/private/ox:oxfmt_fix_bzl",
+        "//js/support:execution",
+        "//js/support:fix",
+        "//js/support:layout",
+    ],
+)
+
+bzl_library(
+    name = "oxlint_fix_bzl",
+    srcs = ["oxlint_fix.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//js:providers",
+        "//js/support:execution",
+        "//js/support:fix",
+        "//js/support:layout",
+    ],
+)
+
+bzl_library(
+    name = "oxlint_test_bzl",
+    srcs = ["oxlint_test.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//js:providers",
+        "//js/private/ox:oxlint_fix_bzl",
+        "//js/support:execution",
+        "//js/support:fix",
+        "//js/support:layout",
+    ],
+)

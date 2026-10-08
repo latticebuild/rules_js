@@ -1,0 +1,16 @@
+load("//js:defs.bzl", "js_oxlint_test")
+
+package(default_testonly = True)
+
+# Must fail: the local policy rejects the debugger statement.
+js_oxlint_test(
+    name = "violation_test",
+    srcs = [
+        ".oxlintrc.json",
+        "violation.js",
+    ],
+    oxlint = "@pnpm//node_modules/oxlint:bin",
+    tags = ["manual"],
+    target_compatible_with = [],
+    visibility = ["//tests/ox:__pkg__"],
+)

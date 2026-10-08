@@ -1,0 +1,5 @@
+{
+  "url": "https://github.com/latticebuild/rules_js/releases/download/{TAG}/rules_js-{VERSION}.tar.gz",
+  "integrity": "{INTEGRITY}",
+  "strip_prefix": "rules_js-{VERSION}"
+}

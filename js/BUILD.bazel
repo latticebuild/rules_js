@@ -12,6 +12,18 @@ bzl_library(
         "//js/private:package_bzl",
         "//js/private:test_bzl",
         "//js/private:tree_bzl",
+        "//js/private/knip:knip_test_bzl",
+        "//js/private/ox:oxfmt_test_bzl",
+        "//js/private/ox:oxlint_test_bzl",
+        "//js/private/prettier:prettier_test_bzl",
+        "//js/private/storybook:storybook_bzl",
+        "//js/private/svelte:svelte_kit_bzl",
+        "//js/private/svelte:svelte_kit_write_bzl",
+        "//js/private/ts:tsc_bzl",
+        "//js/private/ts:tsconfig_bzl",
+        "//js/private/vite:vite_bzl",
+        "//js/private/vite:vite_config_bzl",
+        "//js/private/vite:vitest_bzl",
     ],
 )
 
@@ -26,4 +38,19 @@ bzl_library(
     srcs = ["repositories.bzl"],
     visibility = ["//visibility:public"],
     deps = ["//js/private:node_modules_bzl"],
+)
+
+exports_files(
+    ["defs.bzl"],
+    visibility = ["//visibility:public"],
+)
+
+exports_files(
+    ["providers.bzl"],
+    visibility = ["//visibility:public"],
+)
+
+exports_files(
+    ["repositories.bzl"],
+    visibility = ["//visibility:public"],
 )

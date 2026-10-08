@@ -1,0 +1,49 @@
+load("//js:defs.bzl", "js_test")
+load(":action_tests.bzl", "action_test_suite")
+load(":runner_tests.bzl", "runner_test_suite")
+
+package(default_testonly = True)
+
+action_test_suite(name = "action_test")
+
+runner_test_suite(name = "runner_test")
+
+filegroup(
+    name = "lifecycle",
+    srcs = ["lifecycle.mjs"],
+)
+
+js_test(
+    name = "adapters_test",
+    srcs = ["adapters.test.mjs"],
+    data = [
+        ":lifecycle",
+        "//js/private/vite/tools/run-vitest",
+        "//js/support:run_fix",
+        "//testdata/vite/runners:probe.mjs",
+        "@pnpm//node_modules/effection",
+    ],
+)
+
+js_test(
+    name = "coverage_test",
+    srcs = ["coverage.test.mjs"],
+    data = [
+        ":lifecycle",
+        "//js/private/vite/tools/run-vitest",
+        "@pnpm//node_modules/effection",
+    ],
+)
+
+js_test(
+    name = "reports_test",
+    srcs = ["reports.test.mjs"],
+    data = [
+        ":lifecycle",
+        "//testdata/vite/runners:node_failure_test",
+        "//testdata/vite/runners:node_reports_test",
+        "//testdata/vite/runners:node_shards_test",
+        "//testdata/vite/runners:vitest_reports_test",
+        "@pnpm//node_modules/effection",
+    ],
+)

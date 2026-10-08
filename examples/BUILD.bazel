@@ -1,0 +1,36 @@
+package(
+    default_testonly = True,
+    default_visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "artifacts",
+    srcs = [
+        "//examples/action:copy",
+        "//examples/basics:hello",
+        "//examples/full_tree:tree",
+        "//examples/knip:artifacts",
+        "//examples/ox:artifacts",
+        "//examples/prettier:artifacts",
+        "//examples/runtime_tree:tree",
+        "//examples/storybook:artifacts",
+        "//examples/svelte:artifacts",
+        "//examples/ts:artifacts",
+        "//examples/vite:artifacts",
+    ],
+)
+
+test_suite(
+    name = "test",
+    tests = [
+        "//examples/action:scratch_test",
+        "//examples/basics:alias_test",
+        "//examples/knip:test",
+        "//examples/ox:test",
+        "//examples/prettier:test",
+        "//examples/storybook:test",
+        "//examples/svelte:test",
+        "//examples/ts:test",
+        "//examples/vite:test",
+    ],
+)

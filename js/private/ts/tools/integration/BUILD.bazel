@@ -1,0 +1,25 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_test")
+
+go_test(
+    name = "unit_test",
+    srcs = ["ownership_test.go"],
+    data = [
+        "//js/private/ts/tools/compile-typescript",
+        "//js/support:run_action",
+        "@rules_nodejs//nodejs:current_node_runtime",
+    ],
+    env = {
+        "LATTICEBUILD_TSC_BINARY": "$(rlocationpath //js/private/ts/tools/compile-typescript)",
+        "LATTICEBUILD_TEST_BINARY": "$(rlocationpath //js/support:run_action)",
+        "NODE_RUNFILES": "$(rlocationpaths @rules_nodejs//nodejs:current_node_runtime)",
+    },
+    pure = "on",
+    target_compatible_with = select({
+        "@platforms//os:windows": ["@platforms//:incompatible"],
+        "//conditions:default": [],
+    }),
+    deps = [
+        "//js/private/ts/tools/internal/testfs:lib",
+        "@io_bazel_rules_go//go/runfiles",
+    ],
+)

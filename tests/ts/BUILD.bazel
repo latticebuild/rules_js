@@ -1,0 +1,23 @@
+load("//js:defs.bzl", "js_test")
+load(":tsconfig_guard_tests.bzl", "tsconfig_guard_test_suite")
+load(":tsconfig_inheritance_tests.bzl", "tsconfig_inheritance_test")
+
+package(default_testonly = True)
+
+tsconfig_guard_test_suite(name = "guard_test")
+
+tsconfig_inheritance_test(
+    name = "inheritance_test",
+    target_under_test = "//testdata/ts/tsconfig_inheritance:leaf",
+)
+
+js_test(
+    name = "tsc_test",
+    srcs = ["tsc.test.mjs"],
+    data = [
+        "lifecycle.mjs",
+        "//js/private/ts/tools/compile-typescript",
+        "@pnpm//node_modules/effection",
+        "@pnpm//node_modules/typescript",
+    ],
+)

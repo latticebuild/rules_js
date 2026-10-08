@@ -1,0 +1,12 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "lib",
+    testonly = True,
+    srcs = [
+        "fixtures.go",
+    ],
+    importpath = "github.com/latticebuild/rules_js/js/private/ts/tools/internal/testfs",
+    target_compatible_with = [],
+    visibility = ["//js/private/ts/tools:__subpackages__"],
+)

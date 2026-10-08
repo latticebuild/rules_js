@@ -1,0 +1,40 @@
+load("//js:defs.bzl", "js_knip_test", "js_test")
+
+package(
+    default_testonly = True,
+    default_visibility = ["//visibility:public"],
+)
+
+js_knip_test(
+    name = "unused_test",
+    srcs = [
+        "index.js",
+        "knip.json",
+        "package.json",
+        "value.test.js",
+    ],
+    knip = "@pnpm//node_modules/knip:bin",
+    workspace = ".",
+)
+
+js_knip_test(
+    name = "production_test",
+    srcs = [
+        "index.js",
+        "knip.json",
+        "package.json",
+        "value.test.js",
+    ],
+    knip = "@pnpm//node_modules/knip:bin",
+    production = True,
+    workspace = ".",
+)
+
+js_test(
+    name = "value_test",
+    srcs = ["value.test.js"],
+    data = [
+        "index.js",
+        "package.json",
+    ],
+)

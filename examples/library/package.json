@@ -1,0 +1,6 @@
+{
+  "name": "@example/value",
+  "type": "module",
+  "exports": "./index.mjs",
+  "types": "./index.d.ts"
+}

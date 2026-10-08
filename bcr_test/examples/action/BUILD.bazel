@@ -1,0 +1,26 @@
+load("@subject//js:defs.bzl", "js_binary", "js_test")
+load(":copy.bzl", "scratch_copy")
+
+package(default_visibility = ["//visibility:public"])
+
+js_binary(
+    name = "worker",
+    bin = "worker.mjs",
+    data = ["//examples/library:js"],
+)
+
+scratch_copy(
+    name = "copy",
+    srcs = ["input.txt"],
+    aliases = {"@example/answer": "//examples/library:js"},
+    tool = ":worker",
+)
+
+js_test(
+    name = "scratch_test",
+    srcs = ["result.test.mjs"],
+    data = [
+        "input.txt",
+        ":copy",
+    ],
+)

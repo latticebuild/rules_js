@@ -4,15 +4,15 @@
 [![Bazel](https://img.shields.io/badge/Bazel-9.2.0-43A047?logo=bazel&logoColor=white)](MODULE.bazel)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
-Bazel rules for JavaScript packages, Node executables and tests, and runtime trees. Dependencies use an installed, hoisted pnpm structure; build actions work in private scratch directories, using copy-on-write file clones where the filesystem supports them.
+Bazel rules for JavaScript packages, Node executables and tests, TypeScript, Vite and Vitest, SvelteKit, Storybook, Oxlint and Oxfmt, Prettier, and Knip. Dependencies use an installed, hoisted pnpm structure; build actions work in private scratch directories, using copy-on-write file clones where the filesystem supports them.
 
 ## Setup
 
-Use Bazel 9.2 with Bzlmod. These source repositories have no registry release yet.
-Pin your chosen revision in your root MODULE.bazel:
+Use Bazel 9.2 with Bzlmod. Until the module is registered in the Bazel Central
+Registry, pin a source revision in your root MODULE.bazel:
 
 ```starlark
-bazel_dep(name = "latticebuild_js", version = "0.0.0")
+bazel_dep(name = "latticebuild_js", version = "0.1.0")
 git_override(
     module_name = "latticebuild_js",
     remote = "https://github.com/latticebuild/rules_js.git",
@@ -20,9 +20,10 @@ git_override(
 )
 ```
 
-Replace FULL_COMMIT_SHA with the full commit hash of that revision. Copy the
-Latticebuild dependency overrides from [MODULE.bazel](MODULE.bazel) into the
-consuming root too; overrides declared by a dependency do not propagate.
+Replace FULL_COMMIT_SHA with the full commit hash of that revision. Also pin any
+unregistered Latticebuild modules in the production dependency graph from
+[MODULE.bazel](MODULE.bazel); dependency overrides do not propagate. Development
+dependencies are ignored when this repository is consumed as a module.
 
 Prepare your caller-owned pnpm installation before Bazel reads it:
 
@@ -30,7 +31,7 @@ Prepare your caller-owned pnpm installation before Bazel reads it:
 pnpm install --frozen-lockfile
 ```
 
-Expose it through the foundation’s public repository rule:
+Expose it through the public repository rule:
 
 ```starlark
 node_modules = use_repo_rule("@latticebuild_js//js:repositories.bzl", "node_modules")
@@ -63,9 +64,20 @@ in package.json. An `index.mjs` exporting `const value = 42`, a `cli.mjs`
 importing and printing that value, and an `index.test.mjs` checking it with
 `node:test` give runnable build, CLI and test targets without npm dependencies.
 
-See [docs/usage.md](docs/usage.md) for attributes, required tool inputs and
-consumer setup. The public API lives in [js/](js/);
-implementation files under its private/ directory are repository-local.
+All `js_*` rules load from `@latticebuild_js//js:defs.bzl`. Each tool is an explicit label from your own installation.
+
+| Tool or feature | Rules | Guide and example |
+| --- | --- | --- |
+| Node and packages | `js_package`, `js_binary`, `js_test`, `js_tree` | [Usage](docs/usage.md), [basics](examples/basics/) |
+| TypeScript | `js_tsconfig`, `js_tsc` | [Compiler guide](docs/ts.md), [projects](examples/ts/) |
+| Vite and Vitest | `js_vite_config`, `js_vite`, `js_vitest` | [Bundler and test guide](docs/vite.md), [node and browser examples](examples/vite/) |
+| SvelteKit | `js_svelte_kit`, `js_svelte_kit_write` | [Route and editor guide](docs/svelte.md), [typed routes](examples/svelte/) |
+| Storybook | `js_storybook` | [Server guide](docs/storybook.md), [Svelte story](examples/storybook/) |
+| Oxlint and Oxfmt | `js_oxlint_test`, `js_oxfmt_test` | [Check and fix guide](docs/ox.md), [checks](examples/ox/) |
+| Prettier | `js_prettier_test` | [Formatter guide](docs/prettier.md), [declared plugin](examples/prettier/) |
+| Knip | `js_knip_test` | [Unused code guide](docs/knip.md), [workspace checks](examples/knip/) |
+
+The [generated reference](docs/api-rules.md) documents every public rule. Private implementations live under [js/private/](js/private/).
 
 Use pnpm’s hoisted linker in pnpm-workspace.yaml:
 
@@ -119,11 +131,16 @@ supported; it is not required for correctness and is not a performance guarantee
 | --- | --- |
 | Public API | [js/defs.bzl](js/defs.bzl) |
 | Implementation | [js/private/](js/private/) |
-| Examples and fixtures | [testdata/](testdata/) |
+| Examples | [examples/](examples/) |
+| Refusal fixtures | [testdata/](testdata/) |
 | Owning checks | [tests/](tests/) |
 | Consumer guide | [docs/usage.md](docs/usage.md) |
 
 </details>
+
+## Documentation and examples
+
+See the [generated API reference](docs/README.md) and [runnable examples](examples/README.md).
 
 ## Development
 
@@ -148,3 +165,8 @@ constraints, and [ARCHITECTURE.md](ARCHITECTURE.md) for implementation decisions
 ## License
 
 [Apache License 2.0](LICENSE).
+
+[Sponsor us](https://github.com/mathematic-inc) · [Discuss questions and ideas](https://github.com/latticebuild/rules_js/discussions)
+
+Pull requests are limited to repository collaborators. Use Discussions for bugs,
+feature requests and support. Changes merge as squash commits.

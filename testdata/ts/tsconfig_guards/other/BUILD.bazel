@@ -1,0 +1,15 @@
+load("//js:defs.bzl", "js_tsconfig")
+
+package(
+    default_testonly = True,
+    default_visibility = ["//visibility:private"],
+)
+
+js_tsconfig(
+    name = "tsconfig",
+    srcs = [],
+    config = "tsconfig.json",
+    tags = ["manual"],
+    target_compatible_with = [],
+    visibility = ["//testdata/ts/tsconfig_guards:__pkg__"],
+)

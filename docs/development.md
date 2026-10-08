@@ -14,7 +14,7 @@ bazel test //:test
 
 On Linux and macOS, also run `bazel test //:race_test`. Windows runs the portable
 Go suites, pnpm analysis cases, and Node lifecycle/reporting tests. Native CI
-uses Ubuntu 24.04, macOS 15, and Windows 2025 with the same pinned tools and gates.
+uses Ubuntu 24.04, macOS 27, and Windows 2025 with the same pinned tools and gates.
 
 The executable collision fixture in `testdata/compiler` exercises the version 3
 npm index with an installed alias and occupied command target names. Test runners
@@ -22,3 +22,8 @@ use declared runfiles; install dependencies before running Bazel.
 
 Consumer setup and supported APIs live in [usage.md](usage.md). The layout and
 provider decisions live in [ARCHITECTURE.md](../ARCHITECTURE.md).
+
+On Windows, use a temporary root with its canonical long path. Vite rejects 8.3
+aliases in served paths. CI selects LOCALAPPDATA/Temp/latticebuild before dependency preparation and
+forwards TMP/TEMP through Bazel tests; private runtime trees remain inside that
+root. Keep this path out of installed source and dependency directories.

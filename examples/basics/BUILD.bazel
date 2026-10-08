@@ -1,0 +1,23 @@
+load("//js:defs.bzl", "js_binary", "js_package", "js_test")
+
+package(default_visibility = ["//visibility:public"])
+
+js_package(
+    name = "js",
+    package_name = "@example/program",
+    srcs = ["main.mjs"],
+    aliases = {"@example/answer": "//examples/library:js"},
+    deps = ["//examples/library:js"],
+)
+
+js_binary(
+    name = "hello",
+    bin = "main.mjs",
+    data = [":js"],
+)
+
+js_test(
+    name = "alias_test",
+    srcs = ["main.test.mjs"],
+    data = [":js"],
+)

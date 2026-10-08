@@ -1,0 +1,28 @@
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+
+package(default_visibility = ["//visibility:private"])
+# Starlark library dependency graph.
+
+bzl_library(
+    name = "tsc_bzl",
+    srcs = ["tsc.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//js:providers",
+        "//js/private/ts:tsconfig_bzl",
+        "//js/support:action",
+        "//js/support:layout",
+        "@bazel_skylib//lib:paths",
+    ],
+)
+
+bzl_library(
+    name = "tsconfig_bzl",
+    srcs = ["tsconfig.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//js:providers",
+        "//js/support:layout",
+        "@bazel_skylib//lib:paths",
+    ],
+)

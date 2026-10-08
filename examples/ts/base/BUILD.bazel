@@ -1,0 +1,9 @@
+load("//js:defs.bzl", "js_tsconfig")
+
+package(default_visibility = ["//visibility:public"])
+
+js_tsconfig(
+    name = "base",
+    compiler_options = {"declaration": True},
+    config = "tsconfig.json",
+)

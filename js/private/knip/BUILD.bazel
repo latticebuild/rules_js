@@ -1,0 +1,27 @@
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+
+package(default_visibility = ["//visibility:private"])
+# Starlark library dependency graph.
+
+bzl_library(
+    name = "knip_fix_bzl",
+    srcs = ["knip_fix.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//js:providers",
+        "//js/support:execution",
+        "//js/support:fix",
+    ],
+)
+
+bzl_library(
+    name = "knip_test_bzl",
+    srcs = ["knip_test.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//js:providers",
+        "//js/private/knip:knip_fix_bzl",
+        "//js/support:execution",
+        "//js/support:fix",
+    ],
+)

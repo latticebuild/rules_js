@@ -1,0 +1,83 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_test")
+
+go_binary(
+    name = "run-vitest",
+    testonly = True,
+    srcs = [
+        "browser.go",
+        "main.go",
+        "vitest.go",
+    ],
+    pure = "on",
+    target_compatible_with = [],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//go/arguments:lib",
+        "//go/filetree:lib",
+        "//go/junit:lib",
+        "//go/lcov:lib",
+        "//go/process:lib",
+        "//go/testenv:lib",
+        "@io_bazel_rules_go//go/runfiles",
+    ],
+)
+
+go_test(
+    name = "unit_test",
+    srcs = [
+        "browser.go",
+        "browser_test.go",
+        "browser_unix_test.go",
+        "main.go",
+        "vitest.go",
+        "vitest_test.go",
+    ],
+    pure = "on",
+    race = "off",
+    target_compatible_with = [],
+    deps = [
+        "//go/arguments:lib",
+        "//go/filetree:lib",
+        "//go/junit:lib",
+        "//go/lcov:lib",
+        "//go/process:lib",
+        "//go/testenv:lib",
+        "@io_bazel_rules_go//go/runfiles",
+    ],
+)
+
+go_test(
+    name = "unit_race_test",
+    srcs = [
+        "browser.go",
+        "browser_test.go",
+        "browser_unix_test.go",
+        "main.go",
+        "vitest.go",
+        "vitest_test.go",
+    ],
+    pure = "off",
+    race = "on",
+    target_compatible_with = select({
+        "@platforms//os:windows": ["@platforms//:incompatible"],
+        "//conditions:default": [],
+    }),
+    deps = [
+        "//go/arguments:lib",
+        "//go/filetree:lib",
+        "//go/junit:lib",
+        "//go/lcov:lib",
+        "//go/process:lib",
+        "//go/testenv:lib",
+        "@io_bazel_rules_go//go/runfiles",
+    ],
+)
+
+test_suite(
+    name = "runtime_test",
+    tests = [
+        ":unit_race_test",
+        ":unit_test",
+    ],
+    visibility = ["//:__subpackages__"],
+)

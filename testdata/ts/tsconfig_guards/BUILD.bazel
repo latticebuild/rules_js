@@ -1,0 +1,36 @@
+load("//js:defs.bzl", "js_tsc", "js_tsconfig")
+# Analysis-fail fixtures for :tsconfig_guard_test (manual).
+
+package(
+    default_testonly = True,
+    default_visibility = ["//visibility:private"],
+)
+
+js_tsc(
+    name = "other_package_tsconfig_build",
+    config = "//testdata/ts/tsconfig_guards/other:tsconfig",
+    tags = ["manual"],
+    target_compatible_with = [],
+    tsc = "@pnpm//node_modules/@typescript/native:tsc",
+    typescript = "@pnpm//node_modules/typescript",
+    visibility = ["//tests/ts:__pkg__"],
+)
+
+js_tsc(
+    name = "validation_collision_build",
+    config = ":validation_collision_tsconfig",
+    tags = ["manual"],
+    target_compatible_with = [],
+    tsc = "@pnpm//node_modules/@typescript/native:tsc",
+    typescript = "@pnpm//node_modules/typescript",
+    visibility = ["//tests/ts:__pkg__"],
+)
+
+js_tsconfig(
+    name = "validation_collision_tsconfig",
+    srcs = ["src/index.ts"],
+    compiler_options = {"outFile": "validation_collision_build.tsconfig_check"},
+    config = "tsconfig.collision.json",
+    tags = ["manual"],
+    target_compatible_with = [],
+)

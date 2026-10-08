@@ -1,0 +1,17 @@
+load("//js:defs.bzl", "js_knip_test")
+
+package(default_testonly = True)
+
+# Must fail: lib.js exports a value nothing imports.
+js_knip_test(
+    name = "unused_export_test",
+    srcs = glob(["*.js"]) + [
+        "knip.json",
+        "package.json",
+    ],
+    knip = "@pnpm//node_modules/knip:bin",
+    tags = ["manual"],
+    target_compatible_with = [],
+    visibility = ["//tests/knip:__pkg__"],
+    workspace = "@fixture/knip-unused-export",
+)

@@ -1,0 +1,26 @@
+load("//js:defs.bzl", "js_test")
+
+package(
+    default_testonly = True,
+    default_visibility = ["//:__pkg__"],
+)
+
+js_test(
+    name = "checks_test",
+    srcs = ["checks.test.mjs"],
+    data = [
+        "lifecycle.mjs",
+        "@pnpm//node_modules/effection",
+    ] + ["//testdata/prettier/checks/prettier:violation_test"],
+)
+
+js_test(
+    name = "fix_guard_test",
+    srcs = ["fix_guard.test.mjs"],
+    data = [
+        "lifecycle.mjs",
+        "//testdata/prettier/checks/prettier:fix_inputs",
+        "//testdata/prettier/checks/prettier:violation_fix",
+        "@pnpm//node_modules/effection",
+    ],
+)

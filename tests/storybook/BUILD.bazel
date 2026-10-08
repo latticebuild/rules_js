@@ -1,0 +1,43 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_test")
+load("//js:defs.bzl", "js_binary")
+load(":inventory.bzl", "browser_inventory")
+
+package(default_testonly = True)
+
+js_binary(
+    name = "browser_probe",
+    testonly = True,
+    bin = "browser.mjs",
+    data = [
+        "lifecycle.mjs",
+        "@pnpm//node_modules/effection",
+        "@pnpm//node_modules/playwright-core",
+    ],
+)
+
+browser_inventory(
+    name = "browser_inventory",
+    browser = "@browser_payload//:chromium",
+)
+
+go_test(
+    name = "server_test",
+    srcs = ["server_test.go"],
+    data = [
+        ":browser_inventory",
+        ":browser_probe",
+        "//examples/storybook/svelte:server",
+        "@browser_payload//:chromium",
+    ],
+    env = {
+        "SERVER": "$(rlocationpath //examples/storybook/svelte:server)",
+        "BROWSER_PROBE": "$(rlocationpath :browser_probe)",
+        "BROWSER_INVENTORY": "$(rlocationpath :browser_inventory)",
+    },
+    tags = ["no-sandbox"],
+    visibility = ["//:__pkg__"],
+    deps = [
+        "@io_bazel_rules_go//go/runfiles",
+        "@latticebuild_graceproc//:graceproc",
+    ],
+)

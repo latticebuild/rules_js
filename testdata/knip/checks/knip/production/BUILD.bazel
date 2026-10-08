@@ -1,0 +1,20 @@
+load("//js:defs.bzl", "js_knip_test")
+
+package(default_testonly = True)
+
+# Must fail only in production mode: helper is imported by the test entry
+# alone. The default pass accepts this fixture, so a failure proves that
+# production = True reaches Knip.
+js_knip_test(
+    name = "production_test",
+    srcs = glob(["*.js"]) + [
+        "knip.json",
+        "package.json",
+    ],
+    knip = "@pnpm//node_modules/knip:bin",
+    production = True,
+    tags = ["manual"],
+    target_compatible_with = [],
+    visibility = ["//tests/knip:__pkg__"],
+    workspace = "@fixture/knip-production",
+)

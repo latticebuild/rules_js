@@ -1,0 +1,21 @@
+load("@subject//js:defs.bzl", "js_storybook")
+
+js_storybook(
+    name = "server",
+    testonly = True,
+    srcs = [
+        ".storybook/main.ts",
+        "Button.stories.ts",
+        "Button.svelte",
+    ],
+    package = "package.json",
+    port = 46137,
+    storybook = "@pnpm//node_modules/storybook:bin",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "@pnpm//node_modules/@storybook/svelte-vite",
+        "@pnpm//node_modules/@sveltejs/vite-plugin-svelte",
+        "@pnpm//node_modules/svelte",
+        "@pnpm//node_modules/vite",
+    ],
+)

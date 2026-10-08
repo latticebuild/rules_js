@@ -1,0 +1,20 @@
+load("//js:defs.bzl", "js_knip_test")
+
+package(default_testonly = True)
+
+# Must fail: ignoreDependencies names a dependency that does not exist, which
+# Knip reports as a configuration hint. The knip patch keeps such hints when
+# the selected workspace is the local root; without it they vanish silently.
+js_knip_test(
+    name = "config_hint_test",
+    srcs = [
+        "index.js",
+        "knip.json",
+        "package.json",
+    ],
+    knip = "@pnpm//node_modules/knip:bin",
+    tags = ["manual"],
+    target_compatible_with = [],
+    visibility = ["//tests/knip:__pkg__"],
+    workspace = "@fixture/knip-config-hint",
+)

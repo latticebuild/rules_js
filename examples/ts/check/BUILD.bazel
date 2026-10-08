@@ -1,0 +1,19 @@
+load("//js:defs.bzl", "js_tsc", "js_tsconfig")
+
+package(default_visibility = ["//visibility:public"])
+
+js_tsconfig(
+    name = "config",
+    srcs = ["src/main.ts"],
+    aliases = {"@example/library": "//examples/ts/library:js"},
+    compiler_options = {"noEmit": True},
+    config = "tsconfig.json",
+    extends = ["//examples/ts/base:base"],
+)
+
+js_tsc(
+    name = "typecheck",
+    config = ":config",
+    tsc = "@pnpm//node_modules/@typescript/native:tsc",
+    typescript = "@pnpm//node_modules/typescript",
+)

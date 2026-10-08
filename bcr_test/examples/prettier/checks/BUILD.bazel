@@ -1,0 +1,24 @@
+load("@subject//js:defs.bzl", "js_prettier_test")
+
+package(
+    default_testonly = True,
+    default_visibility = ["//visibility:public"],
+)
+
+js_prettier_test(
+    name = "format_test",
+    srcs = [
+        ".prettierrc.json",
+        "Button.svelte",
+        "package.json",
+        "style.css",
+        "value.js",
+    ],
+    data = ["@pnpm//node_modules/prettier-plugin-svelte"],
+    paths = [
+        "value.js",
+        "style.css",
+        "Button.svelte",
+    ],
+    prettier = "@pnpm//node_modules/prettier:bin",
+)

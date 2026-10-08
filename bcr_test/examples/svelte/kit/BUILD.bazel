@@ -1,0 +1,47 @@
+load("@subject//js:defs.bzl", "js_svelte_kit", "js_svelte_kit_write", "js_tsc", "js_tsconfig")
+
+package(
+    default_testonly = True,
+    default_visibility = [
+        "//:__pkg__",
+        "//examples/svelte:__pkg__",
+        "//tests/svelte:__pkg__",
+    ],
+)
+
+js_svelte_kit(
+    name = "kit",
+    srcs = glob(["src/**"]),
+    compiler_options = {
+        "allowJs": True,
+        "noEmit": True,
+    },
+    config = "vite.config.js",
+    kit = "@pnpm//node_modules/@sveltejs/kit:svelte-kit",
+    tool_deps = ["@pnpm//node_modules/@sveltejs/vite-plugin-svelte"],
+    typescript = "@pnpm//node_modules/typescript",
+    deps = [
+        "@pnpm//node_modules/@sveltejs/kit",
+        "@pnpm//node_modules/svelte",
+    ],
+)
+
+js_tsconfig(
+    name = "config",
+    srcs = ["src/routes/+page.ts"],
+    compiler_options = {"noEmit": True},
+    config = "tsconfig.json",
+    extends = [":kit"],
+)
+
+js_tsc(
+    name = "typecheck",
+    config = ":config",
+    tsc = "@pnpm//node_modules/@typescript/native:tsc",
+    typescript = "@pnpm//node_modules/typescript",
+)
+
+js_svelte_kit_write(
+    name = "write_config",
+    src = ":kit",
+)

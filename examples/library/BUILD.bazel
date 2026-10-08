@@ -1,0 +1,13 @@
+load("//js:defs.bzl", "js_package")
+
+package(default_visibility = ["//visibility:public"])
+
+js_package(
+    name = "js",
+    package_name = "@example/value",
+    srcs = [
+        "index.d.ts",
+        "index.mjs",
+        "index.mjs.map",
+    ],
+)

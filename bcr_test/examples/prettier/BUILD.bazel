@@ -1,0 +1,14 @@
+package(
+    default_testonly = True,
+    default_visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "artifacts",
+    srcs = ["//examples/prettier/checks:format_fix"],
+)
+
+test_suite(
+    name = "test",
+    tests = ["//examples/prettier/checks:format_test"],
+)

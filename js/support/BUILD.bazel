@@ -55,3 +55,28 @@ bzl_library(
     visibility = ["//visibility:public"],
     deps = ["//js/private:layout_bzl"],
 )
+
+exports_files(
+    ["action.bzl"],
+    visibility = ["//visibility:public"],
+)
+
+exports_files(
+    ["coverage.bzl"],
+    visibility = ["//visibility:public"],
+)
+
+exports_files(
+    ["execution.bzl"],
+    visibility = ["//visibility:public"],
+)
+
+exports_files(
+    ["fix.bzl"],
+    visibility = ["//visibility:public"],
+)
+
+exports_files(
+    ["layout.bzl"],
+    visibility = ["//visibility:public"],
+)

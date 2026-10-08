@@ -1,0 +1,30 @@
+load("//js:defs.bzl", "js_oxfmt_test", "js_oxlint_test")
+
+package(
+    default_testonly = True,
+    default_visibility = ["//visibility:public"],
+)
+
+js_oxlint_test(
+    name = "lint_test",
+    srcs = [
+        "package.json",
+        "value.js",
+    ],
+    oxlint = "@pnpm//node_modules/oxlint:bin",
+    paths = ["value.js"],
+)
+
+js_oxfmt_test(
+    name = "format_test",
+    srcs = [
+        "package.json",
+        "style.css",
+        "value.js",
+    ],
+    oxfmt = "@pnpm//node_modules/oxfmt:bin",
+    paths = [
+        "value.js",
+        "style.css",
+    ],
+)

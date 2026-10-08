@@ -1,0 +1,49 @@
+load("//js:defs.bzl", "js_test", "js_vite", "js_vite_config", "js_vitest")
+
+package(
+    default_testonly = True,
+    default_visibility = ["//visibility:public"],
+)
+
+js_vite_config(
+    name = "build_config",
+    config = "vite.config.mjs",
+    deps = ["@pnpm//node_modules/vite"],
+)
+
+js_vite(
+    name = "bundle",
+    srcs = [
+        "index.html",
+        "main.js",
+    ],
+    out = "web",
+    config = ":build_config",
+    env = {"EXAMPLE": "declared"},
+    mode = "preview",
+    vite = "@pnpm//node_modules/vite:bin",
+)
+
+js_vite_config(
+    name = "test_config",
+    config = "vitest.config.mjs",
+    deps = ["@pnpm//node_modules/vitest"],
+)
+
+js_vitest(
+    name = "unit_test",
+    srcs = [
+        "answer.mjs",
+        "answer.test.mjs",
+    ],
+    config = ":test_config",
+    coverage_provider = "@pnpm//node_modules/@vitest/coverage-v8",
+    vitest = "@pnpm//node_modules/vitest:bin",
+    deps = ["@pnpm//node_modules/vitest"],
+)
+
+js_test(
+    name = "bundle_test",
+    srcs = ["build.test.mjs"],
+    data = [":bundle"],
+)

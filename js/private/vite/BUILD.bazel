@@ -1,0 +1,48 @@
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+
+package(default_visibility = ["//visibility:private"])
+# Starlark library dependency graph.
+
+bzl_library(
+    name = "browser_bzl",
+    srcs = ["browser.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//js/support:layout",
+        "@rules_bound//bound:defs",
+    ],
+)
+
+bzl_library(
+    name = "vite_bzl",
+    srcs = ["vite.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//js:providers",
+        "//js/support:action",
+        "//js/support:layout",
+    ],
+)
+
+bzl_library(
+    name = "vite_config_bzl",
+    srcs = ["vite_config.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//js:providers",
+        "//js/support:layout",
+    ],
+)
+
+bzl_library(
+    name = "vitest_bzl",
+    srcs = ["vitest.bzl"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//js:providers",
+        "//js/private/vite:browser_bzl",
+        "//js/support:coverage",
+        "//js/support:execution",
+        "//js/support:layout",
+    ],
+)

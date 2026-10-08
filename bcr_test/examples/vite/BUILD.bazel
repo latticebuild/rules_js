@@ -1,0 +1,17 @@
+package(
+    default_testonly = True,
+    default_visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "artifacts",
+    srcs = ["//examples/vite/app:bundle"],
+)
+
+test_suite(
+    name = "test",
+    tests = [
+        "//examples/vite/app:bundle_test",
+        "//examples/vite/app:unit_test",
+    ],
+)

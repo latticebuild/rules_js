@@ -1,0 +1,26 @@
+load("//js:defs.bzl", "js_oxfmt_test")
+
+package(default_testonly = True)
+
+filegroup(
+    name = "fix_inputs",
+    srcs = [
+        ".oxfmtrc.json",
+        "violation.css",
+    ],
+    visibility = ["//tests/ox:__pkg__"],
+)
+
+# Must fail: the stylesheet is not formatted. hk formats only script and
+# Svelte files, so the violation survives the repository's own checks.
+js_oxfmt_test(
+    name = "violation_test",
+    srcs = [
+        ".oxfmtrc.json",
+        "violation.css",
+    ],
+    oxfmt = "@pnpm//node_modules/oxfmt:bin",
+    tags = ["manual"],
+    target_compatible_with = [],
+    visibility = ["//tests/ox:__pkg__"],
+)

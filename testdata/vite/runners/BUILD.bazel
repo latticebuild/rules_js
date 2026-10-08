@@ -1,0 +1,121 @@
+load("//js:defs.bzl", "js_test", "js_vite_config", "js_vitest")
+
+package(
+    default_testonly = True,
+    default_visibility = ["//tests/vite:__pkg__"],
+)
+
+exports_files(["probe.mjs"])
+
+js_vitest(
+    name = "overlap_test",
+    srcs = ["sample.test.mjs"],
+    config = ":vitest_config",
+    coverage_provider = "@pnpm//node_modules/@vitest/coverage-v8",
+    data_paths = {"asset.txt": "testdata/vite/runners/sample.test.mjs"},
+    tags = ["manual"],
+    target_compatible_with = [],
+    vitest = "@pnpm//node_modules/vitest:bin",
+)
+
+js_vite_config(
+    name = "vitest_config",
+    config = "vitest.config.mjs",
+    target_compatible_with = [],
+)
+
+js_vitest(
+    name = "escape_test",
+    config = ":vitest_config",
+    coverage_provider = "@pnpm//node_modules/@vitest/coverage-v8",
+    env_paths = {"INPUT": "../escape"},
+    tags = ["manual"],
+    target_compatible_with = [],
+    vitest = "@pnpm//node_modules/vitest:bin",
+)
+
+# Report fixtures: //tests/vite:reports_test runs them with Bazel's
+# report variables and reads the JUnit and LCOV they leave.
+
+js_vitest(
+    name = "vitest_reports_test",
+    srcs = [
+        "reported.mjs",
+        "reported.test.mjs",
+    ],
+    config = ":reports_vitest_config",
+    coverage_provider = "@pnpm//node_modules/@vitest/coverage-v8",
+    tags = ["manual"],
+    target_compatible_with = [],
+    vitest = "@pnpm//node_modules/vitest:bin",
+    deps = ["@pnpm//node_modules/vitest"],
+)
+
+js_vite_config(
+    name = "reports_vitest_config",
+    config = "reports.vitest.config.mjs",
+    target_compatible_with = [],
+)
+
+js_test(
+    name = "node_reports_test",
+    srcs = ["reported_node.test.mjs"],
+    data = ["reported.mjs"],
+    tags = ["manual"],
+    target_compatible_with = [],
+)
+
+js_test(
+    name = "node_failure_test",
+    srcs = ["failing.test.mjs"],
+    tags = ["manual"],
+    target_compatible_with = [],
+)
+
+# Node shards by test file, so a sharding fixture needs two.
+js_test(
+    name = "node_shards_test",
+    srcs = [
+        "shard_first.test.mjs",
+        "shard_second.test.mjs",
+    ],
+    tags = ["manual"],
+    target_compatible_with = [],
+)
+
+# What bound gives a package executable, checked from inside on every
+# platform: //tests/vite:runtime_test runs it.
+js_vitest(
+    name = "environment_test",
+    srcs = ["environment.test.mjs"],
+    config = ":environment_vitest_config",
+    coverage_provider = "@pnpm//node_modules/@vitest/coverage-v8",
+    target_compatible_with = [],
+    vitest = "@pnpm//node_modules/vitest:bin",
+    deps = [
+        "@pnpm//node_modules/effection",
+        "@pnpm//node_modules/vitest",
+    ],
+)
+
+js_vite_config(
+    name = "environment_vitest_config",
+    config = "environment.vitest.config.mjs",
+    target_compatible_with = [],
+)
+
+# Declared and inherited names replace bound's defaults; the analysis tests
+# of //tests/vite:runner_test read its bind action.
+js_vitest(
+    name = "declared_env_test",
+    config = ":vitest_config",
+    coverage_provider = "@pnpm//node_modules/@vitest/coverage-v8",
+    env = {
+        "HOME": "/declared-home",
+        "PATH": "/declared",
+    },
+    env_inherit = ["USERPROFILE"],
+    tags = ["manual"],
+    target_compatible_with = [],
+    vitest = "@pnpm//node_modules/vitest:bin",
+)

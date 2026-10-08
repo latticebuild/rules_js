@@ -1,0 +1,29 @@
+load("//js:defs.bzl", "js_test")
+
+package(
+    default_testonly = True,
+    default_visibility = ["//:__pkg__"],
+)
+
+js_test(
+    name = "checks_test",
+    srcs = ["checks.test.mjs"],
+    data = [
+        "lifecycle.mjs",
+        "@pnpm//node_modules/effection",
+    ] + [
+        "//testdata/knip/checks/knip/config_hint:config_hint_test",
+        "//testdata/knip/checks/knip/guard:guard_test",
+        "//testdata/knip/checks/knip/production:production_test",
+        "//testdata/knip/checks/knip/unused_export:unused_export_test",
+    ],
+)
+
+js_test(
+    name = "fix_guard_test",
+    srcs = ["fix_guard.test.mjs"],
+    data = [
+        "lifecycle.mjs",
+        "@pnpm//node_modules/effection",
+    ] + ["//testdata/knip/checks/knip/guard:guard_fix"],
+)

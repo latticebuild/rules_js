@@ -1,0 +1,13 @@
+package(
+    default_testonly = True,
+    default_visibility = ["//visibility:private"],
+)
+
+filegroup(
+    name = "tsc",
+    srcs = glob(
+        ["**"],
+        exclude = ["BUILD.bazel"],
+    ),
+    visibility = ["//tests/ts:__pkg__"],
+)

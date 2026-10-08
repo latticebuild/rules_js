@@ -12,3 +12,9 @@ node = "26.8.2"
 pnpm = "12.4.2"
 [tasks.bootstrap]
 run = "pnpm install --frozen-lockfile"
+
+[tasks.docs]
+run = "nu scripts/docs.nu"
+
+[tasks.check-docs]
+run = "nu scripts/docs.nu --check"
