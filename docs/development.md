@@ -27,3 +27,8 @@ On Windows, use a temporary root with its canonical long path. Vite rejects 8.3
 aliases in served paths. CI selects LOCALAPPDATA/Temp/latticebuild before dependency preparation and
 forwards TMP/TEMP through Bazel tests; private runtime trees remain inside that
 root. Keep this path out of installed source and dependency directories.
+
+CI uses a short Bazel output root on Windows (`D:/b`) so native linkers can
+open deeply nested runfiles. Locally, select a short writable root with
+`bazel --output_user_root=C:/b test //:test` when needed. Documentation and
+example scripts accept the same root through BAZEL_OUTPUT_USER_ROOT.
