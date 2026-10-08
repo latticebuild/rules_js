@@ -8,6 +8,7 @@ exports_files([
 test_suite(
     name = "test",
     tests = [
+        "//benchmarks:unit_test",
         "//examples:test",
         "//examples/knip:test",
         "//examples/ox:test",
@@ -58,6 +59,7 @@ test_suite(
 test_suite(
     name = "race_test",
     tests = [
+        "//benchmarks:unit_race_test",
         "//go/filetree:unit_race_test",
         "//go/junit:unit_race_test",
         "//go/lcov:unit_race_test",
@@ -77,6 +79,7 @@ filegroup(
     name = "artifacts",
     testonly = True,
     srcs = [
+        "//benchmarks:benchmark",
         "//examples:artifacts",
         "//examples/knip:artifacts",
         "//examples/ox:artifacts",

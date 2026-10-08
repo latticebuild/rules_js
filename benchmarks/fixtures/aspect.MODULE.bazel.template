@@ -1,0 +1,8 @@
+module(name = "benchmark_aspect")
+bazel_dep(name = "aspect_rules_js", version = "3.5.0")
+bazel_dep(name = "rules_nodejs", version = "6.7.5")
+node = use_extension("@rules_nodejs//nodejs:extensions.bzl", "node")
+node.toolchain(node_version = "26.8.2")
+npm = use_extension("@aspect_rules_js//npm:extensions.bzl", "npm")
+npm.npm_translate_lock(name = "npm", pnpm_lock = "//:pnpm-lock.yaml", run_lifecycle_hooks = False)
+use_repo(npm, "npm")

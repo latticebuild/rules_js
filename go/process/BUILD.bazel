@@ -11,7 +11,7 @@ go_library(
     target_compatible_with = [],
     visibility = ["//visibility:public"],
     deps = [
-        "@latticebuild_graceproc//:graceproc",
+        "@com_github_latticebuild_graceproc//:graceproc",
     ],
 )
 

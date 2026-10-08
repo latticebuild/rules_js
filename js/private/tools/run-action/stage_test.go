@@ -50,6 +50,20 @@ func TestStageProtectsInputInventory(t *testing.T) {
 	}
 }
 
+func TestCachedInputInventoryFailsBeforeStaging(t *testing.T) {
+	for _, tail := range []string{"{bad}\n", "\"undeclared\"\n", "\"input/child\"\n"} {
+		root := t.TempDir()
+		testfs.Write(t, filepath.Join(root, "input"), "original")
+		testfs.Write(t, filepath.Join(root, "inventory"), "\"input\"\n"+tail)
+		if err := Stage(root, Manifest{Root: "scratch", Files: [][2]string{{"value", "input"}}, InputList: "inventory"}); err == nil {
+			t.Fatal("invalid inventory was accepted:", tail)
+		}
+		if _, err := os.Stat(filepath.Join(root, "scratch")); !os.IsNotExist(err) {
+			t.Fatal("staging began before validation joined:", err)
+		}
+	}
+}
+
 func TestPackageDependencyCycle(t *testing.T) {
 	root := testfs.Root(t)
 	err := Stage(root, Manifest{

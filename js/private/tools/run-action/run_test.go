@@ -182,6 +182,37 @@ func TestConcurrentActionsPreserveSharedInputs(t *testing.T) {
 	}
 }
 
+func TestFreshStageSharedParentsAndWritableInputs(t *testing.T) {
+	root := t.TempDir()
+	files := [][2]string{{"tool.cjs", "tool.cjs"}}
+	for i := range 96 {
+		name := fmt.Sprintf("shared/group-%d/value-%d", i%3, i)
+		testfs.Mkdir(t, filepath.Dir(filepath.Join(root, name)))
+		testfs.Write(t, filepath.Join(root, name), fmt.Sprint(i))
+		if err := os.Chmod(filepath.Join(root, name), 0o444); err != nil {
+			t.Fatal(err)
+		}
+		files = append(files, [2]string{name, name})
+	}
+	testfs.Write(t, filepath.Join(root, "tool.cjs"), `const fs=require('node:fs');
+let total=0; for(let i=0;i<96;i++) total+=Number(fs.readFileSync('shared/group-'+(i%3)+'/value-'+i));
+fs.writeFileSync('shared/group-0/value-0','modified'); fs.writeFileSync('result',String(total));`)
+	t.Setenv("NODE", mustNode(t))
+	code, err := runAction(root, Manifest{Root: "scratch", Files: files, Scripts: []string{"tool.cjs"}, Outputs: [][2]string{{"result", "published"}}})
+	if err != nil || code != 0 {
+		t.Fatalf("fresh staging: %d %v", code, err)
+	}
+	for name, expected := range map[string]string{"published": "4560", "shared/group-0/value-0": "0"} {
+		data, err := os.ReadFile(filepath.Join(root, name))
+		if err != nil || string(data) != expected {
+			t.Fatalf("%s: %q %v", name, data, err)
+		}
+	}
+	if _, err := os.Stat(filepath.Join(root, "scratch")); !os.IsNotExist(err) {
+		t.Fatal("fresh scratch remains:", err)
+	}
+}
+
 func TestRejectsEscapesAndOverlapsBeforeStaging(t *testing.T) {
 	script := []string{"tool.cjs"}
 	for name, c := range map[string]struct {

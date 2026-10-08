@@ -1,0 +1,8 @@
+load("@subject//js:defs.bzl", "js_binary")
+load(":action.bzl", "benchmark_action")
+js_binary(name="tool_none", bin="action.mjs")
+js_binary(name="tool_many", bin="action.mjs", data=["@npm//node_modules/knip", "@npm//node_modules/prettier", "@npm//node_modules/vite", "@npm//node_modules/vitest"])
+benchmark_action(name="none", tool=":tool_none", srcs="input_none.json", out="none/result.json")
+benchmark_action(name="many", tool=":tool_many", srcs="input_many.json", out="many/result.json")
+
+benchmark_action(name="inventory",tool=":tool_many",srcs="input_many.json",out="many/inventory.json",extra_args=["--inventory"])

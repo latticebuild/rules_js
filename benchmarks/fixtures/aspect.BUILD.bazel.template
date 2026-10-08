@@ -1,0 +1,9 @@
+load("@aspect_rules_js//js:defs.bzl", "js_binary", "js_run_binary")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+npm_link_all_packages(name="node_modules")
+js_binary(name="tool_none", entry_point="action.mjs")
+js_binary(name="tool_many", entry_point="action.mjs", data=[":node_modules/knip", ":node_modules/prettier", ":node_modules/vite", ":node_modules/vitest"])
+js_run_binary(name="none", tool=":tool_none", srcs=["input_none.json"], outs=["none/result.json"], args=["--input", "input_none.json", "--output", "none/result.json"], mnemonic="BenchmarkNode")
+js_run_binary(name="many", tool=":tool_many", srcs=["input_many.json"], outs=["many/result.json"], args=["--input", "input_many.json", "--output", "many/result.json"], mnemonic="BenchmarkNode")
+
+js_run_binary(name="inventory",tool=":tool_many",srcs=["input_many.json"],outs=["many/inventory.json"],args=["--input","input_many.json","--output","many/inventory.json","--inventory"],mnemonic="BenchmarkInventory")

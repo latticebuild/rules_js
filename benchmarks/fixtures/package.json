@@ -1,0 +1,12 @@
+{
+  "name": "@benchmark/actions",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.4.2",
+  "dependencies": {
+    "knip": "6.39.0",
+    "prettier": "3.9.9",
+    "vite": "8.3.2",
+    "vitest": "5.0.3"
+  }
+}

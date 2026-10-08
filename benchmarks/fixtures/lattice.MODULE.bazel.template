@@ -1,0 +1,8 @@
+module(name = "benchmark_lattice")
+bazel_dep(name = "latticebuild_js", version = "{{VERSION}}", repo_name = "subject")
+local_path_override(module_name = "latticebuild_js", path = "{{SOURCE}}")
+bazel_dep(name = "rules_nodejs", version = "6.7.5")
+node = use_extension("@rules_nodejs//nodejs:extensions.bzl", "node")
+node.toolchain(node_version = "26.8.2")
+node_modules = use_repo_rule("@subject//js:repositories.bzl", "node_modules")
+node_modules(name = "npm", package_json = "//:package.json")

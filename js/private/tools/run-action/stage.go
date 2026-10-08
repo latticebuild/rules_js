@@ -71,27 +71,55 @@ func Stage(execroot string, m Manifest) error {
 	if err := limit.CheckDestination(execroot, root, protected...); err != nil {
 		return err
 	}
-	return stageAt(execroot, root, m, limit)
+	return stageAt(execroot, root, m, limit, false)
 }
 
 func inputCopier(execroot, root string, m Manifest) (*filetree.Copier, []string, error) {
+	if len(m.Files) > 1_000_000 {
+		return nil, nil, fmt.Errorf("input declarations exceed filesystem work limit")
+	}
 	limit := filetree.NewCopier(nil)
-	inputs := make([]string, 0, len(m.Files))
-	for _, pair := range m.Files {
-		inputs = append(inputs, pair[1])
-		input, err := filetree.Path(execroot, pair[1])
-		if err != nil {
-			return nil, nil, err
+	inputs := make([]string, len(m.Files))
+	type declaration struct {
+		logical, physical string
+		regular           bool
+	}
+	declarations := make([]declaration, len(m.Files))
+	var resolutions group
+	for i, pair := range m.Files {
+		inputs[i] = pair[1]
+		resolutions.do(func() error {
+			input, err := filetree.Path(execroot, pair[1])
+			if err != nil {
+				return err
+			}
+			target, err := filetree.Path(root, pair[0])
+			if err != nil {
+				return err
+			}
+			if filetree.PathKey(input) == filetree.PathKey(target) {
+				return fmt.Errorf("input is also its staging destination")
+			}
+			physical, err := filetree.RealPath(input)
+			if err != nil {
+				return err
+			}
+			info, err := os.Stat(physical)
+			if err != nil {
+				return err
+			}
+			declarations[i] = declaration{input, physical, info.Mode().IsRegular()}
+			return nil
+		})
+	}
+	if err := resolutions.wait(); err != nil {
+		return nil, nil, err
+	}
+	for _, d := range declarations {
+		limit.DeclareRoot(d.physical)
+		if d.regular {
+			limit.DeclareFile(d.logical, d.physical)
 		}
-		target, _ := filetree.Path(root, pair[0])
-		if filetree.PathKey(input) == filetree.PathKey(target) {
-			return nil, nil, fmt.Errorf("input %s is also its staging destination", pair[1])
-		}
-		physical, err := filetree.RealPath(input)
-		if err != nil {
-			return nil, nil, err
-		}
-		limit.DeclareRoot(physical)
 	}
 	if err := limit.ReadInputs(execroot, m.InputList, inputs); err != nil {
 		return nil, nil, err
@@ -112,7 +140,7 @@ func inputCopier(execroot, root string, m Manifest) (*filetree.Copier, []string,
 }
 
 // stageAt copies a validated layout into root.
-func stageAt(execroot, root string, m Manifest, limit *filetree.Copier) error {
+func stageAt(execroot, root string, m Manifest, limit *filetree.Copier, fresh bool) error {
 	if info, err := os.Lstat(root); err == nil && info.Mode()&(os.ModeSymlink|os.ModeIrregular) != 0 {
 		return fmt.Errorf("scratch root is a symlink or reparse point: %s", root)
 	}
@@ -135,8 +163,14 @@ func stageAt(execroot, root string, m Manifest, limit *filetree.Copier) error {
 			if err != nil {
 				return err
 			}
-			if err := filetree.Prepare(root, target); err != nil {
-				return err
+			var errPrepare error
+			if fresh {
+				errPrepare = os.MkdirAll(filepath.Dir(target), 0o755)
+			} else {
+				errPrepare = filetree.Prepare(root, target)
+			}
+			if errPrepare != nil {
+				return errPrepare
 			}
 			return limit.Copy(input, target)
 		})
@@ -160,8 +194,14 @@ func stageAt(execroot, root string, m Manifest, limit *filetree.Copier) error {
 			if err != nil {
 				return err
 			}
-			if err := filetree.Prepare(root, target); err != nil {
-				return err
+			var errPrepare error
+			if fresh {
+				errPrepare = os.MkdirAll(filepath.Dir(target), 0o755)
+			} else {
+				errPrepare = filetree.Prepare(root, target)
+			}
+			if errPrepare != nil {
+				return errPrepare
 			}
 			return filetree.DirSymlink(linkTarget, target)
 		})

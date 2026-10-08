@@ -96,7 +96,7 @@ def run_in_tree(ctx, inputs, arguments, outputs, mnemonic, progress_message, env
         arguments = [manifest.path],
         tools = [executable[DefaultInfo].files_to_run] if executable != None else [],
         env = action_env,
-        inputs = depset([manifest, declared_inputs] + checks + status + layout.files.values(), transitive = [node.npm_sources]),
+        inputs = depset([manifest, declared_inputs, node.node] + checks + status + layout.files.values()),
         outputs = outputs,
         use_default_shell_env = False,
         mnemonic = mnemonic,

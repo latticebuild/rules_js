@@ -1,10 +1,10 @@
-//go:build !windows
+//go:build !windows && !darwin && !linux
 
 package filetree
 
 import "path/filepath"
 
-// RealPath resolves file and directory aliases, including Windows junctions.
-func RealPath(directory string) (string, error) {
-	return filepath.EvalSymlinks(directory)
+// RealPath resolves file and directory aliases.
+func RealPath(path string) (string, error) {
+	return filepath.EvalSymlinks(path)
 }

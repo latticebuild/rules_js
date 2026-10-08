@@ -18,7 +18,7 @@ go_binary(
     visibility = ["//:__subpackages__"],
     deps = [
         "//go/filetree:lib",
-        "@latticebuild_graceproc//:graceproc",
+        "@com_github_latticebuild_graceproc//:graceproc",
     ],
 )
 
@@ -55,8 +55,8 @@ go_test(
     deps = [
         "//go/filetree:lib",
         "//js/private/tools/internal/testfs:lib",
+        "@com_github_latticebuild_graceproc//:graceproc",
         "@io_bazel_rules_go//go/runfiles",
-        "@latticebuild_graceproc//:graceproc",
     ],
 )
 
@@ -92,8 +92,8 @@ go_test(
     deps = [
         "//go/filetree:lib",
         "//js/private/tools/internal/testfs:lib",
+        "@com_github_latticebuild_graceproc//:graceproc",
         "@io_bazel_rules_go//go/runfiles",
-        "@latticebuild_graceproc//:graceproc",
     ],
 )
 

@@ -19,7 +19,7 @@ func copyEntry(from, to string, limit *Copier, ancestors map[string]bool, depth 
 	if depth > 128 || limit.entries.Add(1) > 1_000_000 {
 		return fmt.Errorf("copy exceeds filesystem work limit at %s", from)
 	}
-	resolved, err := RealPath(from)
+	resolved, err := limit.resolve(from)
 	if err != nil {
 		return err
 	}
@@ -83,17 +83,18 @@ func copyEntry(from, to string, limit *Copier, ancestors map[string]bool, depth 
 }
 
 type Copier struct {
-	sem     chan struct{}
-	entries atomic.Int64
-	bytes   atomic.Int64
-	keep    func(path string, directory bool) bool
-	roots   map[string]struct{}
+	sem      chan struct{}
+	entries  atomic.Int64
+	bytes    atomic.Int64
+	keep     func(path string, directory bool) bool
+	roots    map[string]struct{}
+	resolved map[string]string
 }
 
 // NewCopier shares filesystem work limits across all copies in one operation.
 // keep can prune physical directories and exclude files; nil copies every entry.
 func NewCopier(keep func(path string, directory bool) bool) *Copier {
-	return &Copier{sem: make(chan struct{}, Parallelism()), roots: map[string]struct{}{}, keep: keep}
+	return &Copier{sem: make(chan struct{}, Parallelism()), roots: map[string]struct{}{}, resolved: map[string]string{}, keep: keep}
 }
 
 // CheckDestination refuses writes that overlap canonical input storage. Extra
@@ -139,7 +140,7 @@ func (l *Copier) CheckDestination(root, target string, protected ...string) erro
 
 // Directory artifacts may be sandbox directories with symlink leaves. Only
 // Bazel's expanded input inventory can authorize their backing file locations.
-func (l *Copier) ReadInputs(execroot, list string, inputs []string) error {
+func (l *Copier) ReadInputs(execroot, list string, inputs []string) (err error) {
 	if list == "" {
 		return nil
 	}
@@ -148,6 +149,10 @@ func (l *Copier) ReadInputs(execroot, list string, inputs []string) error {
 		path, err := Path(execroot, input)
 		if err != nil {
 			return err
+		}
+		if _, known := l.resolved[PathKey(path)]; known {
+			declared[PathKey(path)] = false
+			continue
 		}
 		info, err := os.Stat(path)
 		if err != nil {
@@ -163,7 +168,7 @@ func (l *Copier) ReadInputs(execroot, list string, inputs []string) error {
 	if err != nil {
 		return err
 	}
-	defer func() { _ = file.Close() }()
+	defer func() { err = errors.Join(err, file.Close()) }()
 	scanner := bufio.NewScanner(file)
 	for count := 0; scanner.Scan(); count++ {
 		if count > 1_000_000 {
@@ -190,9 +195,12 @@ func (l *Copier) ReadInputs(execroot, list string, inputs []string) error {
 		if !member {
 			return fmt.Errorf("input inventory path %s is not declared", input)
 		}
-		physical, err := RealPath(path)
-		if err != nil {
-			return err
+		physical, cached := l.resolved[PathKey(path)]
+		if !cached {
+			physical, err = l.resolve(path)
+			if err != nil {
+				return err
+			}
 		}
 		l.roots[PathKey(physical)] = struct{}{}
 	}
@@ -219,3 +227,17 @@ func Parallelism() int {
 // DeclareRoot authorizes a filesystem location before concurrent copying starts.
 // Input callers resolve symlinks first; output callers validate their own roots.
 func (l *Copier) DeclareRoot(path string) { l.roots[PathKey(path)] = struct{}{} }
+
+// DeclareFile caches one regular input after the caller has resolved and
+// validated it. Register declarations before concurrent copying begins; directory
+// inputs must use DeclareRoot so their descendants are resolved individually.
+func (l *Copier) DeclareFile(logical, physical string) { l.resolved[PathKey(logical)] = physical }
+func (l *Copier) resolve(path string) (string, error) {
+	var physical string
+	err := l.run(func() error {
+		var err error
+		physical, err = RealPath(path)
+		return err
+	})
+	return physical, err
+}

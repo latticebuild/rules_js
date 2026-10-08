@@ -1,9 +1,9 @@
 # Using rules_js
 
 Use Bazel 9.2 with Bzlmod. Add `latticebuild_js` and pin this repository with
-`git_override`; root modules must also pin `latticebuild_graceproc` to a commit
-from [graceproc](https://github.com/latticebuild/graceproc). These modules have
-no BCR release yet. Select an immutable commit rather than a moving branch.
+`git_override` until BCR registration. Select an immutable commit rather than a
+moving branch. Its Go helpers resolve Graceproc through its tagged Go module
+and checksum-pinned go_deps import.
 
 Prepare your own pnpm installation before Bazel reads it:
 

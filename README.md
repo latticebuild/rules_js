@@ -12,7 +12,7 @@ Use Bazel 9.2 with Bzlmod. Until the module is registered in the Bazel Central
 Registry, pin a source revision in your root MODULE.bazel:
 
 ```starlark
-bazel_dep(name = "latticebuild_js", version = "0.1.0")
+bazel_dep(name = "latticebuild_js", version = "0.1.1")
 git_override(
     module_name = "latticebuild_js",
     remote = "https://github.com/latticebuild/rules_js.git",
@@ -123,6 +123,42 @@ whole-workspace installation. Hoisting also exposes packages to normal Node
 resolution more broadly, so declare dependencies explicitly even when an import
 happens to work in the installed tree. Copy-on-write saves physical copying when
 supported; it is not required for correctness and is not a performance guarantee.
+
+### Action benchmark
+
+The [benchmark](benchmarks/main.go) compares the actual scratch runner with
+Aspect 3.5.0's `js_binary` and `js_run_binary`. It runs on Linux, macOS 27 and
+Windows in CI. Each backend uses Bazel 9.2.0, Node 26.8.2, the same script, and
+the same frozen pnpm 12.4.2 lockfile. One case declares no application packages;
+the other declares Knip, Prettier, Vite and Vitest and their complete dependencies.
+The script resolves and reads package manifests; this measures action overhead
+and dependency resolution, rather than compiler or bundler throughput.
+
+Before timing, the benchmark verifies every package instance, dependency and
+peer binding, and common payload file's SHA-256. Aspect's normal package
+exclusions remain enabled and their file-count difference is reported.
+Both fixtures disable lifecycle scripts. Dependency preparation, first builds
+and cached no-op builds are recorded separately from warm action samples.
+
+After three warmup pairs, it retains 30 pairs per case, alternates backend order
+and supplies a new matching input nonce for each pair. Every sample must contain
+one successful, uncached native action with matching output. The headline is
+Bazel's main-spawn `totalTime`; execution time, prerequisite actions and command
+wall time are also recorded. Release qualification requires the ratio of
+medians and its paired bootstrap 95% upper bound to be below 1 for both cases
+on all three platforms. The full JSON execution logs and report are CI artifacts.
+
+Run from a clean checkout, with separate existing work and new result directories:
+
+```sh
+bazel run //benchmarks:benchmark -- \
+  --source="$PWD" --work-root="/path/to/development-storage" \
+  --results="/path/to/new-benchmark-results"
+```
+
+`--probe` runs one pair per case for harness development and cannot qualify a
+release. Native measurements and performance repairs are currently in progress;
+there is no qualified speedup claim yet.
 
 <details>
 <summary>Repository map</summary>

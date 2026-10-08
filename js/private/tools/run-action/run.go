@@ -100,7 +100,7 @@ func runAt(execroot, scratch string, m Manifest) (code int, err error) {
 			code = 1
 		}
 	}()
-	if err := stageAt(execroot, scratch, m, limit); err != nil {
+	if err := stageAt(execroot, scratch, m, limit, true); err != nil {
 		return 1, err
 	}
 	node, cwd, env, err := commandEnvironment(execroot, scratch, m)

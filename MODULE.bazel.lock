@@ -488,7 +488,7 @@
     "@@yq.bzl+//yq:extensions.bzl%yq": {
       "general": {
         "bzlTransitiveDigest": "AftBcL8tnmlxj3Qw4UyYmH1ieYp4tcZC2CO93ecP/Fc=",
-        "usagesDigest": "p9BZIzHC225++fZkI2Z9zrXVcFzYUL/hWe2UNTXilGQ=",
+        "usagesDigest": "lpRULTg/fpzzOxXgeFVV9sSkkdbvj57iSAJNGZD0tc0=",
         "recordedInputs": [
           "REPO_MAPPING:yq.bzl+,bazel_lib bazel_lib+"
         ],
