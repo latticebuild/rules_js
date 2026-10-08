@@ -5,22 +5,23 @@ load(":discovery.bzl", "directory_entries", "relative_path")
 
 visibility("//...")
 
-def describe_packages(ctx, root, modules, budget, spdx):
+def describe_packages(ctx, root, modules, budget, spdx, owner):
     """Attach package names, labels, and metadata to discovered records.
 
     Args:
         ctx: Repository context that watches executable metadata inputs.
-        root: Canonical main-workspace path.
+        root: Canonical installation path.
         modules: Mutable records returned by discovery, updated in place.
         budget: Traversal budget shared with discovery and inventory.
         spdx: Pinned set of supported SPDX identifiers.
+        owner: Canonical installation repository prefix, or @ for the main repository.
     """
     for module in modules:
         raw = module["raw"]
         rel = module["rel"]
         if module["workspace"]:
             module["name"] = raw.get("name", "")
-            module["label"] = "@" + package_label(rel, module["target"]) if module["target"] else ""
+            module["label"] = owner + package_label(rel, module["target"]) if module["target"] else ""
             continue
         module["name"] = rel.split("/node_modules/")[-1].removeprefix("node_modules/")
         published_name = raw.get("name")

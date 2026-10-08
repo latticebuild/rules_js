@@ -1,4 +1,5 @@
 load(":graph_tests.bzl", "graph_test_suite")
+load(":render_tests.bzl", "render_test_suite")
 load(":selection_tests.bzl", "selection_test_suite")
 
 package(
@@ -10,10 +11,13 @@ graph_test_suite(name = "graph_test")
 
 selection_test_suite(name = "selection_test")
 
+render_test_suite(name = "render_test")
+
 test_suite(
     name = "analysis_test",
     tests = [
         ":graph_test",
+        ":render_test",
         ":selection_test",
     ],
     visibility = ["//:__pkg__"],

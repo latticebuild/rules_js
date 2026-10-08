@@ -4,11 +4,12 @@ load(":graph.bzl", "PLATFORMS")
 
 visibility("//...")
 
-def package_build(module):
+def package_build(module, owner_visibility):
     """Render one physical installation, including any source-only cycle target.
 
     Args:
         module: Installed record with allocated metadata and resolved graph edges.
+        owner_visibility: Canonical visibility label for the installation owner's packages.
 
     Returns:
         BUILD.bazel text using the toolkit's public rules.
@@ -77,12 +78,12 @@ def package_build(module):
             "    bin = %r," % script,
             "    data = [%r]," % (":" + module["target"]),
             "    package_metadata = [%r]," % (":" + module["metadata"]),
-            '    visibility = ["//:__subpackages__", "@//:__subpackages__"],',
+            '    visibility = ["//:__subpackages__", %r],' % owner_visibility,
             ")",
         ])
     lines.extend([
         "",
-        'exports_files(glob(["**/*.json"], exclude = ["node_modules/**"], allow_empty = True), visibility = ["@//:__subpackages__"] )',
+        'exports_files(glob(["**/*.json"], exclude = ["node_modules/**"], allow_empty = True), visibility = [%r])' % owner_visibility,
     ])
     for helper in ([True, False] if module["helper"] else [False]):
         lines.extend([
@@ -100,7 +101,7 @@ def package_build(module):
         if not helper and (module["edges"]["always"] or module["edges"]["when"]):
             lines.append("    deps = %s," % _edges_expression(module["edges"]))
         lines.extend([
-            '    visibility = ["//:__subpackages__", "@//:__subpackages__"],',
+            '    visibility = ["//:__subpackages__", %r],' % owner_visibility,
             ")",
         ])
     return "\n".join(lines) + "\n"
@@ -131,10 +132,10 @@ def workspace_index(modules, repository, workspace):
         for name, to in module["imports"].items():
             target = modules[to]
             if target["workspace"] and name != target["name"]:
-                aliases[name] = target["label"].removeprefix("@")
+                aliases[name] = _workspace_label(target["label"], repository)
             else:
                 canonical[target["label"]] = True
-        alias_labels = {"@" + label: True for label in aliases.values() if "@" + label not in canonical}
+        alias_labels = {("@" + label if label.startswith("//") else label): True for label in aliases.values() if ("@" + label if label.startswith("//") else label) not in canonical}
         edges = module["edges"]
         packages[module["rel"]] = {
             "aliases": aliases,

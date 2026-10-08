@@ -1,5 +1,9 @@
 # rules_js
 
+[![CI](https://github.com/latticebuild/rules_js/actions/workflows/ci.yml/badge.svg)](https://github.com/latticebuild/rules_js/actions/workflows/ci.yml)
+[![Bazel](https://img.shields.io/badge/Bazel-9.2.0-43A047?logo=bazel&logoColor=white)](MODULE.bazel)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+
 Bazel rules for JavaScript packages, Node executables and tests, and runtime trees. Dependencies use an installed, hoisted pnpm structure; build actions work in private scratch directories, using copy-on-write file clones where the filesystem supports them.
 
 ## Setup
@@ -107,6 +111,19 @@ whole-workspace installation. Hoisting also exposes packages to normal Node
 resolution more broadly, so declare dependencies explicitly even when an import
 happens to work in the installed tree. Copy-on-write saves physical copying when
 supported; it is not required for correctness and is not a performance guarantee.
+
+<details>
+<summary>Repository map</summary>
+
+| Area | Location |
+| --- | --- |
+| Public API | [js/defs.bzl](js/defs.bzl) |
+| Implementation | [js/private/](js/private/) |
+| Examples and fixtures | [testdata/](testdata/) |
+| Owning checks | [tests/](tests/) |
+| Consumer guide | [docs/usage.md](docs/usage.md) |
+
+</details>
 
 ## Development
 
