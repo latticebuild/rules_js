@@ -64,18 +64,15 @@ func nativeRunner() string {
 
 func (b *backend) build(id, target string) ([]spawn, error) {
 	log := filepath.Join(b.results, b.name+"-"+id+".spawns.json")
-	strategy := "sandboxed"
-	if runtime.GOOS == "windows" {
-		strategy = "local"
-	}
-	args := []string{
-		"--ignore_all_rc_files", "--output_user_root=" + b.outputRoot, "build", "//:" + target,
+	strategy := nativeRunner()
+	args := append(b.startupArgs(), []string{
+		"build", "//:" + target,
 		"--enable_runfiles", "--jobs=1", "--spawn_strategy=" + strategy,
 		"--strategy=BenchmarkNode=" + strategy, "--strategy=BenchmarkInventory=" + strategy,
 		"--disk_cache=", "--remote_cache=", "--remote_executor=",
 		"--noremote_accept_cached", "--noremote_upload_local_results", "--execution_log_json_file=" + log,
 		"--color=no", "--curses=no",
-	}
+	}...)
 	if err := command(b.context, b.directory, filepath.Join(b.results, b.name+"-"+id+".command.log"), b.bazel, args...); err != nil {
 		return nil, err
 	}
@@ -85,6 +82,14 @@ func (b *backend) build(id, target string) ([]spawn, error) {
 	}
 	rows, readErr := readSpawns(file)
 	return rows, errors.Join(readErr, file.Close())
+}
+
+func (b *backend) startupArgs() []string {
+	args := []string{"--ignore_all_rc_files", "--output_user_root=" + b.outputRoot}
+	if b.installBase != "" {
+		args = append(args, "--install_base="+b.installBase)
+	}
+	return args
 }
 
 // Bazel's JSON execution log is a stream of complete SpawnExec objects.

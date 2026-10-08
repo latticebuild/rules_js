@@ -8,6 +8,9 @@ const output = args[args.indexOf('--output') + 1];
 const manifests = new Map();
 const visited = new Set();
 const instances = new Map();
+const incompatible = new Map();
+let detectedLibc;
+let libcVersion = "";
 const inventory = args.includes("--inventory");
 const origin = path.dirname(fileURLToPath(import.meta.url));
 function locate(name, from) {
@@ -21,12 +24,31 @@ function locate(name, from) {
 function allowed(list, value) {
   return !list || (!list.includes('!' + value) && (!list.some(v => !v.startsWith('!')) || list.includes(value)));
 }
+function linuxLibc() {
+  if (detectedLibc) return detectedLibc;
+  const report = process.report.getReport();
+  const version = report.header?.glibcVersionRuntime;
+  const musl = (report.sharedObjects || []).some(file => /(?:^|\/)ld-musl-[^/]+\.so(?:\.1)?$/.test(file));
+  if (typeof version === 'string' && version.length && !musl) {
+    detectedLibc = 'glibc';
+    libcVersion = version;
+  } else if (version === undefined && musl) {
+    detectedLibc = 'musl';
+  } else {
+    throw new Error('Cannot positively identify the Linux Node libc');
+  }
+  return detectedLibc;
+}
+function supported(manifest) {
+  return allowed(manifest.os, process.platform) && allowed(manifest.cpu, process.arch) &&
+    (process.platform !== 'linux' || !manifest.libc?.length || allowed(manifest.libc, linuxLibc()));
+}
 function visit(name, from, optional = false) {
   const entry = locate(name, from);
   if (!entry) { if (optional) return; throw new Error('Missing declared dependency ' + name); }
   const [file, manifest] = entry;
-  if (!allowed(manifest.os, process.platform) || !allowed(manifest.cpu, process.arch)) {
-    if (optional) return; throw new Error('Unsupported required dependency ' + name);
+  if (!supported(manifest)) {
+    if (optional) { incompatible.set(file, manifest); return; } throw new Error('Unsupported required dependency ' + name);
   }
   if (visited.has(file)) return;
   visited.add(file);
@@ -45,7 +67,11 @@ const result = {nonce:input.nonce, node:process.version, packages};
 if (inventory) {
   result.execArgv = process.execArgv;
   result.nodeOptions = process.env.NODE_OPTIONS || '';
-  result.instances = [...instances].map(([file, manifest]) => {
+  result.platform = process.platform;
+  result.architecture = process.arch;
+  result.libc = detectedLibc || '';
+  result.libcVersion = libcVersion;
+  const instance = ([file, manifest]) => {
     const root = path.dirname(file);
     if ([manifest.bundledDependencies, manifest.bundleDependencies].some(value => value === true || (Array.isArray(value) && value.length))) {
       throw new Error('Pinned fixture cannot contain bundled dependencies');
@@ -54,7 +80,7 @@ if (inventory) {
     for (const kind of ['dependencies', 'optionalDependencies', 'peerDependencies']) {
       for (const name of Object.keys(manifest[kind] || {}).sort()) {
         const target = locate(name, root);
-        if (target && allowed(target[1].os, process.platform) && allowed(target[1].cpu, process.arch)) {
+        if (target && supported(target[1])) {
           bindings.push([kind, name, target[1].name + '@' + target[1].version]);
         }
       }
@@ -81,8 +107,10 @@ if (inventory) {
       ancestors.delete(canonical);
     }
     walk(root, '');
-    return {name:manifest.name, version:manifest.version, bindings, files, layoutDirectories};
-  }).sort((a,b) => JSON.stringify([a.name,a.version,a.bindings]).localeCompare(JSON.stringify([b.name,b.version,b.bindings])));
+    return {name:manifest.name, version:manifest.version, bindings, files, layoutDirectories, os:manifest.os || [], cpu:manifest.cpu || [], libc:manifest.libc || [], declarationCounts:['dependencies', 'optionalDependencies', 'peerDependencies'].map(kind => Object.keys(manifest[kind] || {}).length)};
+  };
+  result.incompatibleInstances = [...incompatible].map(instance);
+  result.instances = [...instances].map(instance).sort((a,b) => JSON.stringify([a.name,a.version,a.bindings]).localeCompare(JSON.stringify([b.name,b.version,b.bindings])));
 }
 fs.mkdirSync(path.dirname(output), {recursive:true});
 fs.writeFileSync(output, JSON.stringify(result) + '\n');

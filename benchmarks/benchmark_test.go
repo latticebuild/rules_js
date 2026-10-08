@@ -79,7 +79,7 @@ func TestExecutionLogStream(t *testing.T) {
 	}
 }
 
-func TestPairedConfidenceGate(t *testing.T) {
+func TestPairedConfidenceObservation(t *testing.T) {
 	for _, ratio := range []float64{0.5, 1, 2} {
 		pairs := make([]pair, 30)
 		for i := range pairs {
@@ -87,10 +87,10 @@ func TestPairedConfidenceGate(t *testing.T) {
 			pairs[i].Lattice.Total = int64(float64(pairs[i].Aspect.Total) * ratio)
 		}
 		a, b := summarize(pairs), summarize(pairs)
-		if a != b || a.Ratio != ratio || a.Lower != ratio || a.Upper != ratio || a.Passed != (ratio < 1) {
+		if a != b || a.Ratio != ratio || a.Lower != ratio || a.Upper != ratio || a.FasterWith95Confidence != (ratio < 1) {
 			t.Fatalf("deterministic paired ratio %g: %+v", ratio, a)
 		}
-		if summarize(pairs[:1]).Passed {
+		if summarize(pairs[:1]).FasterWith95Confidence {
 			t.Fatal("a probe qualified performance")
 		}
 	}
@@ -102,13 +102,13 @@ func TestPairedConfidenceGate(t *testing.T) {
 			pairs[i].Lattice.Total = 110_000_000
 		}
 	}
-	if summarize(pairs).Passed {
+	if summarize(pairs).FasterWith95Confidence {
 		t.Fatal("tie/noisy interval qualified")
 	}
 }
 
 func sampleInventory() inventory {
-	r := inventory{Node: "v26.8.2"}
+	r := inventory{Node: "v26.8.2", Platform: "darwin", Architecture: "arm64"}
 	for i := range 40 {
 		r.Instances = append(r.Instances, packageInstance{Name: fmt.Sprintf("package-%d", i), Version: "1.0.0", Bindings: [][]string{}, Files: []payloadFile{{"index.js", strings.Repeat("a", 64), 20}}})
 	}
@@ -195,6 +195,49 @@ func TestFixturesAndOwnedCleanup(t *testing.T) {
 	data, err := os.ReadFile(sentinel)
 	if err != nil || !reflect.DeepEqual(data, []byte("preserve")) {
 		t.Fatal("cleanup touched source storage")
+	}
+}
+
+func TestInstallBaseCannotModifySource(t *testing.T) {
+	root := t.TempDir()
+	source := filepath.Join(root, "source")
+	ignored := filepath.Join(source, "ignored-install")
+	external := filepath.Join(root, "external-install")
+	for _, directory := range []string{ignored, external} {
+		if err := os.MkdirAll(directory, 0o755); err != nil {
+			t.Fatal(err)
+		}
+	}
+	got, err := externalInstallBase(source, external)
+	if err != nil {
+		t.Fatalf("external installation: %q %v", got, err)
+	}
+	actual, err := os.Stat(got)
+	if err != nil {
+		t.Fatal(err)
+	}
+	expected, err := os.Stat(external)
+	if err != nil || !os.SameFile(actual, expected) {
+		t.Fatal("external installation resolves to a different directory:", err)
+	}
+	for _, directory := range []string{source, ignored} {
+		if _, err := externalInstallBase(source, directory); err == nil {
+			t.Fatal("source-owned install base accepted:", directory)
+		}
+	}
+	alias := filepath.Join(root, "alias")
+	if err := os.Symlink(ignored, alias); err == nil {
+		if _, err := externalInstallBase(source, alias); err == nil {
+			t.Fatal("source alias accepted as an external installation")
+		}
+	} else {
+		t.Log("symlink alias unavailable:", err)
+	}
+	caseAlias := filepath.Join(root, "SOURCE", "ignored-install")
+	if _, err := os.Stat(caseAlias); err == nil {
+		if _, err := externalInstallBase(source, caseAlias); err == nil {
+			t.Fatal("case alias accepted as an external installation")
+		}
 	}
 }
 

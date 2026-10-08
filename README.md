@@ -102,6 +102,7 @@ dependency layout and where tools do their work:
 | Dependency input | Reads an existing pnpm installation, with the hoisted node_modules layout used by this repository. | Translates a pnpm lockfile into Bazel repositories and lazily fetches packages needed by requested targets. |
 | Package layout | Observes physical installations, nested versions, workspace links, aliases and peer contexts; declared targets recreate those import locations. | Builds a pnpm-style package store and links node_modules from Bazel targets. Selected packages can be publicly hoisted. |
 | Build actions | Creates a private scratch tree from declared inputs, runs the tool there, and publishes declared outputs after success. | Runs tools using its layout in Bazel’s output tree, with sources and dependencies placed there. |
+| Node filesystem behavior | Uses native Node filesystem operations in the writable scratch tree; no filesystem patching. | Applies a filesystem patch to keep its linked dependency layout inside the sandbox. |
 
 The Aspect column follows its [dependency documentation](https://github.com/aspect-build/rules_js/blob/main/docs/pnpm.md),
 [design explanation](https://github.com/aspect-build/rules_js#design), and
@@ -137,6 +138,10 @@ and dependency resolution, rather than compiler or bundler throughput.
 Before timing, the benchmark verifies every package instance, dependency and
 peer binding, and common payload file's SHA-256. Aspect's normal package
 exclusions remain enabled and their file-count difference is reported.
+On glibc Linux x64, Aspect also stages four musl-only native leaf packages that
+pnpm omits. Their exact versions, platform constraints and payload digests are
+checked against the frozen fixture and reported as additional Aspect inputs;
+both actions traverse the same ABI-compatible dependency graph.
 Both fixtures disable lifecycle scripts. Dependency preparation, first builds
 and cached no-op builds are recorded separately from warm action samples.
 Neither fixture supplies extra Node flags. Backend defaults, including Aspect's
@@ -146,9 +151,20 @@ After three warmup pairs, it retains 30 pairs per case, alternates backend order
 and supplies a new matching input nonce for each pair. Every sample must contain
 one successful, uncached native action with matching output. The headline is
 Bazel's main-spawn `totalTime`; execution time, prerequisite actions and command
-wall time are also recorded. Release qualification requires the ratio of
-medians and its paired bootstrap 95% upper bound to be below 1 for both cases
-on all three platforms. The full JSON execution logs and report are CI artifacts.
+wall time are also recorded. Qualification requires all correctness, dependency
+parity, source identity, native runner and cleanup checks to pass with 30 retained
+pairs in each case. The median ratio and its paired bootstrap 95% interval are
+reported observations. A slower or inconclusive result does not fail CI: native
+Node behavior without filesystem patching is the design priority. The full JSON
+execution logs and report are CI artifacts.
+
+Linux qualification requires Bazel's `linux-sandbox`. On Ubuntu 24.04 CI, the
+benchmark shares only the pinned Bazel embedded tools between backends and
+checks their sandbox executable as the normal runner user. If needed, an
+exact-path AppArmor profile grants that executable user-namespace permission,
+following [Ubuntu's guidance](https://documentation.ubuntu.com/release-notes/24.04/#unprivileged-user-namespace-restrictions).
+Output roots and action caches remain separate. Host preflight diagnostics are
+retained with the benchmark evidence; global user-namespace controls stay enabled.
 
 Measure a clean checkout of the source revision, with separate existing work
 and new result directories. A detached worktree keeps platform-specific Bazel
@@ -162,8 +178,9 @@ bazel run //benchmarks:benchmark -- \
 ```
 
 `--probe` runs one pair per case for harness development and cannot qualify a
-release. Native measurements and performance repairs are currently in progress;
-there is no qualified speedup claim yet.
+release. `--install-base` selects an existing Bazel embedded tool installation,
+including the Linux sandbox executable covered by a host profile. Native
+measurements are currently in progress; there is no qualified speedup claim yet.
 
 <details>
 <summary>Repository map</summary>

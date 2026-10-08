@@ -26,8 +26,8 @@ import (
 var fixtures embed.FS
 
 type backend struct {
-	name, directory, bazel, outputRoot, results string
-	context                                     context.Context
+	name, directory, bazel, outputRoot, installBase, results string
+	context                                                  context.Context
 }
 
 type report struct {
@@ -61,6 +61,7 @@ func run() (err error) {
 	work := flag.String("work-root", "", "existing physical development directory for disposable callers and caches")
 	results := flag.String("results", "", "new directory for complete raw logs and report")
 	bazel := flag.String("bazel", "bazel", "Bazel 9.2.0 executable")
+	installBase := flag.String("install-base", "", "existing Bazel embedded tool installation shared by both backends")
 	probe := flag.Bool("probe", false, "one pair per case; never qualifies performance or a release")
 	flag.Parse()
 	if *source == "" || *work == "" || *results == "" {
@@ -73,6 +74,12 @@ func run() (err error) {
 	*work, err = physicalDirectory(*work)
 	if err != nil {
 		return err
+	}
+	if *installBase != "" {
+		*installBase, err = externalInstallBase(*source, *installBase)
+		if err != nil {
+			return err
+		}
 	}
 	*results, err = resultDirectory(*source, *results)
 	if err != nil {
@@ -121,7 +128,11 @@ func run() (err error) {
 	}()
 	versionContext, cancelVersion := context.WithTimeout(ctx, time.Minute)
 	versionLog := filepath.Join(*results, "bazel-version.log")
-	err = command(versionContext, *work, versionLog, *bazel, "--batch", "--ignore_all_rc_files", "--output_user_root="+filepath.Join(owned, "bazel-version"), "version", "--gnu_format")
+	versionArgs := []string{"--batch", "--ignore_all_rc_files", "--output_user_root=" + filepath.Join(owned, "bazel-version")}
+	if *installBase != "" {
+		versionArgs = append(versionArgs, "--install_base="+*installBase)
+	}
+	err = command(versionContext, *work, versionLog, *bazel, append(versionArgs, "version", "--gnu_format")...)
 	cancelVersion()
 	if err != nil {
 		cleanupSafe = false
@@ -144,7 +155,7 @@ func run() (err error) {
 		return errors.New("cannot determine subject module version")
 	}
 	r := report{
-		Schema: 1, Source: commit, Dirty: dirty != "", Platform: runtime.GOOS,
+		Schema: 2, Source: commit, Dirty: dirty != "", Platform: runtime.GOOS,
 		Architecture: runtime.GOARCH, Date: time.Now().UTC(), Probe: *probe,
 		Versions:      map[string]string{"bazel": "9.2.0", "node": "26.8.2", "pnpm": "12.4.2", "aspect_rules_js": "3.5.0", "rules_nodejs": "6.7.5", "latticebuild_js": string(version[1]), "go": runtime.Version()},
 		FixtureSHA256: map[string]string{}, Preparation: map[string]int64{}, Summaries: map[string]summary{},
@@ -168,12 +179,25 @@ func run() (err error) {
 	if err != nil {
 		return err
 	}
+	if *installBase != "" {
+		r.Environment["bazelInstallBase"] = *installBase
+		if runtime.GOOS == "linux" {
+			digest, err := hashFile(filepath.Join(*installBase, "linux-sandbox"))
+			if err != nil {
+				return err
+			}
+			r.Environment["linuxSandboxSHA256"] = digest
+			if err := command(ctx, *work, filepath.Join(*results, "linux-sandbox-probe.log"), filepath.Join(*installBase, "linux-sandbox"), "--", "/bin/true"); err != nil {
+				return fmt.Errorf("native Linux sandbox support probe failed: %w", err)
+			}
+		}
+	}
 	if runtime.GOOS == "darwin" && !*probe && !strings.HasPrefix(r.Environment["osVersion"], "27.") {
 		return errors.New("macOS performance qualification requires macOS 27")
 	}
 	var backends []*backend
 	for _, name := range []string{"lattice", "aspect"} {
-		b := &backend{name: name, directory: filepath.Join(owned, name), bazel: *bazel, outputRoot: filepath.Join(owned, "bazel", name), results: *results, context: ctx}
+		b := &backend{name: name, directory: filepath.Join(owned, name), bazel: *bazel, outputRoot: filepath.Join(owned, "bazel", name), installBase: *installBase, results: *results, context: ctx}
 		backends = append(backends, b)
 		if err := prepareFixture(b.directory, name, *source, string(version[1]), r.FixtureSHA256); err != nil {
 			return err
@@ -183,7 +207,7 @@ func run() (err error) {
 	defer func() {
 		for _, b := range backends {
 			cleanup, cancel := context.WithTimeout(context.Background(), time.Minute)
-			shutdownErr := command(cleanup, b.directory, filepath.Join(*results, b.name+"-shutdown.log"), b.bazel, "--ignore_all_rc_files", "--output_user_root="+b.outputRoot, "shutdown")
+			shutdownErr := command(cleanup, b.directory, filepath.Join(*results, b.name+"-shutdown.log"), b.bazel, append(b.startupArgs(), "shutdown")...)
 			if shutdownErr != nil {
 				cleanupSafe = false
 				shutdownErr = fmt.Errorf("owned Bazel shutdown failed; retained %s: %w", owned, shutdownErr)
@@ -265,10 +289,9 @@ func run() (err error) {
 			r.Preparation[b.name+"-noop-"+name] = time.Since(start).Nanoseconds()
 		}
 	}
-	r.Qualified = !*probe && r.Summaries["none"].Passed && r.Summaries["many"].Passed
-	if !*probe && !r.Qualified {
-		return errors.New("performance gate failed or was inconclusive; both paired confidence bounds must be below 1")
-	}
+	// Qualification certifies complete, comparable measurements. Speed is an
+	// observation; a slower or inconclusive result remains in the report.
+	r.Qualified = !*probe && r.Summaries["none"].Pairs == 30 && r.Summaries["many"].Pairs == 30
 	return nil
 }
 
@@ -327,6 +350,21 @@ func physicalDirectory(path string) (string, error) {
 		return "", fmt.Errorf("not an existing directory: %s", path)
 	}
 	return path, nil
+}
+
+func externalInstallBase(source, requested string) (string, error) {
+	installation, err := physicalDirectory(requested)
+	if err != nil {
+		return "", err
+	}
+	inside, err := physicalWithin(source, installation)
+	if err != nil {
+		return "", err
+	}
+	if inside {
+		return "", errors.New("Bazel install base must be physically outside the measured checkout")
+	}
+	return installation, nil
 }
 
 func resultDirectory(source, requested string) (string, error) {

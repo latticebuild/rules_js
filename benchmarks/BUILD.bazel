@@ -18,31 +18,43 @@ go_test(
     name = "unit_test",
     srcs = [
         "benchmark_test.go",
+        "fixture_test.go",
         "inventory.go",
         "main.go",
         "metrics.go",
         "statistics.go",
     ],
+    data = ["@rules_nodejs//nodejs:current_node_runtime"],
     embedsrcs = glob(["fixtures/**"]),
+    env = {"NODE_RUNFILES": "$(rlocationpaths @rules_nodejs//nodejs:current_node_runtime)"},
     pure = "on",
-    deps = ["@com_github_latticebuild_graceproc//:graceproc"],
+    deps = [
+        "@com_github_latticebuild_graceproc//:graceproc",
+        "@io_bazel_rules_go//go/runfiles",
+    ],
 )
 
 go_test(
     name = "unit_race_test",
     srcs = [
         "benchmark_test.go",
+        "fixture_test.go",
         "inventory.go",
         "main.go",
         "metrics.go",
         "statistics.go",
     ],
+    data = ["@rules_nodejs//nodejs:current_node_runtime"],
     embedsrcs = glob(["fixtures/**"]),
+    env = {"NODE_RUNFILES": "$(rlocationpaths @rules_nodejs//nodejs:current_node_runtime)"},
     pure = "off",
     race = "on",
     target_compatible_with = select({
         "@platforms//os:windows": ["@platforms//:incompatible"],
         "//conditions:default": [],
     }),
-    deps = ["@com_github_latticebuild_graceproc//:graceproc"],
+    deps = [
+        "@com_github_latticebuild_graceproc//:graceproc",
+        "@io_bazel_rules_go//go/runfiles",
+    ],
 )

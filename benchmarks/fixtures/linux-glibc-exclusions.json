@@ -1,0 +1,135 @@
+[
+  {
+    "name": "@oxc-parser/binding-linux-x64-musl",
+    "version": "0.150.0",
+    "bindings": [],
+    "files": [
+      [
+        "package.json",
+        "f27cd3f81dfe7e241397067286bcb7ac59c3a43f9e95088e2fe2a504442f7863",
+        849
+      ],
+      [
+        "parser.linux-x64-musl.node",
+        "c625d08f57e4af345c53e7e6a9517784f3c143bd019467788564134812c0408e",
+        2112112
+      ]
+    ],
+    "layoutDirectories": [],
+    "os": [
+      "linux"
+    ],
+    "cpu": [
+      "x64"
+    ],
+    "libc": [
+      "musl"
+    ],
+    "declarationCounts": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "@oxc-resolver/binding-linux-x64-musl",
+    "version": "11.24.2",
+    "bindings": [],
+    "files": [
+      [
+        "package.json",
+        "ab7f03131df36fdb440367be2e936d509a230dfa7defa73a4671a90e64aea814",
+        549
+      ],
+      [
+        "resolver.linux-x64-musl.node",
+        "dce931b38120cf51d7db7a2bfe22add7c56a987a630355dc9b2239eb392bcdc2",
+        2141024
+      ]
+    ],
+    "layoutDirectories": [],
+    "os": [
+      "linux"
+    ],
+    "cpu": [
+      "x64"
+    ],
+    "libc": [
+      "musl"
+    ],
+    "declarationCounts": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "@rolldown/binding-linux-x64-musl",
+    "version": "1.2.12",
+    "bindings": [],
+    "files": [
+      [
+        "package.json",
+        "d57e22fb232e5720ef4f1e27d3e72275b9aefea5a010e80b800f74281ce22d78",
+        886
+      ],
+      [
+        "rolldown-binding.linux-x64-musl.node",
+        "c2160bbdddae60d899e365326f5aeb334e1e2668c07f41e6ca4a59d22df20f8c",
+        19529264
+      ]
+    ],
+    "layoutDirectories": [],
+    "os": [
+      "linux"
+    ],
+    "cpu": [
+      "x64"
+    ],
+    "libc": [
+      "musl"
+    ],
+    "declarationCounts": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "lightningcss-linux-x64-musl",
+    "version": "1.33.0",
+    "bindings": [],
+    "files": [
+      [
+        "LICENSE",
+        "5eba353fe5076ac3432177f8ab1cf75e3afcd0584251e37c3bfead5f447d040e",
+        15648
+      ],
+      [
+        "lightningcss.linux-x64-musl.node",
+        "a5cf77ba1e47a5539987d569d973bc9389f8c2bb1522d36a3adf22c82afaa86d",
+        10032056
+      ],
+      [
+        "package.json",
+        "e37324a042d39eba6b152457dfbb4c7398286463767930309afe8734a1e54e7c",
+        747
+      ]
+    ],
+    "layoutDirectories": [],
+    "os": [
+      "linux"
+    ],
+    "cpu": [
+      "x64"
+    ],
+    "libc": [
+      "musl"
+    ],
+    "declarationCounts": [
+      0,
+      0,
+      0
+    ]
+  }
+]

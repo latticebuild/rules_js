@@ -8,6 +8,7 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"runtime"
 	"slices"
 	"strings"
 )
@@ -43,13 +44,22 @@ type packageInstance struct {
 	Bindings          [][]string    `json:"bindings"`
 	Files             []payloadFile `json:"files"`
 	LayoutDirectories []string      `json:"layoutDirectories"`
+	OS                []string      `json:"os"`
+	CPU               []string      `json:"cpu"`
+	Libc              []string      `json:"libc"`
+	DeclarationCounts [3]int        `json:"declarationCounts"`
 }
 
 type inventory struct {
-	Node        string            `json:"node"`
-	Instances   []packageInstance `json:"instances"`
-	ExecArgv    []string          `json:"execArgv"`
-	NodeOptions string            `json:"nodeOptions"`
+	Node                  string            `json:"node"`
+	Platform              string            `json:"platform"`
+	Architecture          string            `json:"architecture"`
+	Libc                  string            `json:"libc"`
+	LibcVersion           string            `json:"libcVersion"`
+	Instances             []packageInstance `json:"instances"`
+	IncompatibleInstances []packageInstance `json:"incompatibleInstances"`
+	ExecArgv              []string          `json:"execArgv"`
+	NodeOptions           string            `json:"nodeOptions"`
 }
 
 type excludedFile struct {
@@ -68,6 +78,12 @@ type inventoryParity struct {
 	Excluded          []excludedFile          `json:"aspectDefaultExclusions"`
 	LayoutDirectories map[string]int          `json:"dependencyLayoutDirectories"`
 	NodeDefaults      map[string]nodeDefaults `json:"backendNodeDefaults"`
+	PhysicalInstances map[string]int          `json:"physicalPackageInstances"`
+	ABIExtras         []packageInstance       `json:"aspectIncompatibleLibcInputs"`
+	ABIExtraFiles     int                     `json:"aspectIncompatibleLibcFiles"`
+	ABIExtraBytes     int64                   `json:"aspectIncompatibleLibcBytes"`
+	Libc              string                  `json:"libc"`
+	LibcVersion       string                  `json:"libcVersion"`
 }
 
 type nodeDefaults struct {
@@ -90,6 +106,16 @@ func compareInventories(lattice, aspect *backend) (inventoryParity, error) {
 		if err := json.Unmarshal(data, &values[i]); err != nil {
 			return inventoryParity{}, err
 		}
+		platform, architecture := runtime.GOOS, runtime.GOARCH
+		if platform == "windows" {
+			platform = "win32"
+		}
+		if architecture == "amd64" {
+			architecture = "x64"
+		}
+		if values[i].Platform != platform || values[i].Architecture != architecture {
+			return inventoryParity{}, errors.New("inventory does not match the native host")
+		}
 		if err := os.WriteFile(filepath.Join(b.results, b.name+"-inventory.json"), data, 0o644); err != nil {
 			return inventoryParity{}, err
 		}
@@ -103,24 +129,48 @@ func instanceKey(instance packageInstance) string {
 }
 
 func inventoryComparison(lattice, aspect inventory) (inventoryParity, error) {
-	r := inventoryParity{Instances: len(lattice.Instances), LayoutDirectories: map[string]int{}, NodeDefaults: map[string]nodeDefaults{"lattice": {lattice.ExecArgv, lattice.NodeOptions}, "aspect": {aspect.ExecArgv, aspect.NodeOptions}}}
+	r := inventoryParity{Instances: len(lattice.Instances), LayoutDirectories: map[string]int{}, NodeDefaults: map[string]nodeDefaults{"lattice": {lattice.ExecArgv, lattice.NodeOptions}, "aspect": {aspect.ExecArgv, aspect.NodeOptions}}, PhysicalInstances: map[string]int{}, Libc: lattice.Libc, LibcVersion: lattice.LibcVersion}
 	if lattice.Node != "v26.8.2" || aspect.Node != lattice.Node || len(lattice.Instances) < 40 || len(lattice.Instances) != len(aspect.Instances) {
 		return r, errors.New("Node version or physical package instance count differs")
 	}
+	if lattice.Platform != aspect.Platform || lattice.Architecture != aspect.Architecture || lattice.Libc != aspect.Libc || lattice.LibcVersion != aspect.LibcVersion {
+		return r, errors.New("Node platform, architecture or libc differs")
+	}
+	if !slices.Contains([]string{"linux", "darwin", "win32"}, lattice.Platform) || !slices.Contains([]string{"x64", "arm64"}, lattice.Architecture) {
+		return r, errors.New("unsupported inventory platform or architecture")
+	}
+	if lattice.Platform == "linux" {
+		if (lattice.Libc != "glibc" || lattice.LibcVersion == "") && (lattice.Libc != "musl" || lattice.LibcVersion != "") {
+			return r, errors.New("Linux inventory lacks positive libc evidence")
+		}
+	} else if lattice.Libc != "" || lattice.LibcVersion != "" {
+		return r, errors.New("non-Linux inventory reports libc filtering")
+	}
+	if err := compareABIExtras(lattice, aspect, &r); err != nil {
+		return r, err
+	}
 	for backend, value := range map[string]inventory{"lattice": lattice, "aspect": aspect} {
+		r.PhysicalInstances[backend] = len(value.Instances) + len(value.IncompatibleInstances)
 		identities := map[string]bool{}
-		for _, instance := range value.Instances {
+		for _, instance := range append(slices.Clone(value.Instances), value.IncompatibleInstances...) {
 			identity := instance.Name + "@" + instance.Version
 			if identities[identity] {
 				return r, fmt.Errorf("pinned fixture has ambiguous physical peer instances for %s", identity)
 			}
 			identities[identity] = true
+		}
+		for _, instance := range value.Instances {
 			for _, directory := range instance.LayoutDirectories {
 				if directory != "node_modules/" {
 					return r, errors.New("unexpected ignored package payload directory")
 				}
 				r.LayoutDirectories[backend]++
 			}
+		}
+		// Bindings must resolve within the compatible graph, never to an
+		// optional native package excluded by the host's libc.
+		for _, instance := range value.IncompatibleInstances {
+			delete(identities, instance.Name+"@"+instance.Version)
 		}
 		for _, instance := range value.Instances {
 			for _, edge := range instance.Bindings {
@@ -137,7 +187,7 @@ func inventoryComparison(lattice, aspect inventory) (inventoryParity, error) {
 	slices.SortStableFunc(right, less)
 	for i, l := range left {
 		a := right[i]
-		if instanceKey(l) != instanceKey(a) {
+		if instanceKey(l) != instanceKey(a) || !slices.Equal(l.OS, a.OS) || !slices.Equal(l.CPU, a.CPU) || !slices.Equal(l.Libc, a.Libc) || l.DeclarationCounts != a.DeclarationCounts {
 			return r, fmt.Errorf("package or dependency/peer binding differs for %s@%s", l.Name, l.Version)
 		}
 		files := map[string]payloadFile{}
@@ -174,6 +224,61 @@ func inventoryComparison(lattice, aspect inventory) (inventoryParity, error) {
 		return strings.Compare(a.Package+"/"+a.Path, b.Package+"/"+b.Path)
 	})
 	return r, nil
+}
+
+// Aspect's pinned fixture links both Linux libc variants. pnpm installs only
+// the host variant. Keep and disclose those extra physical inputs without
+// treating an incompatible ABI as part of the common runtime graph.
+func compareABIExtras(lattice, aspect inventory, r *inventoryParity) error {
+	if len(lattice.IncompatibleInstances) != 0 {
+		return errors.New("unexpected incompatible pnpm package")
+	}
+	if lattice.Platform != "linux" || lattice.Architecture != "x64" || lattice.Libc != "glibc" {
+		if len(aspect.IncompatibleInstances) != 0 {
+			return errors.New("unexpected incompatible Aspect package on this host")
+		}
+		return nil
+	}
+	data, err := fixtures.ReadFile("fixtures/linux-glibc-exclusions.json")
+	if err != nil {
+		return err
+	}
+	var expected []packageInstance
+	if err := json.Unmarshal(data, &expected); err != nil {
+		return err
+	}
+	if len(expected) != 4 || len(aspect.IncompatibleInstances) != len(expected) {
+		return errors.New("Linux libc input delta does not match the four pinned leaves")
+	}
+	want := map[string]packageInstance{}
+	for _, instance := range expected {
+		want[instance.Name+"@"+instance.Version] = instance
+	}
+	for _, instance := range aspect.IncompatibleInstances {
+		key := instance.Name + "@" + instance.Version
+		match, exists := want[key]
+		if !exists || len(instance.Bindings) != 0 || instance.DeclarationCounts != [3]int{} || len(instance.LayoutDirectories) != 0 || !slices.Equal(instance.OS, []string{"linux"}) || !slices.Equal(instance.CPU, []string{"x64"}) || !slices.Equal(instance.Libc, []string{"musl"}) {
+			return fmt.Errorf("unexpected non-leaf or incompatible ABI input: %s", key)
+		}
+		files := map[string]payloadFile{}
+		for _, file := range match.Files {
+			files[file.Path] = file
+		}
+		if len(instance.Files) != len(files) {
+			return fmt.Errorf("incompatible ABI payload count differs: %s", key)
+		}
+		for _, file := range instance.Files {
+			if value, exists := files[file.Path]; !exists || value != file {
+				return fmt.Errorf("incompatible ABI payload differs: %s/%s", key, file.Path)
+			}
+			delete(files, file.Path)
+			r.ABIExtraFiles++
+			r.ABIExtraBytes += file.Size
+		}
+		delete(want, key)
+		r.ABIExtras = append(r.ABIExtras, instance)
+	}
+	return nil
 }
 
 // The pinned Aspect 3.5.0 basic preset excludes these package-root files.

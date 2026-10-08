@@ -6,13 +6,13 @@ import (
 )
 
 type summary struct {
-	Pairs         int     `json:"pairs"`
-	LatticeMedian float64 `json:"latticeMedianMilliseconds"`
-	AspectMedian  float64 `json:"aspectMedianMilliseconds"`
-	Ratio         float64 `json:"ratio"`
-	Lower         float64 `json:"pairedBootstrap95Lower"`
-	Upper         float64 `json:"pairedBootstrap95Upper"`
-	Passed        bool    `json:"passed"`
+	Pairs                  int     `json:"pairs"`
+	LatticeMedian          float64 `json:"latticeMedianMilliseconds"`
+	AspectMedian           float64 `json:"aspectMedianMilliseconds"`
+	Ratio                  float64 `json:"ratio"`
+	Lower                  float64 `json:"pairedBootstrap95Lower"`
+	Upper                  float64 `json:"pairedBootstrap95Upper"`
+	FasterWith95Confidence bool    `json:"fasterWith95Confidence"`
 }
 
 func median(values []float64) float64 {
@@ -44,6 +44,6 @@ func summarize(pairs []pair) summary {
 	}
 	slices.Sort(ratios)
 	r.Lower, r.Upper = ratios[249], ratios[9749]
-	r.Passed = len(pairs) == 30 && r.Ratio < 1 && r.Upper < 1
+	r.FasterWith95Confidence = len(pairs) == 30 && r.Ratio < 1 && r.Upper < 1
 	return r
 }

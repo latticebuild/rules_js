@@ -21,7 +21,7 @@ jobs:
       matrix:
         os: [ubuntu-24.04, xcode-27, windows-2025]
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 60
+    timeout-minutes: 120
     env:
       HK_MISE: '1'
     steps:
@@ -67,6 +67,47 @@ jobs:
       - name: Race tests
         if: runner.os != 'Windows' && steps.gates.outputs.race == 'true'
         run: bazel --output_user_root="$BAZEL_OUTPUT_USER_ROOT" test //:race_test
+      - name: Prepare Linux benchmark sandbox
+        if: runner.os == 'Linux'
+        run: |
+          diagnostics="$RUNNER_TEMP/benchmark-host"
+          mkdir -p "$diagnostics"
+          id > "$diagnostics/identity.log"
+          uname -a > "$diagnostics/kernel.log"
+          sysctl kernel.unprivileged_userns_clone kernel.apparmor_restrict_unprivileged_userns user.max_user_namespaces \
+            > "$diagnostics/userns.log" 2>&1 || printf 'Some diagnostic sysctls are unavailable.\n' >> "$diagnostics/userns.log"
+          sudo aa-status | tee "$diagnostics/apparmor.log"
+          install_base=$(bazel --batch --ignore_all_rc_files --output_user_root="$BAZEL_OUTPUT_USER_ROOT" info install_base)
+          install_base=$(realpath "$install_base")
+          root=$(realpath "$BAZEL_OUTPUT_USER_ROOT")
+          [[ "$(dirname "$install_base")" == "$root/install" ]]
+          [[ "$(basename "$install_base")" =~ ^[0-9a-f]{32}$ ]]
+          sandbox="$install_base/linux-sandbox"
+          [[ -f "$sandbox" && ! -L "$sandbox" && "$(id -u)" != 0 ]]
+          sha256sum "$sandbox" > "$diagnostics/linux-sandbox.sha256"
+          if ! "$sandbox" -- /bin/true > "$diagnostics/probe-before.log" 2>&1; then
+            sudo journalctl -k --no-pager --since '-5 min' | tee "$diagnostics/kernel-denials-before.log"
+            # Ubuntu's per-application userns permission; global restrictions stay enabled.
+            sudo chown root:root "$sandbox"
+            sudo chmod 0555 "$sandbox"
+            sudo python3 - "$sandbox" <<'PY'
+          import os, sys
+          os.setxattr(sys.argv[1], 'security.apparmor', b'trusted')
+          assert os.getxattr(sys.argv[1], 'security.apparmor') == b'trusted'
+          PY
+            printf 'abi <abi/4.0>,\ninclude <tunables/global>\nprofile latticebuild-bazel-sandbox "%s" xattrs=(security.apparmor="trusted") flags=(unconfined) {\n  userns,\n}\n' "$sandbox" \
+              > "$diagnostics/apparmor-profile"
+            sudo install -m 0644 "$diagnostics/apparmor-profile" /etc/apparmor.d/latticebuild-bazel-sandbox
+            sudo apparmor_parser -r /etc/apparmor.d/latticebuild-bazel-sandbox
+          fi
+          if ! "$sandbox" -- /bin/true > "$diagnostics/probe-after.log" 2>&1; then
+            sudo journalctl -k --no-pager --since '-5 min' | tee "$diagnostics/kernel-denials.log"
+            cat "$diagnostics/probe-after.log"
+            exit 1
+          fi
+          sha256sum --check "$diagnostics/linux-sandbox.sha256"
+          stat "$sandbox" > "$diagnostics/linux-sandbox.stat"
+          printf 'BENCHMARK_INSTALL_BASE=%s\n' "$install_base" >> "$GITHUB_ENV"
       - name: Benchmark real Node actions
         run: |
           if [[ "$RUNNER_OS" == "Windows" ]]; then
@@ -78,14 +119,20 @@ jobs:
           git clone --no-local --no-hardlinks "$GITHUB_WORKSPACE" "$work_root/subject"
           git -C "$work_root/subject" checkout --detach "$GITHUB_SHA"
           export MSYS2_ARG_CONV_EXCL='*'
+          install_args=()
+          if [[ "$RUNNER_OS" == "Linux" ]]; then
+            install_args+=("--install-base=$BENCHMARK_INSTALL_BASE")
+          fi
           bazel --output_user_root="$BAZEL_OUTPUT_USER_ROOT" run //benchmarks:benchmark -- \
             --source="$work_root/subject" \
             --work-root="$work_root" \
-            --results="$RUNNER_TEMP/benchmark-results"
+            --results="$RUNNER_TEMP/benchmark-results" "${install_args[@]}"
       - name: Retain benchmark evidence
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: benchmark-${{ matrix.os }}
-          path: ${{ runner.temp }}/benchmark-results/
+          path: |
+            ${{ runner.temp }}/benchmark-results/
+            ${{ runner.temp }}/benchmark-host/
           retention-days: 30
