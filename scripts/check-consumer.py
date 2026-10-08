@@ -21,6 +21,7 @@ def main():
     consumer = root / "bcr_test"
     evidence = args.evidence.resolve()
     evidence.mkdir(parents=True, exist_ok=True)
+    assert not (evidence / "native-consumer-proof.json").exists()
     linux = sys.platform.startswith("linux")
     runner = "linux-sandbox" if linux else "darwin-sandbox" if sys.platform == "darwin" else "local"
     test_runner = "local" if linux else runner
@@ -156,14 +157,15 @@ def main():
             assert result["status"] == "PASSED" and not result.get("cachedLocally", False)
             assert result["executionInfo"]["strategy"] == test_runner and result["executionInfo"].get("exitCode", 0) == 0
         check_sources("after")
-        write("native-consumer-proof.json", dict(source=head, tree=tree, module=module, platform=sys.platform,
+        proof = dict(source=head, tree=tree, module=module, platform=sys.platform,
             nativeActionSpawns=len(actions), buildRunner=runner, tests=sorted(expected), testRunner=test_runner,
-            firstAttempts=len(attempts), xmlHelperSpawns=len(helpers), tmpfsPath="/tmp" if linux else None, passed=True))
+            firstAttempts=len(attempts), xmlHelperSpawns=len(helpers), tmpfsPath="/tmp" if linux else None, passed=True)
     finally:
         try:
             run("shutdown", bazel + ["shutdown"])
         finally:
             check_sources("final")
+    write("native-consumer-proof.json", proof)
 
 
 def read_stream(path):
