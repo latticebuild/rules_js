@@ -47,12 +47,17 @@ js_package(
     name = "library",
     package_name = "@example/library",
     srcs = ["index.mjs"],
-    deps = ["@npm//node_modules/your-dependency"],
+    package = "package.json",
 )
 js_binary(name = "cli", bin = "cli.mjs", data = [":library"])
 js_test(name = "test", srcs = ["index.test.mjs"], data = [":library"])
 js_tree(name = "runtime", deps = [":library"])
 ```
+
+For this example, name the package `@example/library` and set `"type": "module"`
+in package.json. An `index.mjs` exporting `const value = 42`, a `cli.mjs`
+importing and printing that value, and an `index.test.mjs` checking it with
+`node:test` give runnable build, CLI and test targets without npm dependencies.
 
 See [docs/usage.md](docs/usage.md) for attributes, required tool inputs and
 consumer setup. The public API lives in [js/](js/);

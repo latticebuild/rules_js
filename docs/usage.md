@@ -33,7 +33,7 @@ js_package(
     name = "library",
     package_name = "@example/library",
     srcs = ["index.mjs"],
-    deps = ["@npm//node_modules/your-dependency"],
+    package = "package.json",
 )
 js_binary(name = "cli", bin = "cli.mjs", data = [":library"])
 js_test(name = "test", srcs = ["index.test.mjs"], data = [":library"])
