@@ -19,6 +19,10 @@ type payloadFile struct {
 	Size   int64
 }
 
+func (f payloadFile) MarshalJSON() ([]byte, error) {
+	return json.Marshal([]any{f.Path, f.SHA256, f.Size})
+}
+
 func (f *payloadFile) UnmarshalJSON(data []byte) error {
 	var row []json.RawMessage
 	if err := json.Unmarshal(data, &row); err != nil || len(row) != 3 {

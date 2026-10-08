@@ -5,6 +5,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"reflect"
 	"slices"
 	"strings"
 	"testing"
@@ -181,5 +182,28 @@ func TestFrozenIncompatibleABIInputs(t *testing.T) {
 				t.Fatal("invalid ABI delta accepted")
 			}
 		})
+	}
+}
+
+func TestReportPreservesIncompatiblePayloadRecords(t *testing.T) {
+	data, err := fixtures.ReadFile("fixtures/linux-glibc-exclusions.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var expected []packageInstance
+	if err := json.Unmarshal(data, &expected); err != nil {
+		t.Fatal(err)
+	}
+	value := report{Schema: 2, Qualified: true, Inventory: inventoryParity{ABIExtras: expected}}
+	data, err = json.Marshal(value)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var decoded report
+	if err := json.Unmarshal(data, &decoded); err != nil {
+		t.Fatal("benchmark cannot read its own report:", err)
+	}
+	if !reflect.DeepEqual(decoded.Inventory.ABIExtras, expected) {
+		t.Fatal("report changed the frozen package identities or payload hashes")
 	}
 }
